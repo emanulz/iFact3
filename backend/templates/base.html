@@ -1,0 +1,29 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+
+    <meta name="description" content="iFact">
+    <meta name="author" content="Emanuel Zuniga Infante">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+    {% block title %}
+        <title>iFact</title>
+    {% endblock %}
+    <link rel="stylesheet" href="{% static "vendor/loaders/loader.css" %}">
+    {% block appStyles %}{% endblock %}
+</head>
+<body>
+  <div id="loader" class="loader">
+    <h1>Cargando...</h1>
+  </div>
+{% block content %}{% endblock %}
+
+{% block js %}
+
+{% endblock %}
+<script type="text/javascript" src="http://localhost:35729/livereload.js"></script>
+</body>
+
+</html>

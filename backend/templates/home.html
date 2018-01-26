@@ -1,0 +1,24 @@
+
+{% extends "base.html" %}
+
+{% load i18n static %}
+
+{% block appStyles %}
+  <link rel="stylesheet" href="{% static "public/vendor/font-awesome/css/font-awesome.min.css" %}" />
+  <link rel="stylesheet" type="text/css" href="{% static "public/css/admin.css" %}" />
+{% endblock %}
+
+{% block content %}
+
+  <div id='appContainer'>
+  </div>
+
+{% endblock %}
+
+
+{% block js %}
+<script type="text/javascript">
+  alertify.defaults.theme.ok = "btn btn-success";
+  alertify.defaults.theme.cancel = "btn btn-danger";
+</script>
+{% endblock %}

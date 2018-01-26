@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+
+{% load render_bundle from webpack_loader %}
+{% load i18n static %}
+{% load static %}
+
+{% block title %}
+  <title>Administración</title>
+{% endblock %}
+
+{% block appStyles %}
+<link rel="stylesheet" href="{% static "vendor/font-awesome/css/font-awesome.min.css" %}">
+<link rel="stylesheet" href="{% static "bundles/css/admin.css" %}">
+{% endblock %}
+
+{% block content %}
+  <div id="app-container"></div>
+{% endblock %}
+
+{% block js %}
+  {% render_bundle 'vendors' %}
+  {% render_bundle 'admin' %}
+  <script type="text/javascript">
+  alertify.defaults.theme.ok = "btn btn-success";
+  alertify.defaults.theme.cancel = "btn btn-danger";
+  </script>
+{% endblock %}
