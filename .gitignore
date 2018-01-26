@@ -17,7 +17,9 @@ sdist/
 develop-eggs/
 .installed.cfg
 
+__pycache__/
 __pycache__
+/__pycache__
 */__pycache__
 */__pycache__/*
 
