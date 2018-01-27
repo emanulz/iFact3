@@ -41,6 +41,9 @@ export default class Main extends React.Component {
         <img src={avatar} width='128' height='128' />
         <input type='password' placeholder='Password' id='lockFormGroup' className='form-control' />
       </div>
+      <div className='lockScreen-logout'>
+        <a href='/logout'>Desconectarse</a>
+      </div>
     </div>
   }
 

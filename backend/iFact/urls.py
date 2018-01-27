@@ -16,5 +16,6 @@ urlpatterns = [
     url(r'^$', login_required(TemplateView.as_view(template_name='home.html'))),
     url(r'^login/$', auth_views.LoginView.as_view()),
     url(r'^logout/$', auth_views.LogoutView.as_view()),
-    url(r'^api-auth/', include('rest_framework.urls'))
+    url(r'^api-auth/', include('rest_framework.urls')),
+    url(r'^api/', include('api.urls')),
     ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

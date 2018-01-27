@@ -3577,6 +3577,7 @@ table {
   right: 0;
   left: 0;
   background-color: #354052;
+  font-family: Lato,sans-serif;
   z-index: 2; }
   .lockScreen .clock {
     margin: 0 auto;
@@ -3590,6 +3591,16 @@ table {
       font-weight: 300; }
     .lockScreen .clock .date {
       padding-top: 20px; }
+  .lockScreen-logout {
+    width: 100%;
+    text-align: center;
+    margin-top: 60px; }
+    .lockScreen-logout a {
+      font-size: 13px;
+      color: #cacaca;
+      text-decoration: underline; }
+      .lockScreen-logout a:hover {
+        color: white; }
 
 .lockScreen-form {
   padding-top: 60px;
@@ -3632,4 +3643,4 @@ table {
     line-height: 25px;
     border-radius: 0 !important; }
 
-/*# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsImZpbGUiOiIuL2Nzcy9hZG1pbi5jc3M/ZTBhOWQxM2Y0NTViMmI2ZmFhMmIiLCJzb3VyY2VSb290IjoiIn0=*/
+/*# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsImZpbGUiOiIuL2Nzcy9hZG1pbi5jc3M/ZDViNTEwYjkzM2JhZGZlNDY5MjciLCJzb3VyY2VSb290IjoiIn0=*/

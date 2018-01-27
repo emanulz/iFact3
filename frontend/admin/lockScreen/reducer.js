@@ -1,5 +1,5 @@
 const stateConst = {
-  adminLocked: false
+  adminLocked: true
 }
 
 export default function reducer(state = stateConst, action) {

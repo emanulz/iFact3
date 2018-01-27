@@ -43,7 +43,9 @@ INSTALLED_APPS = [
     'rest_framework',
     'webpack_loader',
     'django_cleanup',
-    'apps.profiles'
+    'api',
+    'apps.profiles',
+    'apps.clients'
     ]
 
 MIDDLEWARE = [

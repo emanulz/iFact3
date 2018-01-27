@@ -32,19 +32,6 @@ pip-log.txt
 .vscode/*
 /config/user/*.json
 
-/users/*
-/users-*/*
-/users
-/users-*
-
-users/CURRENT
-
-users/CURRENT
-
-users/LOG
-
-backups/db/*
-
 *.old
 *.env
 yarn.lock
