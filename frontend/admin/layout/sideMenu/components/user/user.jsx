@@ -4,6 +4,7 @@
 import React from 'react'
 import {connect} from 'react-redux'
 import alertify from 'alertifyjs'
+import {lockAdmin} from '../../../../lockScreen/actions'
 
 @connect((store) => {
   return {
@@ -17,7 +18,7 @@ export default class User extends React.Component {
     // ALERTIFY CONFIRM
     const _this = this
     alertify.confirm('Bloquear', `¿Desea bloquear momentaneamente el administrador?`, function() {
-      _this.props.dispatch({type: 'TOGGLE_ADMIN_LOCKED', payload: ''})
+      _this.props.dispatch(lockAdmin())
     }, function() {
       return true
     }).set('labels', {

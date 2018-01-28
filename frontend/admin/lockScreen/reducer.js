@@ -1,5 +1,5 @@
 const stateConst = {
-  adminLocked: true
+  adminLocked: false
 }
 
 export default function reducer(state = stateConst, action) {
@@ -12,6 +12,24 @@ export default function reducer(state = stateConst, action) {
       return {
         ...state,
         adminLocked: !locked
+      }
+
+    } // case
+
+    case 'FETCH_IS_ADMIN_LOCKED_FULFILLED':
+    {
+      return {
+        ...state,
+        adminLocked: action.payload
+      }
+
+    } // case
+
+    case 'FETCH_IS_ADMIN_LOCKED_REJECTED':
+    {
+      return {
+        ...state,
+        adminLocked: true
       }
 
     } // case

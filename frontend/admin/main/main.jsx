@@ -4,7 +4,7 @@
 import React from 'react'
 import {connect} from 'react-redux'
 import {BrowserRouter as Router} from 'react-router-dom'
-import {fecthProfile} from './actions'
+import {fecthProfile, fecthIsAdminLocked} from './actions'
 
 // COMPONENTS
 
@@ -25,6 +25,7 @@ export default class Main extends React.Component {
 
   componentWillMount() {
     this.props.dispatch(fecthProfile())
+    this.props.dispatch(fecthIsAdminLocked())
   }
 
   // Main Layout
