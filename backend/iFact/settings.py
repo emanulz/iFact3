@@ -45,7 +45,9 @@ INSTALLED_APPS = [
     'django_cleanup',
     'api',
     'apps.profiles',
-    'apps.clients'
+    'apps.clients',
+    'apps.products',
+    'apps.suppliers'
     ]
 
 MIDDLEWARE = [

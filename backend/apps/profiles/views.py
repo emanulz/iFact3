@@ -20,7 +20,6 @@ def profile_get(request):
         return HttpResponse(data, content_type='application/json')
 
 
-# TODO CHECK PASSWODS AND COMPARE
 @login_required
 def checkUserPassword(request):
 
@@ -32,8 +31,5 @@ def checkUserPassword(request):
         user = User.objects.get(username=request.user)
         password1 = body['pw']
         password2 = user.password
-        print(password1)
-        print(password2)
         is_valid = check_password(password1, password2)
-        print(is_valid)
         return HttpResponse(is_valid, content_type='application/json')

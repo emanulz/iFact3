@@ -21,9 +21,8 @@ def url(instance, filename):
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     avatar = models.ImageField(upload_to=url, blank=True)
-    location = models.CharField(max_length=30, blank=True)
+    id_num = models.CharField(max_length=255, null=True, blank=True, verbose_name='Num Identificación')
     birth_date = models.DateField(null=True, blank=True)
-    description = models.CharField(max_length=255, null=True, blank=True)
 
 
 @receiver(post_save, sender=User)

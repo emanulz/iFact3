@@ -19,13 +19,6 @@ class SiteTitle(StringPreference):
     name = 'title'
     default = 'My site'
 
-
-@global_preferences_registry.register
-class MaintenanceMode(BooleanPreference):
-    name = 'maintenance_mode'
-    default = False
-
-
 # now we declare a per-user preference
 # @user_preferences_registry.register
 # class CommentNotificationsEnabled(BooleanPreference):

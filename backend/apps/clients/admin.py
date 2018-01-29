@@ -10,9 +10,9 @@ from .models import Client
 @admin.register(Client)
 class ClientAdmin(admin.ModelAdmin):
 
-    list_display = ('code', 'name', 'last_name', 'id_type', 'id_num', 'has_credit', 'credit_limit', 'credit_days', )
+    list_display = ('code', 'name', 'last_name', 'phone_number', 'cellphone_number', 'email', 'has_credit')
 
-    search_fields = ('name', 'code', 'last_name', 'id_type', 'id_num', 'has_credit', 'credit_limit', 'credit_days', )
+    search_fields = ('code', 'name', 'last_name', 'phone_number', 'cellphone_number', 'email', 'has_credit')
 
     # def render_change_form(self, request, context, *args, **kwargs):
     #     context['adminform'].form.fields['company'].queryset = Company.objects.filter

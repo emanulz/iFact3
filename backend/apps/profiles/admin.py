@@ -9,6 +9,6 @@ from .models import Profile
 @admin.register(Profile)
 class ProfileAdmin(admin.ModelAdmin):
 
-    list_display = ('id', 'user', 'avatar',)
+    list_display = ('id', 'user', 'id_num',)
 
     search_fields = ('id', 'user',)
