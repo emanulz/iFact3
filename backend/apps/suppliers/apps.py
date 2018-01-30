@@ -2,5 +2,5 @@ from django.apps import AppConfig
 
 
 class SuppliersConfig(AppConfig):
-    name = 'suppliers'
+    name = 'apps.suppliers'
     verbose_name = 'Proveedores'

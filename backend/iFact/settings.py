@@ -34,7 +34,6 @@ INSTALLED_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
     'dynamic_preferences',
-    # comment the following line if you don't want to use user preferences
     'dynamic_preferences.users.apps.UserPreferencesConfig',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
@@ -44,10 +43,10 @@ INSTALLED_APPS = [
     'webpack_loader',
     'django_cleanup',
     'api',
-    'apps.profiles',
-    'apps.clients',
-    'apps.products',
-    'apps.suppliers'
+    'apps.profiles.apps.ProfilesConfig',
+    'apps.clients.apps.ClientsConfig',
+    'apps.products.apps.ProductsConfig',
+    'apps.suppliers.apps.SuppliersConfig'
     ]
 
 MIDDLEWARE = [
