@@ -65,7 +65,7 @@ export default class SideMenu extends React.Component {
       }, {
         text: 'Cuentas por Cobrar',
         class: 'fa-reorder',
-        href: '/admin/receivable'
+        href: '/admin/clients/add'
       }, {
         text: 'Notas de Crédito',
         class: 'fa-ticket',
@@ -167,18 +167,14 @@ export default class SideMenu extends React.Component {
               <span className='fa fa-area-chart' />
               Administración</Link>
           </li>
-          <li>
+          {/* <li>
             <Link to='/admin/users'>
               <span className='fa fa-user' />
               Usuarios</Link>
-          </li>
-          <ComposedItem mainTittle='Ventas' mainIcon='fa-shopping-cart' childItems={childSales} />
+          </li> */}
           <ComposedItem mainTittle='Clientes' mainIcon='fa-users' childItems={childClients} />
-          <ComposedItem mainTittle='Productos' mainIcon='fa-gift' childItems={childProducts} />
-          <ComposedItem mainTittle='Gastos' mainIcon='fa-money' childItems={childExpenses} />
-          <ComposedItem mainTittle='Inventarios' mainIcon='fa-sticky-note' childItems={childInventories} />
-          <ComposedItem mainTittle='Bancos y cuentas' mainIcon='fa-university' childItems={childBanks} />
-          <ComposedItem mainTittle='Proveedores' mainIcon='fa-users' childItems={childSuppliers} />
+          {/* <ComposedItem mainTittle='Productos' mainIcon='fa-gift' childItems={childProducts} />
+          <ComposedItem mainTittle='Proveedores' mainIcon='fa-users' childItems={childSuppliers} /> */}
 
         </ul>
       </div>

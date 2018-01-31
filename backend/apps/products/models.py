@@ -4,6 +4,9 @@ from __future__ import unicode_literals
 from django.db import models
 import os
 from uuid import uuid4
+from django.contrib.auth.models import Permission
+from django.contrib.contenttypes.models import ContentType
+from django.db import IntegrityError
 
 
 def url(instance, filename):
@@ -77,6 +80,18 @@ class Product(models.Model):
         ordering = ['code']
 
 
+# CUSTOM PERMISSION
+content_type = ContentType.objects.get_for_model(Product)
+try:
+    permission = Permission.objects.create(
+        codename='can_list',
+        name='Can list Producto',
+        content_type=content_type,
+        )
+except IntegrityError:
+    pass
+
+
 class ProductDepartment(models.Model):
 
     name = models.CharField(max_length=255, verbose_name='Nombre de la Familia')
@@ -89,6 +104,18 @@ class ProductDepartment(models.Model):
         verbose_name = 'Familia'
         verbose_name_plural = 'Productos - 1. Familias'
         ordering = ['code']
+
+
+# CUSTOM PERMISSION
+content_type = ContentType.objects.get_for_model(ProductDepartment)
+try:
+    permission = Permission.objects.create(
+        codename='can_list',
+        name='Can list Familia',
+        content_type=content_type,
+        )
+except IntegrityError:
+    pass
 
 
 class ProductSubDepartment(models.Model):
@@ -105,3 +132,15 @@ class ProductSubDepartment(models.Model):
         verbose_name = 'Sub-Familia'
         verbose_name_plural = 'Productos - 2. Sub-Familias'
         ordering = ['code']
+
+
+# CUSTOM PERMISSION
+content_type = ContentType.objects.get_for_model(ProductSubDepartment)
+try:
+    permission = Permission.objects.create(
+        codename='can_list',
+        name='Can list Sub-Familia',
+        content_type=content_type,
+        )
+except IntegrityError:
+    pass

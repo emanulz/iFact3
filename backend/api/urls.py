@@ -2,6 +2,7 @@
 
 from django.conf.urls import include, url
 from apps.profiles.views import checkUserPassword
+from apps.profiles.views import checkUserPermission, checkUserPermissions
 
 from rest_framework import routers
 from apps.clients.api.views import ClientViewSet
@@ -24,5 +25,7 @@ router.register(r'userprefs', UserPreferencesViewSet, base_name='userprefs')
 urlpatterns = [
 
     url(r'^', include(router.urls)),
-    url(r'^checkpassword/', checkUserPassword)
+    url(r'^checkpassword/', checkUserPassword),
+    url(r'^checkpermission/', checkUserPermission),
+    url(r'^checkpermissions/', checkUserPermissions)
     ]

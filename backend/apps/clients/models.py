@@ -2,6 +2,9 @@
 from __future__ import unicode_literals
 from django.core.validators import MaxValueValidator
 from django.db import models
+from django.contrib.auth.models import Permission
+from django.contrib.contenttypes.models import ContentType
+from django.db import IntegrityError
 
 
 class Client(models.Model):
@@ -51,3 +54,14 @@ class Client(models.Model):
         verbose_name = 'Cliente'
         verbose_name_plural = 'Clientes'
         ordering = ['code']
+
+
+content_type = ContentType.objects.get_for_model(Client)
+try:
+    permission = Permission.objects.create(
+        codename='can_list',
+        name='Can list Cliente',
+        content_type=content_type,
+        )
+except IntegrityError:
+    pass

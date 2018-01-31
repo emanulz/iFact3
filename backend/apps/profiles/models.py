@@ -4,6 +4,9 @@ from uuid import uuid4
 from django.contrib.auth.models import User
 from django.db.models.signals import post_save
 from django.dispatch import receiver
+from django.contrib.auth.models import Permission
+from django.contrib.contenttypes.models import ContentType
+from django.db import IntegrityError
 
 
 def url(instance, filename):
@@ -34,3 +37,25 @@ def create_user_profile(sender, instance, created, **kwargs):
 @receiver(post_save, sender=User)
 def save_user_profile(sender, instance, **kwargs):
     instance.profile.save()
+
+
+content_type = ContentType.objects.get_for_model(Profile)
+try:
+    permission = Permission.objects.create(
+        codename='can_list',
+        name='Can list Profiles',
+        content_type=content_type,
+        )
+except IntegrityError:
+    pass
+
+
+content_type = ContentType.objects.get_for_model(User)
+try:
+    permission = Permission.objects.create(
+        codename='can_list',
+        name='Can list Users',
+        content_type=content_type,
+        )
+except IntegrityError:
+    pass

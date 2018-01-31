@@ -8,6 +8,7 @@ from .serializers import ProfileSerializer
 from django.contrib.auth.models import User
 from .filters import UserFilter
 from .serializers import UserSerializer
+from .permissions import HasProperPermission
 
 
 class ProfileViewSet(viewsets.ModelViewSet):
@@ -17,6 +18,10 @@ class ProfileViewSet(viewsets.ModelViewSet):
     lookup_field = 'user'
     filter_class = ProfileFilter
 
+    def get_permissions(self):
+        # allow non-authenticated user to create via POST
+        return [HasProperPermission(), ]
+
 
 class UserViewSet(viewsets.ModelViewSet):
 
@@ -24,3 +29,7 @@ class UserViewSet(viewsets.ModelViewSet):
     queryset = User.objects.all()
     lookup_field = 'id'
     filter_class = UserFilter
+
+    def get_permissions(self):
+        # allow non-authenticated user to create via POST
+        return [HasProperPermission(), ]
