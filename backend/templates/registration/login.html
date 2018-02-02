@@ -14,9 +14,38 @@
 </head>
 <body>
 
+
 	<div class="limiter">
-		<div class="container-login100">
+    <div class="errors">
+
+      {% if user.is_authenticated %}
+      <p class="permissionError">
+        No tiene permiso para ingresar a la aplicación seleccionada, ¿Desea cambiar de usuario?
+      </p>
+      {% endif %}
+
+      {% if form.errors and not form.non_field_errors %}
+      <p class="errornote">
+      {% if form.errors.items|length == 1 %}{% trans "Please correct the error below." %}{% else %}{% trans "Please correct the errors below." %}{% endif %}
+      </p>
+      {% endif %}
+
+      {% if form.non_field_errors %}
+      {% for error in form.non_field_errors %}
+      <p class="errornote">
+          {{ error }}
+      </p>
+
+      {% endfor %}
+      {% endif %}
+
+
+    </div>
+
+    <div class="container-login100">
+
 			<div class="wrap-login100">
+
 				<div class="login100-form-title" style="background-image: url({% static "login/images/bg-01.jpg" %});">
 					<span class="login100-form-title-1">
 						Iniciar Sesión
@@ -25,23 +54,21 @@
 
 				<form class="login100-form validate-form" action="{{ app_path }}" method="post" id="login-form">
           {% csrf_token %}
-					<div class="wrap-input100 validate-input m-b-26" data-validate="Username is required">
+					<div class="wrap-input100 validate-input m-b-26" data-validate="Usuario requerido">
 						<span class="label-input100">Usuario</span>
-						{# <input class="input100" type="text" name="username" placeholder="Enter username"> #}
             {{ form.username | add_class:"input100" | attr:"placeholder:Ingrese su Usuario" }}
 						<span class="focus-input100"></span>
 					</div>
 
-					<div class="wrap-input100 validate-input m-b-18" data-validate = "Ingresar Usuario">
+					<div class="wrap-input100 validate-input m-b-18" data-validate = "Contraseña requerida">
 						<span class="label-input100">Contraseña</span>
-						{# <input class="input100" type="password" name="pass" placeholder="Ingresar Contraseña"> #}
             {{ form.password | add_class:"input100" | attr:"placeholder:Ingrese su Contraseña" }}
 						<span class="focus-input100"></span>
 					</div>
 
 					<div class="container-login100-form-btn">
             <button type="submit" class="login100-form-btn">
-              Login
+              Ingresar
             </button>
 					</div>
 				</form>

@@ -44,6 +44,8 @@ INSTALLED_APPS = [
     'webpack_loader',
     'django_cleanup',
     'api',
+    'apps.administration.apps.AdministrationConfig',
+    'apps.logs.apps.LogsConfig',
     'apps.profiles.apps.ProfilesConfig',
     'apps.clients.apps.ClientsConfig',
     'apps.products.apps.ProductsConfig',

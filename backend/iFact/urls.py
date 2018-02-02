@@ -9,10 +9,12 @@ from apps.profiles.views import profile_get
 from django.contrib.auth.decorators import login_required
 from django.views.generic import TemplateView
 
+from apps.administration.views import adminPage
+
 urlpatterns = [
     path('globaladmin/', admin.site.urls),
     url(r'^profile/', profile_get),
-    url(r'^admin/', login_required(TemplateView.as_view(template_name='admin.html'))),
+    url(r'^admin/', adminPage, name='admin'),
     url(r'^$', login_required(TemplateView.as_view(template_name='home.html'))),
     url(r'^login/$', auth_views.LoginView.as_view()),
     url(r'^logout/$', auth_views.LogoutView.as_view()),
