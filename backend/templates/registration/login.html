@@ -1,66 +1,69 @@
-{% extends "admin/base_site.html" %}
-{% load i18n static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  {% load i18n static %}
+  {% load widget_tweaks %}
+	<title>Inicio de sesión</title>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
 
-{% block extrastyle %}{{ block.super }}<link rel="stylesheet" type="text/css" href="{% static "admin/css/login.css" %}" />
-{{ form.media }}
-{% endblock %}
+	<link rel="stylesheet" type="text/css" href="{% static "vendor/font-awesome/css/font-awesome.min.css" %}">
+	<link rel="stylesheet" type="text/css" href="{% static "login/css/util.css" %}">
+	<link rel="stylesheet" type="text/css" href="{% static "login/css/main.css" %}">
+<!--===============================================================================================-->
+</head>
+<body>
 
-{% block bodyclass %}{{ block.super }} login{% endblock %}
+	<div class="limiter">
+		<div class="container-login100">
+			<div class="wrap-login100">
+				<div class="login100-form-title" style="background-image: url({% static "login/images/bg-01.jpg" %});">
+					<span class="login100-form-title-1">
+						Iniciar Sesión
+					</span>
+				</div>
 
-{% block usertools %}{% endblock %}
+				<form class="login100-form validate-form" action="{{ app_path }}" method="post" id="login-form">
+          {% csrf_token %}
+					<div class="wrap-input100 validate-input m-b-26" data-validate="Username is required">
+						<span class="label-input100">Usuario</span>
+						{# <input class="input100" type="text" name="username" placeholder="Enter username"> #}
+            {{ form.username | add_class:"input100" | attr:"placeholder:Ingrese su Usuario" }}
+						<span class="focus-input100"></span>
+					</div>
 
-{% block nav-global %}{% endblock %}
+					<div class="wrap-input100 validate-input m-b-18" data-validate = "Ingresar Usuario">
+						<span class="label-input100">Contraseña</span>
+						{# <input class="input100" type="password" name="pass" placeholder="Ingresar Contraseña"> #}
+            {{ form.password | add_class:"input100" | attr:"placeholder:Ingrese su Contraseña" }}
+						<span class="focus-input100"></span>
+					</div>
 
-{% block content_title %}{% endblock %}
+					<div class="container-login100-form-btn">
+            <button type="submit" class="login100-form-btn">
+              Login
+            </button>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
 
-{% block breadcrumbs %}{% endblock %}
+<!--===============================================================================================-->
+  <script src="{% static "vendor/jquery/jquery-3.2.1.min.js" %}"></script>
+<!--===============================================================================================-->
+	<!-- <script src="vendor/animsition/js/animsition.min.js"></script> -->
+<!--===============================================================================================-->
+	<!-- <script src="vendor/bootstrap/js/popper.js"></script> -->
+	<!-- <script src="vendor/bootstrap/js/bootstrap.min.js"></script> -->
+<!--===============================================================================================-->
+	<!-- <script src="vendor/select2/select2.min.js"></script> -->
+<!--===============================================================================================-->
+	<!-- <script src="vendor/daterangepicker/moment.min.js"></script> -->
+	<!-- <script src="vendor/daterangepicker/daterangepicker.js"></script> -->
+<!--===============================================================================================-->
+	<!-- <script src="vendor/countdowntime/countdowntime.js"></script> -->
+  <script src="{% static "login/js/main.js" %}"></script>
 
-{% block content %}
-{% if form.errors and not form.non_field_errors %}
-<p class="errornote">
-{% if form.errors.items|length == 1 %}{% trans "Please correct the error below." %}{% else %}{% trans "Please correct the errors below." %}{% endif %}
-</p>
-{% endif %}
-
-{% if form.non_field_errors %}
-{% for error in form.non_field_errors %}
-<p class="errornote">
-    {{ error }}
-</p>
-{% endfor %}
-{% endif %}
-
-<div id="content-main">
-
-{% if user.is_authenticated %}
-<p class="errornote">
-{% blocktrans trimmed %}
-    You are authenticated as {{ username }}, but are not authorized to
-    access this page. Would you like to login to a different account?
-{% endblocktrans %}
-</p>
-{% endif %}
-
-<form action="{{ app_path }}" method="post" id="login-form">{% csrf_token %}
-  <div class="form-row">
-    {{ form.username.errors }}
-    {{ form.username.label_tag }} {{ form.username }}
-  </div>
-  <div class="form-row">
-    {{ form.password.errors }}
-    {{ form.password.label_tag }} {{ form.password }}
-    <input type="hidden" name="next" value="{{ next }}" />
-  </div>
-  {% url 'admin_password_reset' as password_reset_url %}
-  {% if password_reset_url %}
-  <div class="password-reset-link">
-    <a href="{{ password_reset_url }}">{% trans 'Forgotten your password or username?' %}</a>
-  </div>
-  {% endif %}
-  <div class="submit-row">
-    <label>&nbsp;</label><input type="submit" value="{% trans 'Log in' %}" />
-  </div>
-</form>
-
-</div>
-{% endblock %}
+</body>
+</html>
