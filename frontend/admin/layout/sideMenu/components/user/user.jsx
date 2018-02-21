@@ -8,8 +8,8 @@ import {lockAdmin} from '../../../../lockScreen/actions'
 
 @connect((store) => {
   return {
-    user: store.sideMenu.user,
-    profile: store.sideMenu.profile
+    user: store.user.user,
+    profile: store.user.profile
   }
 })
 export default class User extends React.Component {

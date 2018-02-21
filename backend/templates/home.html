@@ -1,24 +1,28 @@
-
 {% extends "base.html" %}
+{% csrf_token %}
 
+{% load render_bundle from webpack_loader %}
 {% load i18n static %}
+{% load static %}
+
+{% block title %}
+  <title>Inicio</title>
+{% endblock %}
 
 {% block appStyles %}
-  <link rel="stylesheet" href="{% static "public/vendor/font-awesome/css/font-awesome.min.css" %}" />
-  <link rel="stylesheet" type="text/css" href="{% static "public/css/admin.css" %}" />
+  <link rel="stylesheet" href="{% static "vendor/font-awesome/css/font-awesome.min.css" %}" />
+  <link rel="stylesheet" href="{% static "bundles/css/home.css" %}">
 {% endblock %}
 
 {% block content %}
-
-  <div id='appContainer'>
-  </div>
-
+  <div id="app-container"></div>
 {% endblock %}
 
-
 {% block js %}
-<script type="text/javascript">
-  alertify.defaults.theme.ok = "btn btn-success";
-  alertify.defaults.theme.cancel = "btn btn-danger";
-</script>
+  {% render_bundle 'vendors' %}
+  {% render_bundle 'home' %}
+  <script type="text/javascript">
+    alertify.defaults.theme.ok = "btn btn-success";
+    alertify.defaults.theme.cancel = "btn btn-danger";
+  </script>
 {% endblock %}

@@ -16,7 +16,8 @@ const jsConfig = Object.assign({}, config, {
   devtool: debug ? 'inline-sourcemap' : '',
   name: 'js',
   entry: {
-    // landing: './frontend/landing/app.js',
+    home: './frontend/home/app.js',
+    permissions: './frontend/permissions/app.js',
     admin: './frontend/admin/app.js'
   },
   module: {
@@ -59,7 +60,8 @@ const stylesConfig = Object.assign({}, config, {
   devtool: debug ? 'inline-sourcemap' : '',
   name: 'styles',
   entry: {
-    // landing: './frontend/landing/main.sass',
+    home: './frontend/home/appstyles/main.sass',
+    permissions: './frontend/permissions/appstyles/main.sass',
     admin: './frontend/admin/appstyles/main.sass'
   },
   module: {
