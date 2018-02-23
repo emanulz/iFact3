@@ -4,6 +4,7 @@
 import React from 'react'
 import routes from './routes.js'
 import { checkUserPermissions } from '../../utils/checkPermissions'
+import { getItemDispatch } from '../../utils/api.js'
 import {connect} from 'react-redux'
 
 @connect((store) => {
@@ -14,8 +15,6 @@ import {connect} from 'react-redux'
 export default class List extends React.Component {
 
   componentWillMount() {
-
-    console.log('MOUNT')
 
     const permissions = {
       create: 'clients.add_client',
@@ -29,12 +28,21 @@ export default class List extends React.Component {
       fail: 'FETCH_USER_CLIENT_PERMISSIONS_REJECTED'
     }
     this.props.dispatch(checkUserPermissions(kwargs))
+
+    const clientKwargs = {
+      url: '/api/clients',
+      successType: 'FETCH_CLIENTS_FULFILLED',
+      errorType: 'FETCH_CLIENTS_REJECTED'
+    }
+
+    this.props.dispatch(getItemDispatch(clientKwargs))
+
   }
 
   // Main Layout
   render() {
 
-    return <div className='Main'>
+    return <div className='Main heigh100'>
       {routes}
     </div>
 

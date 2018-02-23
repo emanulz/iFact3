@@ -7,7 +7,7 @@ import List from './crud/list.jsx'
 import Create from './crud/create.jsx'
 import Update from './crud/update.jsx'
 
-const routes = <div>
+const routes = <div className='heigh100'>
 
   <Route exact path='/admin/clients' component={List} />
   <Route exact path='/admin/clients/add' component={Create} />

@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 from __future__ import unicode_literals
+import uuid
 from django.db import models
 from django.contrib.auth.models import Permission
 from django.contrib.contenttypes.models import ContentType
@@ -8,6 +9,7 @@ from django.db import IntegrityError
 
 class Log(models.Model):
 
+    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     code = models.CharField(max_length=255, null=True, blank=True, verbose_name='Código')
     model = models.CharField(max_length=255, null=True, blank=True, verbose_name='Modelo Afectado')
     prev_object = models.TextField(null=True, blank=True, verbose_name='Objeto Anterior')

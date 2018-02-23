@@ -1,75 +1,59 @@
 .create
-    & .first
-        padding-right: 10px
-    & .second
-        padding-left: 10px
-    & .row
-        padding: 0
-        margin: 0 0 15px 0
-    & .col-xs-6
-        padding: 0
-    & .col-xs-12
-      padding: 0
-    & .col-xs-3
-        padding: 0
-    & .col-xs-9
-        padding: 0
-    & .col-xs-4
-        padding: 0
-    & .col-xs-8
-        padding: 0
-    & h1
-        font-size: 18px
-        font-family: sans-serif
-    &-input-block
-        & .first
-            padding-right: 10px
-        & .second
-            padding-left: 10px
+  & h1
+    font-size: 18px
 
-    &-fields-container
-        padding-top: 15px !important
+.form-container
+  padding-left: 0
 
-        &.first
-            padding-right: 10px
-        &.second
-            padding-left: 10px
-        & span
-            font-size: 18px
-            font-family: sans-serif
-            font-weight: 400
+.input-block
+  & .first
+      padding-right: 10px
+  & .second
+      padding-left: 10px
 
-        & hr
-            margin: 5px 0 15px 0
-            border-top: 1px solid $PRIMARY-COLOR
+.fields-container
+  padding-top: 15px !important
+  font-family: 'Source Sans Pro', sans-serif !important
+  & input[type='checkbox']
+    margin: 0
 
-        & label
-            font-size: 14px
-            font-family: sans-serif
-            font-weight: bold
-            margin-bottom: 5px
+  &.first
+      padding-right: 10px
+  &.second
+      padding-left: 10px
+  & span
+      font-size: 20px
+      font-weight: 500
 
-        & .inline-checkbox
-            display: flex
-            flex-flow: row
-            & input
-                width: 20px
-                height: 18px
-                margin: 0 15px
+  & hr
+      margin: 5px 0 15px 0
+      border-top: 1px solid $PRIMARY-COLOR
 
-        &.buttons
-            font-family: sans-serif
-            font-weight: 200
+  & label
+      font-size: 14px
+      font-weight: bold
+      margin-bottom: 5px
 
-            & .col-xs-6
+  & .inline-checkbox
+      display: flex
+      flex-flow: row
+      & input
+          width: 20px
+          height: 18px
+          margin: 0 15px
 
-                padding-right: 10px
-                margin-bottom: 10px
+  &.buttons
+      font-weight: 200
 
-            & .col-xs-12
+      & .col-xs-6
 
-                padding-right: 10px
-                margin-bottom: 10px
+          padding-right: 10px
+          margin-bottom: 0
+
+      & .col-xs-12
+
+          padding-right: 10px
+          margin-bottom: 10px
 
 .select2
 
@@ -79,7 +63,6 @@
 
 .select2-results__options
   & li
-    font-family: sans-serif
     font-size: 13px !important
 
 .select2-container
@@ -93,3 +76,26 @@
 
 .select2-selection__rendered
   line-height: 35px !important
+
+.create-edit-header
+  font-family: 'Source Sans Pro', sans-serif !important
+  display: flex
+  flex-flow: row
+  & h1
+    font-size: 22px
+    font-weight: 800
+  & span
+    line-height: 16px
+    font-size: 28px
+    cursor: pointer
+    color: $PRIMARY-COLOR
+    &:hover
+      color: $PRIMARY-COLOR-ACCENT
+  & .previous
+    margin-left: 20px
+  & .next
+    margin-left: 10px
+  & .list
+    font-size: 25px
+    line-height: 20px
+    margin-left: 20px

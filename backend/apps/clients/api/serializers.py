@@ -11,4 +11,4 @@ class ClientSerializer(serializers.ModelSerializer):
         model = Client
         fields = ('id', 'code', 'name', 'last_name', 'id_type', 'id_num', 'address', 'phone_number', 'cellphone_number',
                   'email', 'pred_discount', 'max_discount', 'max_line_discount', 'pays_taxes', 'has_credit',
-                  'credit_limit', 'credit_days', 'observations')
+                  'credit_limit', 'credit_days', 'observations', 'client_type', 'created', 'updated')

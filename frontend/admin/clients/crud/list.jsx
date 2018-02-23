@@ -2,7 +2,7 @@
  * Module dependencies
  */
 import React from 'react'
-import ListComponent from './components/list.jsx'
+import ListComponent from './list/list.jsx'
 import Unauthorized from '../../general/unauthorized.jsx'
 import {connect} from 'react-redux'
 

@@ -5,12 +5,35 @@ const defaultPermissions = {
   delete: 'unfetched'
 }
 
+const clientModel = {
+  id: '000000000',
+  address: '',
+  cellphone_number: '',
+  client_type: 'GENERAL',
+  code: '',
+  credit_days: 30,
+  credit_limit: 0,
+  email: '',
+  has_credit: false,
+  id_num: '',
+  id_type: 'PER',
+  last_name: '',
+  max_discount: 0,
+  max_line_discount: 0,
+  name: '',
+  observations: '',
+  pays_taxes: true,
+  phone_number: '',
+  pred_discount: 0
+}
+
 const stateConst = {
   clients: [],
-  clientActive: '',
+  clientActive: clientModel,
   nextClient: 0,
   previousClient: 0,
-  permissions: defaultPermissions
+  permissions: defaultPermissions,
+  fetching: true
 }
 
 export default function reducer(state = stateConst, action) {
@@ -55,7 +78,8 @@ export default function reducer(state = stateConst, action) {
     {
       return {
         ...state,
-        clients: action.payload
+        clients: action.payload,
+        fetching: false
       }
 
     } // case
@@ -67,6 +91,22 @@ export default function reducer(state = stateConst, action) {
         clients: []
       }
     } // case
+
+    case 'SET_CLIENT':
+    {
+      return {
+        ...state,
+        clientActive: action.payload
+      }
+    }
+
+    case 'CLEAR_CLIENT':
+    {
+      return {
+        ...state,
+        clientActive: clientModel
+      }
+    }
 
   } // switch
 

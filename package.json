@@ -54,9 +54,9 @@
     "webpack-dev-server": "^2.11.1"
   },
   "dependencies": {
-    "D": "^1.0.0",
     "axios": "^0.17.1",
     "chart.js": "^2.7.1",
+    "datatables.net": "^1.10.16",
     "react-chartjs-2": "^2.7.0",
     "redux-logger": "^3.0.6",
     "redux-promise-middleware": "^5.0.0",
