@@ -15,8 +15,9 @@ class Log(models.Model):
     prev_object = models.TextField(null=True, blank=True, verbose_name='Objeto Anterior')
     new_object = models.TextField(null=True, blank=True, verbose_name='Objeto Nuevo')
     description = models.CharField(max_length=255, null=True, blank=True, verbose_name='Descripción')
-    date = models.DateField(null=True, blank=True, verbose_name='Fecha')
     user = models.TextField(null=True, blank=True, verbose_name='Usuario')
+    created = models.DateTimeField(auto_now=False, auto_now_add=True, blank=True, null=True,
+                                   verbose_name='Fecha de creación')
 
     def __unicode__(self):
         return '%s - %s' % (self.id, self.code)

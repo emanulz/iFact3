@@ -8,7 +8,8 @@ import { withRouter } from 'react-router-dom'
 @connect((store) => {
   return {
     client: store.clients.clientActive,
-    clients: store.clients.clients
+    clients: store.clients.clients,
+    user: store.user.user
   }
 })
 
@@ -16,7 +17,9 @@ class CreateButtons extends React.Component {
 
   // BUTTONS
   saveBtn(redirect) {
+    const user = this.props.user
     const client = this.props.client
+    const clientOld = {noPrevious: 'No previous Item needed'}
     const clients = this.props.clients
     const fieldsOk = checkClientData(client, clients)
 
@@ -24,6 +27,11 @@ class CreateButtons extends React.Component {
       const kwargs = {
         url: '/api/clients/',
         item: client,
+        logCode: 'CLIENT_CREATE',
+        logDescription: 'Creación de nuevo cliente',
+        logModel: 'CLIENT',
+        user: user,
+        itemOld: clientOld,
         sucessMessage: 'Cliente creado Correctamente.',
         errorMessage: 'Hubo un error al crear el Cliente, intente de nuevo.',
         dispatchType: 'CLEAR_CLIENT'

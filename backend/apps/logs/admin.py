@@ -10,6 +10,6 @@ from .models import Log
 @admin.register(Log)
 class ClientAdmin(admin.ModelAdmin):
 
-    list_display = ('id', 'code', 'model', 'date')
+    list_display = ('id', 'code', 'model', 'created')
 
-    search_fields = ('id', 'code', 'model', 'date')
+    search_fields = ('id', 'code', 'model', 'created')

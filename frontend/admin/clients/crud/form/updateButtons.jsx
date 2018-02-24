@@ -1,13 +1,16 @@
 import React from 'react'
 import {connect} from 'react-redux'
 import {checkClientData} from '../../actions'
-import {updateItem} from '../../../../utils/api'
+import {updateItem, getItemDoubleDispatch, deleteItem} from '../../../../utils/api'
 import { withRouter } from 'react-router-dom'
+import alertify from 'alertifyjs'
 
 @connect((store) => {
   return {
     client: store.clients.clientActive,
-    clients: store.clients.clients
+    clients: store.clients.clients,
+    clientOld: store.clients.clientActiveOld,
+    user: store.user.user
   }
 })
 
@@ -15,14 +18,22 @@ class UpdateButtons extends React.Component {
 
   // BUTTONS
   updateBtn(redirect) {
+    const user = this.props.user
     const client = this.props.client
+    const clientOld = this.props.clientOld
     const clients = this.props.clients
     const fieldsOk = checkClientData(client, clients)
 
     if (fieldsOk) {
       const kwargs = {
         url: `/api/clients/${client.id}/`,
+        baseUrl: `/api/clients/`,
         item: client,
+        logCode: 'CLIENT_UPDATE',
+        logDescription: 'Actualización de cliente',
+        logModel: 'CLIENT',
+        user: user,
+        itemOld: clientOld,
         sucessMessage: 'Cliente actualizado Correctamente.',
         errorMessage: 'Hubo un error al actualizar el Cliente, intente de nuevo.',
         dispatchType: 'CLEAR_CLIENT'
@@ -33,32 +44,60 @@ class UpdateButtons extends React.Component {
         kwargs.history = this.props.history
       }
 
-      this.props.dispatch(updateItem(kwargs))
+      const _this = this
+
+      const updatePromise = new Promise((resolve, reject) => {
+        _this.props.dispatch(updateItem(kwargs))
+        resolve()
+      })
+
+      updatePromise.then(() => {
+        console.log('THENNN')
+        const clientKwargs = {
+          url: '/api/clients',
+          successType: 'FETCH_CLIENTS_FULFILLED',
+          successType2: 'CLEAR_CLIENT',
+          errorType: 'FETCH_CLIENTS_REJECTED'
+        }
+
+        _this.props.dispatch(getItemDoubleDispatch(clientKwargs))
+      }).catch((err) => {
+        console.log(err)
+      })
+
     }
   }
 
   deleteBtn() {
 
-    // const client = this.props.client
-    // const _this = this
-    // const kwargs = {
-    //   db: 'general',
-    //   item: client,
-    //   modelName: 'Cliente',
-    //   dispatchType: 'CLEAR_CLIENT',
-    //   redirectUrl: '/admin/clients',
-    //   history: this.props.history
-    // }
-    // // ALERTIFY CONFIRM
-    // alertify.confirm('Eliminar', `Desea Eliminar el Cliente ${client.code} - ${client.name}? Esta acción no se puede
-    // deshacer.`, function() {
-    //   _this.props.dispatch(deleteItem(kwargs))
-    // }, function() {
-    //   return true
-    // }).set('labels', {
-    //   ok: 'Si',
-    //   cancel: 'No'
-    // })
+    const user = this.props.user
+    const client = this.props.client
+    const clientOld = {noPrevious: 'No previous Item needed'}
+
+    const _this = this
+    const kwargs = {
+      url: `/api/clients/${client.id}/`,
+      item: client,
+      logCode: 'CLIENT_DELETE',
+      logDescription: 'Eliminación de cliente',
+      logModel: 'CLIENT',
+      user: user,
+      itemOld: clientOld,
+      modelName: 'Cliente',
+      dispatchType: 'CLEAR_CLIENT',
+      redirectUrl: '/admin/clients',
+      history: this.props.history
+    }
+    // ALERTIFY CONFIRM
+    alertify.confirm('Eliminar', `Desea Eliminar el Cliente ${client.code} - ${client.name} ${client.last_name}? Esta acción no se puede
+    deshacer.`, function() {
+      _this.props.dispatch(deleteItem(kwargs))
+    }, function() {
+      return true
+    }).set('labels', {
+      ok: 'Si',
+      cancel: 'No'
+    })
   }
 
   render() {

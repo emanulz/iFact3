@@ -9,4 +9,4 @@ class LogFilter(django_filters.FilterSet):
 
     class Meta:
         model = Log
-        fields = ('id', 'code', 'model')
+        fields = ('id', 'code', 'model', 'created')

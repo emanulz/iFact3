@@ -17,20 +17,21 @@ class Form extends React.Component {
     this.props.dispatch({type: 'CLEAR_CLIENT', payload: ''})
     this.props.dispatch({type: 'CLEAR_NEXT_PREV_CLIENT', payload: ''})
 
-    if (this.props.update && this.props.clients.length) {
+    if (this.props.update) {
 
       const lookUp = this.props.location.pathname.split('/').pop()
 
       const kwargs = {
-        items: [
-          ...this.props.clients
-        ],
         lookUpField: 'code',
+        url: '/api/clients/',
         lookUpValue: lookUp,
         dispatchType: 'SET_CLIENT',
+        dispatchType2: 'SET_CLIENT_OLD',
         dispatchErrorType: 'CLIENT_NOT_FOUND',
         lookUpName: 'código',
-        modelName: 'Clientes'
+        modelName: 'Clientes',
+        redirectUrl: '/admin/clients',
+        history: this.props.history
       }
 
       this.props.dispatch(setItem(kwargs))
@@ -44,18 +45,19 @@ class Form extends React.Component {
 
       const lookUp = this.props.location.pathname.split('/').pop()
 
-      if (nextProps.clients.length && nextProps.client.id == '000000000') {
+      if (nextProps.client.id == '000000000') {
 
         const kwargs = {
-          items: [
-            ...nextProps.clients
-          ],
           lookUpField: 'code',
+          url: '/api/clients/',
           lookUpValue: lookUp,
           dispatchType: 'SET_CLIENT',
+          dispatchType2: 'SET_CLIENT_OLD',
           dispatchErrorType: 'CLIENT_NOT_FOUND',
           lookUpName: 'código',
-          modelName: 'Clientes'
+          modelName: 'Clientes',
+          redirectUrl: '/admin/clients',
+          history: this.props.history
         }
 
         this.props.dispatch(setItem(kwargs))

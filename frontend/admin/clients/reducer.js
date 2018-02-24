@@ -30,6 +30,7 @@ const clientModel = {
 const stateConst = {
   clients: [],
   clientActive: clientModel,
+  clientActiveOld: clientModel,
   nextClient: 0,
   previousClient: 0,
   permissions: defaultPermissions,
@@ -100,11 +101,20 @@ export default function reducer(state = stateConst, action) {
       }
     }
 
+    case 'SET_CLIENT_OLD':
+    {
+      return {
+        ...state,
+        clientActiveOld: action.payload
+      }
+    }
+
     case 'CLEAR_CLIENT':
     {
       return {
         ...state,
-        clientActive: clientModel
+        clientActive: clientModel,
+        clientActiveOld: clientModel
       }
     }
 
