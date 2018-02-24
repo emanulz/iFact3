@@ -16,6 +16,8 @@ export default class List extends React.Component {
 
   componentWillMount() {
 
+    // When will mount fecth for model permissions and dispatch to reducer
+    // *******************************************************************
     const permissions = {
       create: 'clients.add_client',
       update: 'clients.change_client',
@@ -28,7 +30,10 @@ export default class List extends React.Component {
       fail: 'FETCH_USER_CLIENT_PERMISSIONS_REJECTED'
     }
     this.props.dispatch(checkUserPermissions(kwargs))
+    // *******************************************************************
 
+    // Then fetch the elements of the model and dispatch to reducer
+    // *******************************************************************
     const clientKwargs = {
       url: '/api/clients',
       successType: 'FETCH_CLIENTS_FULFILLED',
@@ -36,6 +41,7 @@ export default class List extends React.Component {
     }
 
     this.props.dispatch(getItemDispatch(clientKwargs))
+    // *******************************************************************
 
   }
 

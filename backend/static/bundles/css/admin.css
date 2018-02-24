@@ -3755,4 +3755,21 @@ table {
     line-height: 25px;
     border-radius: 0 !important; }
 
-/*# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsImZpbGUiOiIuL2Nzcy9hZG1pbi5jc3M/ZDcwMWZlZmVmNjMzOGM4ZDI1OWYiLCJzb3VyY2VSb290IjoiIn0=*/
+.fetcing-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.7);
+  z-index: 100;
+  text-align: center; }
+  .fetcing-container img {
+    margin-top: 10%; }
+  .fetcing-container h1 {
+    color: white;
+    font-size: 30px;
+    margin-top: 45px;
+    font-family: 'Source Sans Pro', sans-serif; }
+
+/*# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsImZpbGUiOiIuL2Nzcy9hZG1pbi5jc3M/MTM5MGVjNjY2YmQ5ZjBkMDY4ZDYiLCJzb3VyY2VSb290IjoiIn0=*/

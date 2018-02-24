@@ -13,12 +13,14 @@ import SideMenu from '../layout/sideMenu/sideMenu.jsx'
 import Configbar from '../layout/configBar/configBar.jsx'
 import {hideConfigBar} from '../layout/configBar/actions'
 import LockScreen from '../lockScreen/lockScreen.jsx'
+import Fetching from '../../general/fetching/fetching.jsx'
 
 import routes from './routes.js'
 
 @connect((store) => {
   return {
-    adminLocked: store.lockScreen.adminLocked
+    adminLocked: store.lockScreen.adminLocked,
+    fetching: store.fetching.fetching
   }
 })
 export default class Main extends React.Component {
@@ -31,6 +33,8 @@ export default class Main extends React.Component {
   // Main Layout
   render() {
 
+    const fetching = this.props.fetching ? <Fetching /> : ''
+
     const unlocked = <Router>
       <div>
         <SideMenu />
@@ -39,6 +43,7 @@ export default class Main extends React.Component {
           <Configbar />
           <div onClick={hideConfigBar} className='mainContainer-content'>
             {routes}
+            {fetching}
           </div>
         </div>
       </div>

@@ -33,7 +33,7 @@ class Form extends React.Component {
         redirectUrl: '/admin/clients',
         history: this.props.history
       }
-
+      this.props.dispatch({type: 'FETCHING_STARTED', payload: ''})
       this.props.dispatch(setItem(kwargs))
 
     }
@@ -59,7 +59,7 @@ class Form extends React.Component {
           redirectUrl: '/admin/clients',
           history: this.props.history
         }
-
+        this.props.dispatch({type: 'FETCHING_STARTED', payload: ''})
         this.props.dispatch(setItem(kwargs))
 
       }

@@ -41,7 +41,7 @@ class CreateButtons extends React.Component {
         kwargs.redirectUrl = '/admin/clients'
         kwargs.history = this.props.history
       }
-
+      this.props.dispatch({type: 'FETCHING_STARTED', payload: ''})
       this.props.dispatch(saveItem(kwargs))
     }
   }

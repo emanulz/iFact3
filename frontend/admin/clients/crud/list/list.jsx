@@ -16,6 +16,8 @@ export default class List extends React.Component {
 
   componentWillMount() {
 
+    this.props.dispatch({type: 'FETCHING_STARTED', payload: ''})
+
     const clientKwargs = {
       url: '/api/clients',
       successType: 'FETCH_CLIENTS_FULFILLED',

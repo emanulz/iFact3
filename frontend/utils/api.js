@@ -28,6 +28,7 @@ export function getItemDispatch(kwargs) {
   return function(dispatch) {
     axios.get(url).then(function(response) {
       dispatch({type: successType, payload: response.data})
+      dispatch({type: 'FETCHING_DONE', payload: ''})
     }).catch(function(error) {
       alertify.alert('ERROR', `Error al obtener un valor del API, por favor intente de nuevo o comuníquese con el
       administrador del sistema con el siguiete error: ${error}`)
@@ -48,6 +49,7 @@ export function getItemDoubleDispatch(kwargs) {
     axios.get(url).then(function(response) {
       dispatch({type: successType, payload: response.data})
       dispatch({type: successType2, payload: ''})
+      dispatch({type: 'FETCHING_DONE', payload: ''})
     }).catch(function(error) {
       alertify.alert('ERROR', `Error al obtener un valor del API, por favor intente de nuevo o comuníquese con el
       administrador del sistema con el siguiete error: ${error}`)
@@ -99,6 +101,7 @@ export function setItem(kwargs) {
 
         dispatch({type: kwargs.dispatchType, payload: response.data[0]})
         dispatch({type: kwargs.dispatchType2, payload: response.data[0]})
+        dispatch({type: 'FETCHING_DONE', payload: ''})
 
       } else {
         dispatch({type: kwargs.dispatchErrorType, payload: ''})
@@ -143,6 +146,7 @@ export function saveItem(kwargs) {
           })
         dispatch({type: kwargs.dispatchType, payload: ''})
         saveLog(logCode, logModel, itemOld, item, logDescription, user)
+        dispatch({type: 'FETCHING_DONE', payload: ''})
       }).catch((err) => {
         console.log(err)
         if (err.response) {
@@ -183,6 +187,7 @@ export function updateItem(kwargs) {
           })
         dispatch({type: kwargs.dispatchType, payload: ''})
         saveLog(logCode, logModel, itemOld, item, logDescription, user)
+        dispatch({type: 'FETCHING_DONE', payload: ''})
       }).catch((err) => {
         console.log(err)
         if (err.response) {
@@ -224,6 +229,7 @@ export function deleteItem(kwargs) {
           })
         dispatch({type: kwargs.dispatchType, payload: ''})
         saveLog(logCode, logModel, itemOld, item, logDescription, user)
+        dispatch({type: 'FETCHING_DONE', payload: ''})
 
       }).catch((err) => {
         alertify.alert('Error', `Hubo un error al eliminar el ${model} ERROR: ${err}.`)

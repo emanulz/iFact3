@@ -47,6 +47,7 @@ class UpdateButtons extends React.Component {
       const _this = this
 
       const updatePromise = new Promise((resolve, reject) => {
+        _this.props.dispatch({type: 'FETCHING_STARTED', payload: ''})
         _this.props.dispatch(updateItem(kwargs))
         resolve()
       })
@@ -59,7 +60,7 @@ class UpdateButtons extends React.Component {
           successType2: 'CLEAR_CLIENT',
           errorType: 'FETCH_CLIENTS_REJECTED'
         }
-
+        _this.props.dispatch({type: 'FETCHING_STARTED', payload: ''})
         _this.props.dispatch(getItemDoubleDispatch(clientKwargs))
       }).catch((err) => {
         console.log(err)
@@ -91,6 +92,7 @@ class UpdateButtons extends React.Component {
     // ALERTIFY CONFIRM
     alertify.confirm('Eliminar', `Desea Eliminar el Cliente ${client.code} - ${client.name} ${client.last_name}? Esta acción no se puede
     deshacer.`, function() {
+      _this.props.dispatch({type: 'FETCHING_STARTED', payload: ''})
       _this.props.dispatch(deleteItem(kwargs))
     }, function() {
       return true
