@@ -18,6 +18,7 @@ export function checkUserPermissions(kwargs) {
     // calls the function in backend to check permissions
     axios.post('/api/checkpermissions/', data)
       .then(function(response) {
+        dispatch({type: 'FETCHING_DONE', payload: ''})
         dispatch({type: kwargs.success, payload: response.data})
       })
       .catch(function(error) {

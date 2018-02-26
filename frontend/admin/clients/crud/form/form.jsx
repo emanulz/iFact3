@@ -45,7 +45,7 @@ class Form extends React.Component {
 
       const lookUp = this.props.location.pathname.split('/').pop()
 
-      if (nextProps.client.id == '000000000') {
+      if (nextProps.client.id == '0000000000') {
 
         const kwargs = {
           lookUpField: 'code',

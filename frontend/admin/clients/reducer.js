@@ -6,7 +6,7 @@ const defaultPermissions = {
 }
 
 const clientModel = {
-  id: '000000000',
+  id: '0000000000',
   address: '',
   cellphone_number: '',
   client_type: 'GENERAL',
@@ -33,8 +33,7 @@ const stateConst = {
   clientActiveOld: clientModel,
   nextClient: 0,
   previousClient: 0,
-  permissions: defaultPermissions,
-  fetching: true
+  permissions: defaultPermissions
 }
 
 export default function reducer(state = stateConst, action) {
@@ -79,8 +78,7 @@ export default function reducer(state = stateConst, action) {
     {
       return {
         ...state,
-        clients: action.payload,
-        fetching: false
+        clients: action.payload
       }
 
     } // case

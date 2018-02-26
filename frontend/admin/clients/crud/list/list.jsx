@@ -8,7 +8,7 @@ import { getItemDispatch } from '../../../../utils/api.js'
 
 @connect((store) => {
   return {
-    fething: store.clients.fetching,
+    fething: store.fetching.fetching,
     clients: store.clients.clients
   }
 })
@@ -17,6 +17,7 @@ export default class List extends React.Component {
   componentWillMount() {
 
     this.props.dispatch({type: 'FETCHING_STARTED', payload: ''})
+    this.props.dispatch({type: 'CLEAR_CLIENT', payload: ''})
 
     const clientKwargs = {
       url: '/api/clients',
@@ -58,7 +59,7 @@ export default class List extends React.Component {
       }
     ]
 
-    const fetching = <h1>CARGANDO...</h1>
+    const fetching = <div />
     const list = <DataTable headerOrder={headerOrder} model='clients' data={this.props.clients}
       addLink='/admin/clients/add' idField='id' />
 

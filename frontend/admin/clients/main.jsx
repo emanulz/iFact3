@@ -29,6 +29,7 @@ export default class List extends React.Component {
       success: 'FETCH_USER_CLIENT_PERMISSIONS_FULLFILLED',
       fail: 'FETCH_USER_CLIENT_PERMISSIONS_REJECTED'
     }
+    this.props.dispatch({type: 'FETCHING_STARTED', payload: ''})
     this.props.dispatch(checkUserPermissions(kwargs))
     // *******************************************************************
 
@@ -39,7 +40,7 @@ export default class List extends React.Component {
       successType: 'FETCH_CLIENTS_FULFILLED',
       errorType: 'FETCH_CLIENTS_REJECTED'
     }
-
+    this.props.dispatch({type: 'FETCHING_STARTED', payload: ''})
     this.props.dispatch(getItemDispatch(clientKwargs))
     // *******************************************************************
 

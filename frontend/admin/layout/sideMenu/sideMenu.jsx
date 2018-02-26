@@ -122,7 +122,7 @@ export default class SideMenu extends React.Component {
       {
         text: 'Proveedores',
         class: 'fa-sticky-note',
-        href: '/admin'
+        href: '/admin/suppliers'
       }, {
         text: 'Cuentas por pagar',
         class: 'fa-file-text',
@@ -173,8 +173,8 @@ export default class SideMenu extends React.Component {
               Usuarios</Link>
           </li> */}
           <ComposedItem mainTittle='Clientes' mainIcon='fa-users' childItems={childClients} />
-          {/* <ComposedItem mainTittle='Productos' mainIcon='fa-gift' childItems={childProducts} />
-          <ComposedItem mainTittle='Proveedores' mainIcon='fa-users' childItems={childSuppliers} /> */}
+          {/* <ComposedItem mainTittle='Productos' mainIcon='fa-gift' childItems={childProducts} /> */}
+          <ComposedItem mainTittle='Proveedores' mainIcon='fa-users' childItems={childSuppliers} />
 
         </ul>
       </div>

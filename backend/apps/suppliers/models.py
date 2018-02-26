@@ -6,9 +6,9 @@ import uuid
 
 class Supplier(models.Model):
 
-    person = 'per'
-    juridic = 'jur'
-    passport = 'pas'
+    person = 'PER'
+    juridic = 'JUR'
+    passport = 'PAS'
 
     ID_TYPE_CHOICES = ((person, 'Cédula Física'),
                        (juridic, 'Cédula Jurídica'),
@@ -28,7 +28,7 @@ class Supplier(models.Model):
     cellphone_number = models.CharField(max_length=255, null=True, blank=True, verbose_name='Celular')
     email = models.EmailField(max_length=255, null=True, blank=True, verbose_name='Email')
 
-    agent_name = models.CharField(max_length=255, verbose_name='Nombre del Agente')
+    agent_name = models.CharField(max_length=255, null=True, blank=True, verbose_name='Nombre del Agente')
     agent_last_name = models.CharField(max_length=255, null=True, blank=True, verbose_name='Apellidos del Agente')
     agent_phone_number = models.CharField(max_length=255, null=True, blank=True, verbose_name='Teléfono del agente')
     agent_email = models.EmailField(max_length=255, null=True, blank=True, verbose_name='Email del Agente')
@@ -36,6 +36,11 @@ class Supplier(models.Model):
     bank_accounts = models.TextField(null=True, blank=True, verbose_name='Cuentas Bancarias')
     sinpe_accounts = models.TextField(null=True, blank=True, verbose_name='Cuentas SINPE')
     observations = models.TextField(null=True, blank=True, verbose_name='Observaciones')
+
+    created = models.DateTimeField(auto_now=False, auto_now_add=True, blank=True, null=True,
+                                   verbose_name='Fecha de creación')
+    updated = models.DateTimeField(auto_now=True, auto_now_add=False, blank=True, null=True,
+                                   verbose_name='Fecha de modificación')
 
     def __unicode__(self):
         return '%s %s' % (self.name, self.last_name)

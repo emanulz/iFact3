@@ -11,4 +11,4 @@ class SupplierSerializer(serializers.ModelSerializer):
         model = Supplier
         fields = ('id', 'code', 'name', 'id_type', 'id_num', 'address', 'phone_number', 'cellphone_number', 'email',
                   'agent_name', 'agent_last_name', 'agent_phone_number', 'agent_email', 'bank_accounts',
-                  'sinpe_accounts', 'observations')
+                  'sinpe_accounts', 'observations', 'created', 'updated')

@@ -227,7 +227,6 @@ export function deleteItem(kwargs) {
               kwargs.history.push(kwargs.redirectUrl)
             }
           })
-        dispatch({type: kwargs.dispatchType, payload: ''})
         saveLog(logCode, logModel, itemOld, item, logDescription, user)
         dispatch({type: 'FETCHING_DONE', payload: ''})
 

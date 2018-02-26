@@ -32,7 +32,7 @@ export default class List extends React.Component {
       } // case
       default:
       {
-        content = <div>FETCHING</div>
+        content = <div />
         break
       } // case
     }
