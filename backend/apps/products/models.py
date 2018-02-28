@@ -72,6 +72,11 @@ class Product(models.Model):
     consignment = models.BooleanField(default=False, verbose_name='Es en consignación?', blank=True)
     generic = models.BooleanField(default=False, verbose_name='Es Genérico?', blank=True)
     image = models.ImageField(upload_to=url, blank=True, null=True)
+    observations = models.TextField(null=True, blank=True, verbose_name='Observaciones')
+    created = models.DateTimeField(auto_now=False, auto_now_add=True, blank=True, null=True,
+                                   verbose_name='Fecha de creación')
+    updated = models.DateTimeField(auto_now=True, auto_now_add=False, blank=True, null=True,
+                                   verbose_name='Fecha de modificación')
 
     def __unicode__(self):
         return '%s-%s - %s ' % (self.base_code, self.code, self.description)
@@ -99,6 +104,11 @@ class ProductDepartment(models.Model):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     name = models.CharField(max_length=255, verbose_name='Nombre de la Familia')
     code = models.CharField(max_length=2, verbose_name='Identificador de Familia')
+    observations = models.TextField(null=True, blank=True, verbose_name='Observaciones')
+    created = models.DateTimeField(auto_now=False, auto_now_add=True, blank=True, null=True,
+                                   verbose_name='Fecha de creación')
+    updated = models.DateTimeField(auto_now=True, auto_now_add=False, blank=True, null=True,
+                                   verbose_name='Fecha de modificación')
 
     def __unicode__(self):
         return '%s' % self.name
@@ -113,7 +123,7 @@ class ProductDepartment(models.Model):
 content_type = ContentType.objects.get_for_model(ProductDepartment)
 try:
     permission = Permission.objects.create(
-        codename='can_list',
+        codename='can_list_productdepartment',
         name='Can list Familia',
         content_type=content_type,
         )
@@ -127,6 +137,11 @@ class ProductSubDepartment(models.Model):
     department = models.ForeignKey('ProductDepartment', on_delete=models.SET_NULL, null=True, verbose_name='Familia')
     name = models.CharField(max_length=255, verbose_name='Nombre de la Sub-Familia')
     code = models.CharField(max_length=2, verbose_name='Identificador de Sub-Familia')
+    observations = models.TextField(null=True, blank=True, verbose_name='Observaciones')
+    created = models.DateTimeField(auto_now=False, auto_now_add=True, blank=True, null=True,
+                                   verbose_name='Fecha de creación')
+    updated = models.DateTimeField(auto_now=True, auto_now_add=False, blank=True, null=True,
+                                   verbose_name='Fecha de modificación')
 
     def __unicode__(self):
         return '%s - %s' % (self.department, self.name)
@@ -142,7 +157,7 @@ class ProductSubDepartment(models.Model):
 content_type = ContentType.objects.get_for_model(ProductSubDepartment)
 try:
     permission = Permission.objects.create(
-        codename='can_list',
+        codename='can_list_productsubdepartment',
         name='Can list Sub-Familia',
         content_type=content_type,
         )

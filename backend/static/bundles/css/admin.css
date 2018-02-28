@@ -3613,6 +3613,7 @@ table {
       margin-bottom: 10px; }
 
 .select2 {
+  font-family: 'Source Sans Pro', sans-serif !important;
   width: 100% !important; }
   .select2 span {
     font-size: 13px !important; }
@@ -3630,6 +3631,9 @@ table {
 
 .select2-selection__rendered {
   line-height: 35px !important; }
+
+.select2-results__option {
+  font-family: 'Source Sans Pro', sans-serif !important; }
 
 .create-edit-header {
   font-family: 'Source Sans Pro', sans-serif !important;
@@ -3672,6 +3676,8 @@ table {
       @media only screen and (max-width: 767px) {
         .form-buttons-container-row button {
           margin-bottom: 15px; } }
+    .form-buttons-container-row .inCol {
+      margin-bottom: 15px; }
 
 .heigh100 {
   height: 100%;
@@ -3772,4 +3778,4 @@ table {
     margin-top: 45px;
     font-family: 'Source Sans Pro', sans-serif; }
 
-/*# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsImZpbGUiOiIuL2Nzcy9hZG1pbi5jc3M/MTM5MGVjNjY2YmQ5ZjBkMDY4ZDYiLCJzb3VyY2VSb290IjoiIn0=*/
+/*# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsImZpbGUiOiIuL2Nzcy9hZG1pbi5jc3M/ODBlM2UyNjM3ZGJlY2MxYzUxNjMiLCJzb3VyY2VSb290IjoiIn0=*/

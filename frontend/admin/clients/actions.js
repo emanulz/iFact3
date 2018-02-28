@@ -17,11 +17,6 @@ export function checkClientData(client, clients) {
     return false
   }
 
-  if (client.id == '') {
-    alertify.alert('Error', 'Debe especificar la identificación del cliente')
-    return false
-  }
-
   if (client.max_discount > 100 || client.max_discount < 0) {
     alertify.alert('Error', 'El descuento Máximo debe estar entre 0% y 100%')
     return false

@@ -30,9 +30,13 @@ export function getItemDispatch(kwargs) {
       dispatch({type: successType, payload: response.data})
       dispatch({type: 'FETCHING_DONE', payload: ''})
     }).catch(function(error) {
-      alertify.alert('ERROR', `Error al obtener un valor del API, por favor intente de nuevo o comuníquese con el
-      administrador del sistema con el siguiete error: ${error}`)
-      dispatch({type: errorType, payload: error})
+      console.log(error.response.status)
+      // IF THE ERROR IS UNAUTORIZED PAGE WILL SHOW THE MESSAGE
+      if (error.response.status != 403) {
+        alertify.alert('ERROR', `Error al obtener un valor del API, por favor intente de nuevo o comuníquese con el
+        administrador del sistema con el siguiete error: ${error}`)
+        dispatch({type: errorType, payload: error})
+      }
     })
   }
 
@@ -51,9 +55,12 @@ export function getItemDoubleDispatch(kwargs) {
       dispatch({type: successType2, payload: ''})
       dispatch({type: 'FETCHING_DONE', payload: ''})
     }).catch(function(error) {
-      alertify.alert('ERROR', `Error al obtener un valor del API, por favor intente de nuevo o comuníquese con el
-      administrador del sistema con el siguiete error: ${error}`)
-      dispatch({type: errorType, payload: error})
+      console.log(error.response.status)
+      if (error.response.status != 403) {
+        alertify.alert('ERROR', `Error al obtener un valor del API, por favor intente de nuevo o comuníquese con el
+        administrador del sistema con el siguiete error: ${error}`)
+        dispatch({type: errorType, payload: error})
+      }
     })
   }
 

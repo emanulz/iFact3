@@ -2,7 +2,7 @@
 from __future__ import unicode_literals
 
 from rest_framework import serializers
-from ..models import Product
+from ..models import Product, ProductDepartment, ProductSubDepartment
 
 
 class ProductSerializer(serializers.ModelSerializer):
@@ -13,4 +13,18 @@ class ProductSerializer(serializers.ModelSerializer):
                   'internal_barcode', 'supplier_code', 'model', 'part_number', 'brand_code', 'inventory_enabled',
                   'inventory_minimum', 'inventory_maximum', 'inventory_negative', 'cost', 'utility', 'utility2',
                   'utility3', 'price', 'price2', 'price3', 'ask_price', 'use_taxes', 'taxes', 'pred_discount',
-                  'is_active', 'consignment', 'generic', 'image')
+                  'is_active', 'consignment', 'generic', 'image', 'observations', 'created', 'updated')
+
+
+class ProductDepartmentSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = ProductDepartment
+        fields = ('id', 'name', 'code', 'observations', 'created', 'updated')
+
+
+class ProductSubDepartmentSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = ProductSubDepartment
+        fields = ('id', 'department', 'name', 'code', 'observations', 'created', 'updated')

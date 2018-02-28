@@ -1,0 +1,110 @@
+const defaultPermissions = {
+  create: 'unfetched',
+  update: 'unfetched',
+  list: 'unfetched',
+  delete: 'unfetched'
+}
+
+const productModel = {
+  id: '0000000000',
+  department: '0000000000',
+  subdepartment: '0000000000',
+  code: '',
+  description: '',
+  observations: ''
+}
+
+const stateConst = {
+  products: [],
+  productActive: productModel,
+  productActiveOld: productModel,
+  nextProduct: 0,
+  previousProduct: 0,
+  permissions: defaultPermissions
+}
+
+export default function reducer(state = stateConst, action) {
+
+  switch (action.type) {
+
+    case 'FETCH_USER_PRODUCT_PERMISSIONS_FULLFILLED':
+    {
+      return {
+        ...state,
+        permissions: action.payload
+      }
+    } // case
+
+    case 'FETCH_USER_PRODUCT_PERMISSIONS_REJECTED':
+    {
+      return {
+        ...state,
+        permissions: defaultPermissions
+      }
+    } // case
+
+    case 'SET_NEXT_PREV_PRODUCT':
+    {
+      return {
+        ...state,
+        nextProduct: action.payload.next,
+        previousProduct: action.payload.previous
+      }
+    } // case
+
+    case 'CLEAR_NEXT_PREV_PRODUCT':
+    {
+      return {
+        ...state,
+        nextProduct: 0,
+        previousProduct: 0
+      }
+    } // case
+
+    case 'FETCH_PRODUCTS_FULFILLED':
+    {
+      return {
+        ...state,
+        products: action.payload
+      }
+
+    } // case
+
+    case 'FETCH_PRODUCTS_REJECTED':
+    {
+      return {
+        ...state,
+        products: []
+      }
+    } // case
+
+    case 'SET_PRODUCT':
+    {
+      return {
+        ...state,
+        productActive: action.payload
+      }
+    }
+
+    case 'SET_PRODUCT_OLD':
+    {
+      return {
+        ...state,
+        productActiveOld: action.payload
+      }
+    }
+
+    case 'CLEAR_PRODUCT':
+    {
+      return {
+        ...state,
+        productActive: productModel,
+        productActiveOld: productModel
+      }
+    }
+
+  } // switch
+
+  return state // default return
+
+} // reducer

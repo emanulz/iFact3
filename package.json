@@ -58,9 +58,11 @@
     "chart.js": "^2.7.1",
     "datatables.net": "^1.10.16",
     "react-chartjs-2": "^2.7.0",
+    "react-select2-wrapper": "^1.0.4-beta6",
     "redux-logger": "^3.0.6",
     "redux-promise-middleware": "^5.0.0",
     "redux-thunk": "^2.2.0",
+    "select2": "^4.0.6-rc.1",
     "webpack-livereload-plugin": "^1.0.0"
   }
 }

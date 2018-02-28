@@ -47,13 +47,13 @@ export default class SideMenu extends React.Component {
         class: 'fa-gift',
         href: '/admin/products'
       }, {
-        text: 'Departamenentos',
+        text: 'Familias',
         class: 'fa-list',
-        href: '/admin/products/departments'
+        href: '/admin/productdepartments'
       }, {
-        text: 'Sub-Departamentos',
+        text: 'Sub-Familias',
         class: 'fa-outdent',
-        href: '/admin/products/subdepartments'
+        href: '/admin/productsubdepartments'
       }
     ]
 
@@ -65,7 +65,7 @@ export default class SideMenu extends React.Component {
       }, {
         text: 'Cuentas por Cobrar',
         class: 'fa-reorder',
-        href: '/admin/clients/add'
+        href: '/admin/clients'
       }, {
         text: 'Notas de Crédito',
         class: 'fa-ticket',
@@ -173,7 +173,7 @@ export default class SideMenu extends React.Component {
               Usuarios</Link>
           </li> */}
           <ComposedItem mainTittle='Clientes' mainIcon='fa-users' childItems={childClients} />
-          {/* <ComposedItem mainTittle='Productos' mainIcon='fa-gift' childItems={childProducts} /> */}
+          <ComposedItem mainTittle='Productos' mainIcon='fa-gift' childItems={childProducts} />
           <ComposedItem mainTittle='Proveedores' mainIcon='fa-users' childItems={childSuppliers} />
 
         </ul>
