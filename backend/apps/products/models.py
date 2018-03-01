@@ -28,6 +28,7 @@ class Product(models.Model):
     code = models.CharField(max_length=10, null=True, verbose_name='Código', unique=True)
     description = models.CharField(max_length=255, verbose_name='Descripción del producto', null=True)
     unit = models.CharField(max_length=4, null=True, verbose_name='Unidad')
+    fractioned = models.BooleanField(default=False, verbose_name='Se vende Fracionado?', blank=True)
     department = models.ForeignKey('ProductDepartment', on_delete=models.SET_NULL, null=True,
                                    verbose_name='Familia', default='')
     subdepartment = models.ForeignKey('ProductSubDepartment', on_delete=models.SET_NULL, null=True,
@@ -48,6 +49,7 @@ class Product(models.Model):
 
     cost = models.DecimalField(default=0, max_digits=10, decimal_places=2, verbose_name='Costo ₡', blank=True,
                                null=True)
+    cost_based = models.BooleanField(default=True, verbose_name='Precio basado en Costo?', blank=True)
     utility = models.DecimalField(default=0, max_digits=5, decimal_places=2, verbose_name='Utilidad %', blank=True,
                                   null=True)
     utility2 = models.DecimalField(default=0, max_digits=5, decimal_places=2, verbose_name='Utilidad %', blank=True,
@@ -63,11 +65,15 @@ class Product(models.Model):
     ask_price = models.BooleanField(default=False, verbose_name='Pide Precio al facturar?', blank=True)
 
     use_taxes = models.BooleanField(default=False, verbose_name='Usa impuesto?', blank=True)
-    taxes = models.DecimalField(default=0, max_digits=4, decimal_places=2, verbose_name='Impuestos %', blank=True,
+    taxes = models.DecimalField(default=0, max_digits=4, decimal_places=2, verbose_name='Impuesto %', blank=True,
                                 null=True)
+    taxes2 = models.DecimalField(default=0, max_digits=4, decimal_places=2, verbose_name='Impuesto2 %', blank=True,
+                                 null=True)
     pred_discount = models.DecimalField(default=0, max_digits=4, decimal_places=2,
                                         verbose_name='Descuento Predeterminado %', blank=True, null=True)
-
+    max_sale_discount = models.DecimalField(default=0, max_digits=4, decimal_places=2,
+                                            verbose_name='Descuento Máximo en liquidación %', blank=True, null=True)
+    on_sale = models.BooleanField(default=False, verbose_name='En liquidación?', blank=True)
     is_active = models.BooleanField(default=True, verbose_name='Activo?', blank=True)
     consignment = models.BooleanField(default=False, verbose_name='Es en consignación?', blank=True)
     generic = models.BooleanField(default=False, verbose_name='Es Genérico?', blank=True)

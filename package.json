@@ -59,6 +59,7 @@
     "datatables.net": "^1.10.16",
     "react-chartjs-2": "^2.7.0",
     "react-select2-wrapper": "^1.0.4-beta6",
+    "react-web-tabs": "^0.4.3",
     "redux-logger": "^3.0.6",
     "redux-promise-middleware": "^5.0.0",
     "redux-thunk": "^2.2.0",

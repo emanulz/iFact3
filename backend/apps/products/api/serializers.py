@@ -9,11 +9,12 @@ class ProductSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Product
-        fields = ('id', 'code', 'description', 'unit', 'department', 'subdepartment', 'base_code', 'barcode',
-                  'internal_barcode', 'supplier_code', 'model', 'part_number', 'brand_code', 'inventory_enabled',
-                  'inventory_minimum', 'inventory_maximum', 'inventory_negative', 'cost', 'utility', 'utility2',
-                  'utility3', 'price', 'price2', 'price3', 'ask_price', 'use_taxes', 'taxes', 'pred_discount',
-                  'is_active', 'consignment', 'generic', 'image', 'observations', 'created', 'updated')
+        fields = ('id', 'code', 'description', 'unit', 'fractioned', 'department', 'subdepartment', 'base_code',
+                  'barcode', 'internal_barcode', 'supplier_code', 'model', 'part_number', 'brand_code',
+                  'inventory_enabled', 'inventory_minimum', 'inventory_maximum', 'inventory_negative', 'cost',
+                  'utility', 'utility2', 'utility3', 'price', 'price2', 'price3', 'ask_price', 'use_taxes', 'taxes',
+                  'taxes2', 'pred_discount', 'is_active', 'consignment', 'generic', 'image', 'observations', 'created',
+                  'updated', 'max_sale_discount', 'on_sale', 'cost_based')
 
 
 class ProductDepartmentSerializer(serializers.ModelSerializer):

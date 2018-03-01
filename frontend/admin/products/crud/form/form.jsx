@@ -166,60 +166,173 @@ class Form extends React.Component {
 
       <div className='col-xs-12 col-sm-6 fields-container first'>
 
-        <span>Datos generales</span>
+        <span>Códigos y Descripción</span>
         <hr />
 
-        <div className='form-group'>
-          <label>Código</label>
-          <input value={this.props.product.code} name='code' onChange={this.handleInputChange.bind(this)} type='text'
-            className='form-control' />
+        <div className='form-group row input-block'>
+          <div className='col-xs-6 first'>
+
+            <label>Código</label>
+            <input value={this.props.product.code} name='code' onChange={this.handleInputChange.bind(this)}
+              type='text' className='form-control' />
+
+          </div>
+
+          <div className='col-xs-6 second'>
+
+            <label>Código Base</label>
+            <input value={this.props.product.base_code} name='base_code' onChange={this.handleInputChange.bind(this)}
+              type='text' className='form-control' />
+
+          </div>
+        </div>
+
+        <div className='form-group row input-block'>
+          <div className='col-xs-6 first'>
+
+            <label>Código de barras</label>
+            <input value={this.props.product.barcode} name='barcode' onChange={this.handleInputChange.bind(this)}
+              type='text' className='form-control' />
+
+          </div>
+
+          <div className='col-xs-6 second'>
+
+            <label>Código de barras 2</label>
+            <input value={this.props.product.internal_barcode} name='internal_barcode' onChange={this.handleInputChange.bind(this)}
+              type='text' className='form-control' />
+
+          </div>
         </div>
 
         <div className='form-group'>
           <label>Descripción</label>
-          <input value={this.props.product.name} name='description' onChange={this.handleInputChange.bind(this)} type='text'
+          <input value={this.props.product.description} name='description' onChange={this.handleInputChange.bind(this)}
+            type='text'
             className='form-control' />
         </div>
 
-        <div className='form-group'>
-          <label>Familia</label>
+        <div className='form-group row input-block'>
 
-          <Select2
-            name='department'
-            value={this.props.product.department}
-            className='form-control'
-            onSelect={this.handleInputChange.bind(this)}
-            data={departmentData}
-            options={{
-              placeholder: 'Elija una Familia...',
-              noResultsText: 'Sin elementos'
-            }}
-          />
+          <div className='col-xs-6 first'>
+            <label>Fraccionado</label>
+            <input checked={this.props.product.fractioned} name='fractioned'
+              onChange={this.handleInputChange.bind(this)}
+              type='checkbox' className='form-control' />
+          </div>
+
+          <div className='col-xs-6 second'>
+            <label>Unidad</label>
+            <input value={this.props.product.unit} name='unit' onChange={this.handleInputChange.bind(this)}
+              type='text' className='form-control' />
+          </div>
+        </div>
+
+        <div className='form-group row input-block'>
+
+          <div className='col-xs-6 first'>
+            <label>En consignación</label>
+            <input checked={this.props.product.consignment} name='consignment'
+              onChange={this.handleInputChange.bind(this)}
+              type='checkbox' className='form-control' />
+          </div>
+
+          <div className='col-xs-6 second'>
+            <label>Genérico</label>
+            <input checked={this.props.product.generic} name='generic'
+              onChange={this.handleInputChange.bind(this)}
+              type='checkbox' className='form-control' />
+          </div>
+        </div>
+
+      </div>
+
+      <div className='col-xs-12 col-sm-6 fields-container second'>
+
+        <span>Familias y Extras</span>
+        <hr />
+
+        <div className='form-group row input-block'>
+          <div className='col-xs-6 first'>
+
+            <label>Familia</label>
+
+            <Select2
+              name='department'
+              value={this.props.product.department}
+              className='form-control'
+              onSelect={this.handleInputChange.bind(this)}
+              data={departmentData}
+              options={{
+                placeholder: 'Elija una Familia...',
+                noResultsText: 'Sin elementos'
+              }}
+            />
+
+          </div>
+
+          <div className='col-xs-6 second'>
+
+            <label>Sub Familia</label>
+
+            <Select2
+              name='subdepartment'
+              value={this.props.product.subdepartment}
+              className='form-control'
+              onSelect={this.handleInputChange.bind(this)}
+              data={subDepartmentData}
+              options={{
+                placeholder: 'Elija una Familia...',
+                noResultsText: 'Sin elementos'
+              }}
+            />
+
+          </div>
+        </div>
+
+        <div className='form-group row input-block'>
+          <div className='col-xs-6 first'>
+
+            <label>Código del proveedor</label>
+            <input value={this.props.product.supplier_code} name='supplier_code'
+              onChange={this.handleInputChange.bind(this)}
+              type='text' className='form-control' />
+
+          </div>
+
+          <div className='col-xs-6 second'>
+
+            <label>Modelo</label>
+            <input value={this.props.product.model} name='model' onChange={this.handleInputChange.bind(this)}
+              type='text' className='form-control' />
+
+          </div>
+        </div>
+
+        <div className='form-group row input-block'>
+          <div className='col-xs-6 first'>
+
+            <label>Número de parte</label>
+            <input value={this.props.product.part_number} name='part_number'
+              onChange={this.handleInputChange.bind(this)}
+              type='text' className='form-control' />
+
+          </div>
+
+          <div className='col-xs-6 second'>
+
+            <label>Código de marca</label>
+            <input value={this.props.product.brand_code} name='brand_code' onChange={this.handleInputChange.bind(this)}
+              type='text' className='form-control' />
+
+          </div>
         </div>
 
         <div className='form-group'>
-          <label>Sub Familia</label>
-
-          <Select2
-            name='subdepartment'
-            value={this.props.product.subdepartment}
-            className='form-control'
-            onSelect={this.handleInputChange.bind(this)}
-            data={subDepartmentData}
-            options={{
-              placeholder: 'Elija una Familia...',
-              noResultsText: 'Sin elementos'
-            }}
-          />
-        </div>
-
-        <div className='form-group'>
-          <label>Observaciones</label>
-          <textarea value={this.props.product.observations} name='observations'
-            style={{resize: 'none'}}
-            rows='4'
+          <label>Activo?</label>
+          <input checked={this.props.product.is_active} name='is_active'
             onChange={this.handleInputChange.bind(this)}
-            className='form-control' />
+            type='checkbox' className='form-control' />
         </div>
 
       </div>

@@ -3,12 +3,15 @@
  */
 import React from 'react'
 import Form from './form/form.jsx'
+import Form2 from './form/form2.jsx'
+import Form3 from './form/form3.jsx'
 
 import Unauthorized from '../../../general/unauthorized.jsx'
 import {connect} from 'react-redux'
 import CreateButtons from './form/createButtons.jsx'
 import ItemsBar from '../../layout/itemsBar/itemsBar.jsx'
 import {toggleItemsBar} from '../../layout/itemsBar/actions'
+import { Tabs, Tab, TabPanel, TabList } from 'react-web-tabs'
 
 @connect((store) => {
   return {
@@ -30,8 +33,27 @@ export default class Update extends React.Component {
     switch (this.props.permissions.create) {
       case true:
       {
-        content = <div className='heigh100'>
-          <Form />
+        content = <div>
+          <Tabs defaultTab='two'>
+            <TabList>
+              <Tab className='oneThree' tabFor='one'>General</Tab>
+              <Tab className='oneThree' tabFor='two'>Precios</Tab>
+              <Tab className='oneThree' tabFor='three'>Extras</Tab>
+            </TabList>
+
+            <TabPanel tabId='one'>
+              <Form />
+            </TabPanel>
+
+            <TabPanel tabId='two'>
+              <Form2 />
+            </TabPanel>
+
+            <TabPanel tabId='three'>
+              <Form3 />
+            </TabPanel>
+
+          </Tabs>
           <CreateButtons />
         </div>
         break
@@ -51,7 +73,7 @@ export default class Update extends React.Component {
 
     return <div className='create heigh100'>
       <div className='create-edit-header'>
-        <h1>CREAR SUB FAMILIA DE PRODUCTOS</h1>
+        <h1>CREAR PRODUCTO</h1>
         <span onClick={this.toggleBar.bind(this)} className='list fa fa-list' />
       </div>
       {content}
