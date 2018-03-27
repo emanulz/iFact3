@@ -17,7 +17,6 @@ class Client(models.Model):
     general = 'GENERAL'
     distrib = 'DISTRIB'
     mayoris = 'WHOLESA'
-    mayori2 = 'WHOLES2'
 
     ID_TYPE_CHOICES = ((person, 'Cédula Física'),
                        (juridic, 'Cédula Jurídica'),
@@ -26,8 +25,7 @@ class Client(models.Model):
 
     CLIENT_TYPE_CHOICES = ((general, 'Cliente General'),
                            (distrib, 'Distribuidor'),
-                           (mayoris, 'Mayorista'),
-                           (mayori2, 'Especial'),
+                           (mayoris, 'Mayorista')
                            )
 
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)

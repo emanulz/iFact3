@@ -17,7 +17,7 @@ const jsConfig = Object.assign({}, config, {
   name: 'js',
   entry: {
     home: './frontend/home/app.js',
-    permissions: './frontend/permissions/app.js',
+    reports: './frontend/reports/app.js',
     admin: './frontend/admin/app.js'
   },
   module: {
@@ -61,7 +61,7 @@ const stylesConfig = Object.assign({}, config, {
   name: 'styles',
   entry: {
     home: './frontend/home/appstyles/main.sass',
-    permissions: './frontend/permissions/appstyles/main.sass',
+    reports: './frontend/reports/appstyles/main.sass',
     admin: './frontend/admin/appstyles/main.sass'
   },
   module: {

@@ -92,7 +92,7 @@ export function setItem(kwargs) {
   const url = kwargs.url
 
   return function(dispatch) {
-
+    console.log(`${url}?${lookUpField}=${lookUpValue}`)
     axios.get(`${url}?${lookUpField}=${lookUpValue}`).then(function(response) {
 
       console.log(response.data)
@@ -130,6 +130,7 @@ export function setItem(kwargs) {
 export function saveItem(kwargs) {
   const item = kwargs.item
   delete item['id']
+  delete item['imagePreviewUrl']
   const url = kwargs.url
   const logCode = kwargs.logCode
   const itemOld = kwargs.itemOld
@@ -142,7 +143,8 @@ export function saveItem(kwargs) {
     axios({
       method: 'post',
       url: url,
-      data: item
+      data: item,
+      headers: { 'Content-Type': 'multipart/form-data' }
     })
       .then((response) => {
         alertify.alert('Completado', kwargs.sucessMessage)

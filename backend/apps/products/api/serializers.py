@@ -13,8 +13,9 @@ class ProductSerializer(serializers.ModelSerializer):
                   'barcode', 'internal_barcode', 'supplier_code', 'model', 'part_number', 'brand_code',
                   'inventory_enabled', 'inventory_minimum', 'inventory_maximum', 'inventory_negative', 'cost',
                   'utility', 'utility2', 'utility3', 'price', 'price2', 'price3', 'ask_price', 'use_taxes', 'taxes',
-                  'taxes2', 'pred_discount', 'is_active', 'consignment', 'generic', 'image', 'observations', 'created',
-                  'updated', 'max_sale_discount', 'on_sale', 'cost_based')
+                  'use_taxes2', 'taxes2', 'pred_discount', 'is_active', 'consignment', 'generic', 'image',
+                  'observations', 'created', 'updated', 'max_sale_discount', 'on_sale', 'cost_based',
+                  'sell_price', 'sell_price2', 'sell_price3')
 
 
 class ProductDepartmentSerializer(serializers.ModelSerializer):

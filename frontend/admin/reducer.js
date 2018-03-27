@@ -1,5 +1,6 @@
 import { combineReducers } from 'redux'
 
+import users from './users/reducer.js'
 import clients from './clients/reducer.js'
 import products from './products/reducer.js'
 import productDepartments from './productDepartments/reducer.js'
@@ -10,6 +11,7 @@ import user from './user/reducer.js'
 import fetching from '../general/fetching/reducer.js'
 
 export default combineReducers({
+  users,
   clients,
   products,
   productDepartments,

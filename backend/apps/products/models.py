@@ -62,11 +62,19 @@ class Product(models.Model):
                                  blank=True, null=True)
     price3 = models.DecimalField(default=0, max_digits=10, decimal_places=2, verbose_name='Precio sin Impuestos ₡',
                                  blank=True, null=True)
+
+    sell_price = models.DecimalField(default=0, max_digits=10, decimal_places=2, verbose_name='Precio IVI ₡',
+                                     blank=True, null=True)
+    sell_price2 = models.DecimalField(default=0, max_digits=10, decimal_places=2, verbose_name='Precio IVI ₡',
+                                      blank=True, null=True)
+    sell_price3 = models.DecimalField(default=0, max_digits=10, decimal_places=2, verbose_name='Precio IVI ₡',
+                                      blank=True, null=True)
     ask_price = models.BooleanField(default=False, verbose_name='Pide Precio al facturar?', blank=True)
 
     use_taxes = models.BooleanField(default=False, verbose_name='Usa impuesto?', blank=True)
     taxes = models.DecimalField(default=0, max_digits=4, decimal_places=2, verbose_name='Impuesto %', blank=True,
                                 null=True)
+    use_taxes2 = models.BooleanField(default=False, verbose_name='Usa impuesto 2?', blank=True)
     taxes2 = models.DecimalField(default=0, max_digits=4, decimal_places=2, verbose_name='Impuesto2 %', blank=True,
                                  null=True)
     pred_discount = models.DecimalField(default=0, max_digits=4, decimal_places=2,

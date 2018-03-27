@@ -1,25 +1,26 @@
 import React from 'react'
 import {connect} from 'react-redux'
 import { withRouter } from 'react-router-dom'
-import Select2 from 'react-select2-wrapper'
 
 @connect((store) => {
   return {
     product: store.products.productActive,
-    products: store.products.products,
-    productDepartments: store.productDepartments.productDepartments,
-    productSubDepartments: store.productSubDepartments.productSubDepartments
+    products: store.products.products
   }
 })
 
 class Form3 extends React.Component {
+
+  constructor(props) {
+    super(props)
+    this.state = {file: '', imagePreviewUrl: ''}
+  }
 
   // HANDLE INPUT CHANGE
   handleInputChange(event) {
 
     const target = event.target
     let value
-    console.log(target.value)
     // const value = target.type === 'checkbox' ? target.checked : target.value
     switch (target.type) {
       case 'checkbox':
@@ -41,7 +42,6 @@ class Form3 extends React.Component {
     }
 
     const name = target.name
-    console.log(target.name)
 
     const product = {
       ...this.props.product
@@ -59,43 +59,47 @@ class Form3 extends React.Component {
   render() {
 
     // ********************************************************************
-    // SELECT2 DATA
-    // ********************************************************************
-    const departments = this.props.productDepartments
-    const subDepartments = this.props.productSubDepartments
-
-    departments.sort((a, b) => {
-      return a.code - b.code
-    })
-
-    const departmentData = departments.map(department => {
-      return {text: `${department.code} - ${department.name}`, id: `${department.id}`}
-    })
-
-    const filteredSubDepartments = subDepartments.filter(el => {
-      return el.department == this.props.product.department
-    })
-    filteredSubDepartments.sort((a, b) => {
-      return a.code - b.code
-    })
-    const subDepartmentData = filteredSubDepartments.map(subdepartment => {
-      return {text: `${subdepartment.code} - ${subdepartment.name}`, id: subdepartment.id}
-    })
-
-    // ********************************************************************
     // RETURN BLOCK
     // ********************************************************************
     return <div className='col-xs-12 row form-container'>
 
       <div className='col-xs-12 col-sm-6 fields-container first'>
 
-        <span>Datos generales</span>
+        <span>Inventarios y Observaciones</span>
         <hr />
 
-        <div className='form-group'>
-          <label>Descripción</label>
-          <input value={this.props.product.name} name='description' onChange={this.handleInputChange.bind(this)} type='text'
-            className='form-control' />
+        <div className='form-group row input-block'>
+
+          <div className='col-xs-6 second'>
+            <label>Usa Inventario?</label>
+            <input checked={this.props.product.inventory_enabled} name='inventory_enabled'
+              onChange={this.handleInputChange.bind(this)}
+              type='checkbox' className='form-control' />
+          </div>
+
+          <div className='col-xs-6 second'>
+            <label>Puede Facturar en Negativo?</label>
+            <input checked={this.props.product.inventory_negative} name='inventory_negative'
+              onChange={this.handleInputChange.bind(this)}
+              type='checkbox' className='form-control' />
+          </div>
+
+        </div>
+
+        <div className='form-group row input-block'>
+          <div className='col-xs-6 first'>
+            <label>Mínimo Inventario</label>
+            <input value={this.props.product.inventory_minimum} name='inventory_minimum'
+              onChange={this.handleInputChange.bind(this)}
+              type='number' className='form-control' onFocus={this.fieldFocus.bind(this)} />
+          </div>
+
+          <div className='col-xs-6 first'>
+            <label>Máximo Inventario</label>
+            <input value={this.props.product.inventory_maximum} name='inventory_maximum'
+              onChange={this.handleInputChange.bind(this)}
+              type='number' className='form-control' onFocus={this.fieldFocus.bind(this)} />
+          </div>
         </div>
 
         <div className='form-group'>
@@ -106,6 +110,13 @@ class Form3 extends React.Component {
             onChange={this.handleInputChange.bind(this)}
             className='form-control' />
         </div>
+
+      </div>
+
+      <div className='col-xs-12 col-sm-6 fields-container first'>
+
+        <span>Extras</span>
+        <hr />
 
       </div>
 

@@ -19,7 +19,7 @@ urlpatterns = [
     # PAGES
     url(r'^admin/', adminPage, name='admin'),
     url(r'^$', login_required(TemplateView.as_view(template_name='home.html'))),
-    url(r'^permissions/', login_required(TemplateView.as_view(template_name='permissions.html'))),
+    url(r'^reports/', login_required(TemplateView.as_view(template_name='reports.html'))),
 
     # LOGIN
     url(r'^login/$', auth_views.LoginView.as_view()),

@@ -96,8 +96,7 @@ class Form extends React.Component {
 
     const target = event.target
     let value
-    console.log(target.value)
-    // const value = target.type === 'checkbox' ? target.checked : target.value
+
     switch (target.type) {
       case 'checkbox':
       {
@@ -118,7 +117,6 @@ class Form extends React.Component {
     }
 
     const name = target.name
-    console.log(target.name)
 
     const product = {
       ...this.props.product

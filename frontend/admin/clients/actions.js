@@ -8,7 +8,6 @@ export function checkClientData(client, clients) {
 
   if (client.code == '') {
     alertify.alert('Error', 'Debe especificar el código del Cliente')
-    // alertify.notify('Debe especificar el código del Cliente', 'error', 5, function() { console.log('dismissed') })
     return false
   }
 
