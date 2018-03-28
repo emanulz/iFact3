@@ -130,7 +130,6 @@ export function setItem(kwargs) {
 export function saveItem(kwargs) {
   const item = kwargs.item
   delete item['id']
-  delete item['imagePreviewUrl']
   const url = kwargs.url
   const logCode = kwargs.logCode
   const itemOld = kwargs.itemOld
@@ -143,8 +142,7 @@ export function saveItem(kwargs) {
     axios({
       method: 'post',
       url: url,
-      data: item,
-      headers: { 'Content-Type': 'multipart/form-data' }
+      data: item
     })
       .then((response) => {
         alertify.alert('Completado', kwargs.sucessMessage)
@@ -197,6 +195,123 @@ export function updateItem(kwargs) {
         dispatch({type: kwargs.dispatchType, payload: ''})
         saveLog(logCode, logModel, itemOld, item, logDescription, user)
         dispatch({type: 'FETCHING_DONE', payload: ''})
+      }).catch((err) => {
+        console.log(err)
+        if (err.response) {
+          console.log(err.response.data)
+        }
+        alertify.alert('Error', `${kwargs.errorMessage} ERROR: ${err}.`)
+      })
+
+  }
+}
+
+// ------------------------------------------------------------------------------------------
+// UPDATE PARTIALLY FUNCTION (PATCH)
+// ------------------------------------------------------------------------------------------
+
+export function patchItem(kwargs) {
+  const item = kwargs.item
+  const url = kwargs.url
+  const logCode = kwargs.logCode
+  const itemOld = kwargs.itemOld
+  const logModel = kwargs.logModel
+  const logDescription = kwargs.logDescription
+  const user = kwargs.user
+
+  return function(dispatch) {
+
+    axios({
+      method: 'patch',
+      url: url,
+      data: item
+    })
+      .then((response) => {
+        if (kwargs.sucessMessage) {
+          alertify.alert('Completado', kwargs.sucessMessage)
+            .set('onok', function() {
+              if (kwargs.redirectUrl) {
+                kwargs.history.push(kwargs.redirectUrl)
+              }
+            })
+        }
+        dispatch({type: kwargs.dispatchType, payload: ''})
+        saveLog(logCode, logModel, itemOld, item, logDescription, user)
+        dispatch({type: 'FETCHING_DONE', payload: ''})
+      }).catch((err) => {
+        console.log(err)
+        if (err.response) {
+          console.log(err.response.data)
+        }
+        alertify.alert('Error', `${kwargs.errorMessage} ERROR: ${err}.`)
+      })
+
+  }
+}
+
+// ------------------------------------------------------------------------------------------
+// DOUBLE UPDATE PARTIALLY FUNCTION (PATCH)
+// ------------------------------------------------------------------------------------------
+
+export function patchItems(kwargs, kwargs2) {
+  const item = kwargs.item
+  const url = kwargs.url
+  const logCode = kwargs.logCode
+  const itemOld = kwargs.itemOld
+  const logModel = kwargs.logModel
+  const logDescription = kwargs.logDescription
+  const user = kwargs.user
+
+  const item2 = kwargs2.item
+  const url2 = kwargs2.url
+  const logCode2 = kwargs2.logCode
+  const itemOld2 = kwargs2.itemOld
+  const logModel2 = kwargs2.logModel
+  const logDescription2 = kwargs2.logDescription
+
+  return function(dispatch) {
+
+    axios({
+      method: 'patch',
+      url: url,
+      data: item
+    })
+      // FIRST PATCH THEN
+      .then((response) => {
+
+        dispatch({type: kwargs.dispatchType, payload: ''})
+        saveLog(logCode, logModel, itemOld, item, logDescription, user)
+
+        // SECOND PATCH
+        axios({
+          method: 'patch',
+          url: url2,
+          data: item2
+        })
+          // SECOND PATCH THEN
+          .then((response) => {
+            if (kwargs2.sucessMessage) {
+              alertify.alert('Completado', kwargs2.sucessMessage)
+                .set('onok', function() {
+                  if (kwargs2.redirectUrl) {
+                    kwargs2.history.push(kwargs2.redirectUrl)
+                  }
+                })
+            }
+            dispatch({type: kwargs2.dispatchType, payload: ''})
+            saveLog(logCode2, logModel2, itemOld2, item2, logDescription2, user)
+            dispatch({type: 'FETCHING_DONE', payload: ''})
+
+          // SECOND PATCH CATCH
+          }).catch((err) => {
+            console.log(err)
+            if (err.response) {
+              console.log(err.response.data)
+            }
+            alertify.alert('Error', `${kwargs2.errorMessage} ERROR: ${err}.`)
+          })
+
+      // FIRST PATCH CATCH
       }).catch((err) => {
         console.log(err)
         if (err.response) {

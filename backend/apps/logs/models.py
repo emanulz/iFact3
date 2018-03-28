@@ -19,7 +19,7 @@ class Log(models.Model):
     created = models.DateTimeField(auto_now=False, auto_now_add=True, blank=True, null=True,
                                    verbose_name='Fecha de creación')
 
-    def __unicode__(self):
+    def __str__(self):
         return '%s - %s' % (self.id, self.code)
 
     class Meta:

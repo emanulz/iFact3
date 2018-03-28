@@ -6,8 +6,6 @@ import Form from './form/updateForm.jsx'
 
 import Unauthorized from '../../../general/unauthorized.jsx'
 import {connect} from 'react-redux'
-import {setNextPrevItem} from '../../../utils/api'
-import {Link} from 'react-router-dom'
 import UpdateButtons from './form/updateButtons.jsx'
 import ItemsBar from '../../layout/itemsBar/itemsBar.jsx'
 import {toggleItemsBar} from '../../layout/itemsBar/actions'
@@ -25,26 +23,6 @@ export default class Update extends React.Component {
 
   componentDidMount() {
     this.props.dispatch({type: 'CLEAR_NEXT_PREV_USER', payload: ''})
-  }
-
-  componentWillUpdate(nextProps) {
-
-    const code = this.props.location.pathname.split('/').pop()
-
-    if (nextProps.nextUser == 0 && nextProps.previousUser == 0 && nextProps.users.length) {
-
-      const kwargs = {
-        items: [
-          ...nextProps.users
-        ],
-        codeField: 'code',
-        code: code,
-        dispatchType: 'SET_NEXT_PREV_USER'
-      }
-
-      this.props.dispatch(setNextPrevItem(kwargs))
-
-    }
   }
 
   toggleBar() {
@@ -82,13 +60,7 @@ export default class Update extends React.Component {
 
     return <div className='create heigh100'>
       <div className='create-edit-header'>
-        <h1>EDITAR USUARIO {code}</h1>
-        <Link to={`/admin/users/edit/${this.props.previousUser}`}>
-          <span className={`previous fa fa-chevron-circle-left`} />
-        </Link>
-        <Link to={`/admin/users/edit/${this.props.nextUser}`}>
-          <span className='next fa fa-chevron-circle-right' />
-        </Link>
+        <h1>EDITAR USUARIO</h1>
         <span onClick={this.toggleBar.bind(this)} className='list fa fa-list' />
       </div>
 

@@ -3,6 +3,8 @@
  */
 import React from 'react'
 import Form from './form/form.jsx'
+import Form2 from './form/form2.jsx'
+import Form3 from './form/form3.jsx'
 
 import Unauthorized from '../../../general/unauthorized.jsx'
 import {connect} from 'react-redux'
@@ -11,6 +13,7 @@ import {Link} from 'react-router-dom'
 import UpdateButtons from './form/updateButtons.jsx'
 import ItemsBar from '../../layout/itemsBar/itemsBar.jsx'
 import {toggleItemsBar} from '../../layout/itemsBar/actions'
+import { Tabs, Tab, TabPanel, TabList } from 'react-web-tabs'
 
 @connect((store) => {
   return {
@@ -31,7 +34,7 @@ export default class Update extends React.Component {
 
     const code = this.props.location.pathname.split('/').pop()
 
-    if (nextProps.nextproduct == 0 && nextProps.previousproduct == 0 && nextProps.products.length) {
+    if (nextProps.nextProduct == 0 && nextProps.previousProduct == 0 && nextProps.products.length) {
 
       const kwargs = {
         items: [
@@ -58,11 +61,33 @@ export default class Update extends React.Component {
 
     const code = this.props.location.pathname.split('/').pop()
 
-    switch (this.props.permissions.create) {
+    switch (this.props.permissions.update) {
       case true:
       {
-        content = <div className='heigh100'>
-          <Form key={code} update location={this.props.location} />
+        content = <div>
+          <Tabs>
+            <TabList>
+              <Tab className='oneFour' tabFor='one'>General</Tab>
+              <Tab className='oneFour' tabFor='two'>Precios</Tab>
+              <Tab className='oneFour' tabFor='three'>Inventarios y Extras</Tab>
+              <Tab className='oneFour' tabFor='four'>Imagen</Tab>
+            </TabList>
+
+            <TabPanel tabId='one'>
+              <Form key={`${code}1`} update />
+            </TabPanel>
+
+            <TabPanel tabId='two'>
+              <Form2 key={`${code}2`} update />
+            </TabPanel>
+
+            <TabPanel tabId='three'>
+              <Form3 key={`${code}3`} update />
+            </TabPanel>
+
+            <TabPanel tabId='four' />
+
+          </Tabs>
           <UpdateButtons />
         </div>
         break
@@ -82,7 +107,7 @@ export default class Update extends React.Component {
 
     return <div className='create heigh100'>
       <div className='create-edit-header'>
-        <h1>EDITAR PRODUCTO {code}</h1>
+        <h1>EDITAR PRODUCTO</h1>
         <Link to={`/admin/products/edit/${this.props.previousProduct}`}>
           <span className={`previous fa fa-chevron-circle-left`} />
         </Link>

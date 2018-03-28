@@ -6,9 +6,8 @@ import alertify from 'alertifyjs'
 export function checkData(user, users) {
   let Ok = true
 
-  if (user.password != user.password2) {
-    alertify.alert('Error', 'Las contraseñas no coinciden')
-    // alertify.notify('Debe especificar el código del Cliente', 'error', 5, function() { console.log('dismissed') })
+  if (user.username == '') {
+    alertify.alert('Error', 'El nombre de Usuario no puede estar vacío')
     return false
   }
 

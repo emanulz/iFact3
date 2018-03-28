@@ -22,7 +22,7 @@ class Form extends React.Component {
       const lookUp = this.props.location.pathname.split('/').pop()
 
       const kwargs = {
-        lookUpField: 'code',
+        lookUpField: 'username',
         url: '/api/users/',
         lookUpValue: lookUp,
         dispatchType: 'SET_USER',
@@ -48,7 +48,7 @@ class Form extends React.Component {
       if (nextProps.user.id == '0000000000') {
 
         const kwargs = {
-          lookUpField: 'code',
+          lookUpField: 'username',
           url: '/api/users/',
           lookUpValue: lookUp,
           dispatchType: 'SET_USER',

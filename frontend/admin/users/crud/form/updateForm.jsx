@@ -16,7 +16,6 @@ class Form extends React.Component {
   componentWillMount() {
 
     this.props.dispatch({type: 'CLEAR_USER', payload: ''})
-    this.props.dispatch({type: 'CLEAR_NEXT_PREV_USER', payload: ''})
     this.props.dispatch({type: 'CLEAR_USERPROFILE', payload: ''})
 
     if (this.props.update) {
@@ -61,8 +60,22 @@ class Form extends React.Component {
           history: this.props.history
         }
 
+        const kwargs = {
+          lookUpField: 'username',
+          url: '/api/users/',
+          lookUpValue: nextProps.user.username,
+          dispatchType: 'SET_USER',
+          dispatchType2: 'SET_USER_OLD',
+          dispatchErrorType: 'USER_NOT_FOUND',
+          lookUpName: 'Nombre de Usuario',
+          modelName: 'Usuarios',
+          redirectUrl: '/admin/users',
+          history: this.props.history
+        }
+
         this.props.dispatch({type: 'FETCHING_STARTED', payload: ''})
         this.props.dispatch(setItem(kwargsProfile))
+        this.props.dispatch(setItem(kwargs))
       }
     }
   }
@@ -105,6 +118,43 @@ class Form extends React.Component {
     this.props.dispatch({type: 'SET_USER', payload: user})
   }
 
+  handleInputProfileChange(event) {
+
+    const target = event.target
+    let value
+    console.log(target.value)
+    // const value = target.type === 'checkbox' ? target.checked : target.value
+    switch (target.type) {
+      case 'checkbox':
+      {
+        value = target.checked
+        break
+      }
+      case 'number':
+      {
+        value = parseFloat(target.value)
+          ? parseFloat(target.value)
+          : 0
+        break
+      }
+      default:
+      {
+        value = target.value
+      }
+    }
+
+    const name = target.name
+    console.log(target.name)
+
+    const profile = {
+      ...this.props.profile
+    }
+
+    profile[name] = value
+
+    this.props.dispatch({type: 'SET_USERPROFILE', payload: profile})
+  }
+
   fieldFocus(ev) {
     ev.target.select()
   }
@@ -121,9 +171,67 @@ class Form extends React.Component {
         <span>Datos generales</span>
         <hr />
 
+        <div className='form-group row input-block'>
+          <div className='col-xs-6 first'>
+
+            <label>Usuario</label>
+            <input value={this.props.user.username} name='username' onChange={this.handleInputChange.bind(this)} type='text'
+              className='form-control' />
+          </div>
+
+          <div className='col-xs-6 second'>
+
+            <label>Es Activo?</label>
+            <input checked={this.props.user.is_active} name='is_active'
+              onChange={this.handleInputChange.bind(this)}
+              type='checkbox' className='form-control' />
+          </div>
+        </div>
+
         <div className='form-group'>
-          <label>Usuario</label>
-          <input value={this.props.user.username} name='username' onChange={this.handleInputChange.bind(this)} type='text'
+          <label>Nombre</label>
+          <input value={this.props.user.first_name} name='first_name'
+            onChange={this.handleInputChange.bind(this)}
+            type='text'
+            className='form-control' />
+        </div>
+
+        <div className='form-group'>
+          <label>Apellidos</label>
+          <input value={this.props.user.last_name} name='last_name'
+            onChange={this.handleInputChange.bind(this)}
+            type='text'
+            className='form-control' />
+        </div>
+
+      </div>
+
+      <div className='col-xs-12 col-sm-6 fields-container first'>
+
+        <span>Datos Adicionales</span>
+        <hr />
+
+        <div className='form-group'>
+          <label>Identificación</label>
+          <input value={this.props.profile.id_num} name='id_num'
+            onChange={this.handleInputProfileChange.bind(this)}
+            type='text'
+            className='form-control' />
+        </div>
+
+        <div className='form-group'>
+          <label>Email</label>
+          <input value={this.props.user.email} name='email'
+            onChange={this.handleInputChange.bind(this)}
+            type='email'
+            className='form-control' />
+        </div>
+
+        <div className='form-group'>
+          <label>Fecha de Nacimiento</label>
+          <input value={this.props.profile.birth_date} name='birth_date'
+            onChange={this.handleInputProfileChange.bind(this)}
+            type='date'
             className='form-control' />
         </div>
 

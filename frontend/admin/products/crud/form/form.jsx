@@ -54,7 +54,7 @@ class Form extends React.Component {
         dispatchType2: 'SET_PRODUCT_OLD',
         dispatchErrorType: 'PRODUCT_NOT_FOUND',
         lookUpName: 'código',
-        modelName: 'Familia de Producto',
+        modelName: 'Producto',
         redirectUrl: '/admin/products',
         history: this.props.history
       }
@@ -72,6 +72,8 @@ class Form extends React.Component {
 
       if (nextProps.product.id == '0000000000') {
 
+        console.log('UPDATE FORM 1 and ID')
+
         const kwargs = {
           lookUpField: 'code',
           url: '/api/products/',
@@ -80,7 +82,7 @@ class Form extends React.Component {
           dispatchType2: 'SET_PRODUCT_OLD',
           dispatchErrorType: 'PRODUCT_NOT_FOUND',
           lookUpName: 'código',
-          modelName: 'Familia de Producto',
+          modelName: 'Producto',
           redirectUrl: '/admin/products',
           history: this.props.history
         }
@@ -168,7 +170,7 @@ class Form extends React.Component {
         <hr />
 
         <div className='form-group row input-block'>
-          <div className='col-xs-6 first'>
+          <div className='col-xs-12'>
 
             <label>Código</label>
             <input value={this.props.product.code} name='code' onChange={this.handleInputChange.bind(this)}
@@ -176,13 +178,20 @@ class Form extends React.Component {
 
           </div>
 
-          <div className='col-xs-6 second'>
+          {/* <div className='col-xs-6 second'>
 
             <label>Código Base</label>
             <input value={this.props.product.base_code} name='base_code' onChange={this.handleInputChange.bind(this)}
               type='text' className='form-control' />
 
-          </div>
+          </div> */}
+        </div>
+
+        <div className='form-group'>
+          <label>Descripción</label>
+          <input value={this.props.product.description} name='description' onChange={this.handleInputChange.bind(this)}
+            type='text'
+            className='form-control' />
         </div>
 
         <div className='form-group row input-block'>
@@ -201,13 +210,6 @@ class Form extends React.Component {
               type='text' className='form-control' />
 
           </div>
-        </div>
-
-        <div className='form-group'>
-          <label>Descripción</label>
-          <input value={this.props.product.description} name='description' onChange={this.handleInputChange.bind(this)}
-            type='text'
-            className='form-control' />
         </div>
 
         <div className='form-group row input-block'>

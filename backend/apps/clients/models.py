@@ -66,7 +66,7 @@ class Client(models.Model):
     updated = models.DateTimeField(auto_now=True, auto_now_add=False, blank=True, null=True,
                                    verbose_name='Fecha de modificación')
 
-    def __unicode__(self):
+    def __str__(self):
         return '%s %s' % (self.name, self.last_name)
 
     class Meta:

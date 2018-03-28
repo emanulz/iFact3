@@ -27,7 +27,7 @@ class Product(models.Model):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     code = models.CharField(max_length=10, null=True, verbose_name='Código', unique=True)
     description = models.CharField(max_length=255, verbose_name='Descripción del producto', null=True)
-    unit = models.CharField(max_length=4, null=True, verbose_name='Unidad')
+    unit = models.CharField(max_length=255, blank=True, null=True, verbose_name='Unidad')
     fractioned = models.BooleanField(default=False, verbose_name='Se vende Fracionado?', blank=True)
     department = models.ForeignKey('ProductDepartment', on_delete=models.SET_NULL, null=True,
                                    verbose_name='Familia', default='')
@@ -92,7 +92,7 @@ class Product(models.Model):
     updated = models.DateTimeField(auto_now=True, auto_now_add=False, blank=True, null=True,
                                    verbose_name='Fecha de modificación')
 
-    def __unicode__(self):
+    def __str__(self):
         return '%s-%s - %s ' % (self.base_code, self.code, self.description)
 
     class Meta:
@@ -124,7 +124,7 @@ class ProductDepartment(models.Model):
     updated = models.DateTimeField(auto_now=True, auto_now_add=False, blank=True, null=True,
                                    verbose_name='Fecha de modificación')
 
-    def __unicode__(self):
+    def __str__(self):
         return '%s' % self.name
 
     class Meta:
@@ -157,7 +157,7 @@ class ProductSubDepartment(models.Model):
     updated = models.DateTimeField(auto_now=True, auto_now_add=False, blank=True, null=True,
                                    verbose_name='Fecha de modificación')
 
-    def __unicode__(self):
+    def __str__(self):
         return '%s - %s' % (self.department, self.name)
 
     class Meta:

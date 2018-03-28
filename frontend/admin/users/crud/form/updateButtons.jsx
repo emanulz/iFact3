@@ -1,7 +1,7 @@
 import React from 'react'
 import {connect} from 'react-redux'
 import {checkData} from '../../actions'
-import {updateItem, getItemDoubleDispatch, deleteItem} from '../../../../utils/api'
+import {getItemDoubleDispatch, deleteItem, patchItems} from '../../../../utils/api'
 import { withRouter } from 'react-router-dom'
 import alertify from 'alertifyjs'
 
@@ -10,7 +10,10 @@ import alertify from 'alertifyjs'
     user: store.users.userActive,
     users: store.users.users,
     userOld: store.users.userActiveOld,
-    userCreating: store.user.userCreating
+    userCreating: store.user.userCreating,
+    userProfile: store.users.userProfileActive,
+    userProfiles: store.users.userProfiles,
+    userProfileOld: store.users.userProfileActiveOld
   }
 })
 
@@ -24,6 +27,9 @@ class UpdateButtons extends React.Component {
     const users = this.props.users
     const fieldsOk = checkData(user, users)
 
+    const userProfile = this.props.userProfile
+    const userProfileOld = this.props.userProfileOld
+
     if (fieldsOk) {
       const kwargs = {
         url: `/api/users/${user.id}/`,
@@ -34,21 +40,35 @@ class UpdateButtons extends React.Component {
         logModel: 'USER',
         user: userCreating,
         itemOld: userOld,
-        sucessMessage: 'Usuario actualizado Correctamente.',
         errorMessage: 'Hubo un error al actualizar el Usuario, intente de nuevo.',
         dispatchType: 'CLEAR_USER'
       }
 
+      delete userProfile['avatar']
+      const kwargs2 = {
+        url: `/api/userprofiles/${userProfile.user}/`,
+        baseUrl: `/api/userprofiles/`,
+        item: userProfile,
+        logCode: 'USERPROFILE_UPDATE',
+        logDescription: 'Actualización de Perfil de Usuario',
+        logModel: 'USERPROFILE',
+        user: userCreating,
+        itemOld: userProfileOld,
+        sucessMessage: 'Perfil de Usuario actualizado Correctamente.',
+        errorMessage: 'Hubo un error al actualizar el Perfil de Usuario, intente de nuevo.',
+        dispatchType: 'CLEAR_USERPROFILE'
+      }
+
       if (redirect) {
-        kwargs.redirectUrl = '/admin/users'
-        kwargs.history = this.props.history
+        kwargs2.redirectUrl = '/admin/users'
+        kwargs2.history = this.props.history
       }
 
       const _this = this
 
       const updatePromise = new Promise((resolve, reject) => {
         _this.props.dispatch({type: 'FETCHING_STARTED', payload: ''})
-        _this.props.dispatch(updateItem(kwargs))
+        _this.props.dispatch(patchItems(kwargs, kwargs2))
         resolve()
       })
 
@@ -61,6 +81,16 @@ class UpdateButtons extends React.Component {
         }
         _this.props.dispatch({type: 'FETCHING_STARTED', payload: ''})
         _this.props.dispatch(getItemDoubleDispatch(userKwargs))
+
+        const userProfileKwargs = {
+          url: '/api/userprofiles',
+          successType: 'FETCH_USERPROFILES_FULFILLED',
+          successType2: 'CLEAR_USERPROFILE',
+          errorType: 'FETCH_USERPROFILES_REJECTED'
+        }
+        _this.props.dispatch({type: 'FETCHING_STARTED', payload: ''})
+        _this.props.dispatch(getItemDoubleDispatch(userProfileKwargs))
+
       }).catch((err) => {
         console.log(err)
       })

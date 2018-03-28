@@ -21,8 +21,8 @@ export default class List extends React.Component {
 
     const productKwargs = {
       url: '/api/products',
-      successType: 'FETCH_PRODUCT_FULFILLED',
-      errorType: 'FETCH_PRODUCT_REJECTED'
+      successType: 'FETCH_PRODUCTS_FULFILLED',
+      errorType: 'FETCH_PRODUCTS_REJECTED'
     }
 
     this.props.dispatch(getItemDispatch(productKwargs))
@@ -37,8 +37,8 @@ export default class List extends React.Component {
         text: 'Código',
         type: 'primary'
       }, {
-        field: 'name',
-        text: 'Nombre'
+        field: 'description',
+        text: 'Descripción'
       }
     ]
 

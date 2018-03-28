@@ -11,11 +11,6 @@ import { withRouter } from 'react-router-dom'
 
 class Form3 extends React.Component {
 
-  constructor(props) {
-    super(props)
-    this.state = {file: '', imagePreviewUrl: ''}
-  }
-
   // HANDLE INPUT CHANGE
   handleInputChange(event) {
 
