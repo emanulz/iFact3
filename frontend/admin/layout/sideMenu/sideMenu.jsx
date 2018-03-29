@@ -64,7 +64,7 @@ export default class SideMenu extends React.Component {
         href: '/admin/clients'
       }, {
         text: 'Cuentas por Cobrar',
-        class: 'fa-reorder',
+        class: 'fa-bars',
         href: '/admin/clients'
       }, {
         text: 'Notas de Crédito',
@@ -171,6 +171,11 @@ export default class SideMenu extends React.Component {
             <Link to='/admin/users'>
               <span className='fa fa-user' />
               Usuarios</Link>
+          </li>
+          <li>
+            <Link to='/admin/permissions'>
+              <span className='fa fa-user' />
+              Permisos</Link>
           </li>
           <ComposedItem mainTittle='Clientes' mainIcon='fa-users' childItems={childClients} />
           <ComposedItem mainTittle='Productos' mainIcon='fa-gift' childItems={childProducts} />

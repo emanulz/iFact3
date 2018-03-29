@@ -18,7 +18,7 @@ export default class ConfigBar extends React.Component {
         <div className='configBar-header-top' >
           <div>Configuración</div>
           <div className='configBar-header-top-close'>
-            <span onClick={this.closeConfigBar.bind(this)} className='fa fa-close' />
+            <span onClick={this.closeConfigBar.bind(this)} className='fas fa-window-close' />
           </div>
         </div>
         <div className='configBar-header-bottom' >

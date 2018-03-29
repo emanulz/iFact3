@@ -20,6 +20,8 @@
 {% endblock %}
 
 {% block js %}
+
+  {# <script defer type="text/javascript" src="{% static "vendor/font-awesome/fontawesome-all.js" %}"></script> #}
   {% render_bundle 'vendors' %}
   {% render_bundle 'admin' %}
   <script type="text/javascript">

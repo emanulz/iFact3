@@ -39,7 +39,7 @@ export default class TopBar extends React.Component {
       </div>
       <div className='topBar-right'>
         <div onClick={this.configClick.bind(this)} className='topBar-item topBar-item-config'>
-          <span className='fa fa-gears' />
+          <span className='fa fa-cogs' />
         </div>
         <div onClick={this.logOutClick.bind(this)} className='topBar-button topBar-button-logout'>
           <span className='fa fa-power-off' />
