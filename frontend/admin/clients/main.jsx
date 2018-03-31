@@ -21,7 +21,7 @@ export default class List extends React.Component {
     const permissions = {
       create: 'clients.add_client',
       update: 'clients.change_client',
-      list: 'clients.can_list',
+      list: 'clients.list_client',
       delete: 'clients.delete_client'
     }
     const kwargs = {

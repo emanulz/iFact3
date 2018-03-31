@@ -15,7 +15,13 @@ export default class UserInfo extends React.Component {
   render() {
 
     return <div className='permissions-container-userinfo'>
-      <div />
+      <div className='permissions-container-userinfo-image'>
+        <img src='/media/default/profile.jpg' />
+      </div>
+      <div className='permissions-container-userinfo-data'>
+        <p>Nombre: Emanuel Zuniga Infante</p>
+        <p>Usuario: emanuelziga</p>
+      </div>
     </div>
 
   }

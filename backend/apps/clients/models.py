@@ -78,8 +78,8 @@ class Client(models.Model):
 content_type = ContentType.objects.get_for_model(Client)
 try:
     permission = Permission.objects.create(
-        codename='can_list',
-        name='Can list Cliente',
+        codename='list_client',
+        name='Can list Client',
         content_type=content_type,
         )
 except IntegrityError:

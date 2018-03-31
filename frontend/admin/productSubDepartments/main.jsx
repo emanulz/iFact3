@@ -21,7 +21,7 @@ export default class List extends React.Component {
     const permissions = {
       create: 'products.add_productsubdepartment',
       update: 'products.change_productsubdepartment',
-      list: 'products.can_list_productsubdepartment',
+      list: 'products.list_productsubdepartment',
       delete: 'products.delete_productsubdepartment'
     }
     const kwargs = {

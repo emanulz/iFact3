@@ -47,8 +47,8 @@ def save_user_profile(sender, instance, **kwargs):
 content_type = ContentType.objects.get_for_model(Profile)
 try:
     permission = Permission.objects.create(
-        codename='can_list',
-        name='Can list Profiles',
+        codename='list_profile',
+        name='Can list Profile',
         content_type=content_type,
         )
 except IntegrityError:
@@ -58,8 +58,8 @@ except IntegrityError:
 content_type = ContentType.objects.get_for_model(User)
 try:
     permission = Permission.objects.create(
-        codename='can_list',
-        name='Can list Users',
+        codename='list_user',
+        name='Can list User',
         content_type=content_type,
         )
 except IntegrityError:

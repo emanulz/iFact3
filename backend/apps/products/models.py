@@ -105,7 +105,7 @@ class Product(models.Model):
 content_type = ContentType.objects.get_for_model(Product)
 try:
     permission = Permission.objects.create(
-        codename='can_list',
+        codename='list_product',
         name='Can list Producto',
         content_type=content_type,
         )
@@ -137,7 +137,7 @@ class ProductDepartment(models.Model):
 content_type = ContentType.objects.get_for_model(ProductDepartment)
 try:
     permission = Permission.objects.create(
-        codename='can_list_productdepartment',
+        codename='list_productdepartment',
         name='Can list Familia',
         content_type=content_type,
         )
@@ -171,7 +171,7 @@ class ProductSubDepartment(models.Model):
 content_type = ContentType.objects.get_for_model(ProductSubDepartment)
 try:
     permission = Permission.objects.create(
-        codename='can_list_productsubdepartment',
+        codename='list_productsubdepartment',
         name='Can list Sub-Familia',
         content_type=content_type,
         )

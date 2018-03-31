@@ -21,7 +21,7 @@ export default class List extends React.Component {
     const permissions = {
       create: 'suppliers.add_supplier',
       update: 'suppliers.change_supplier',
-      list: 'suppliers.can_list',
+      list: 'suppliers.list.supplier',
       delete: 'suppliers.delete_supplier'
     }
     const kwargs = {

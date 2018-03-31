@@ -1,7 +1,10 @@
 # -*- coding: utf-8 -*-
 from __future__ import unicode_literals
-from django.db import models
 import uuid
+from django.db import models
+from django.contrib.auth.models import Permission
+from django.contrib.contenttypes.models import ContentType
+from django.db import IntegrityError
 
 
 class Supplier(models.Model):
@@ -49,3 +52,15 @@ class Supplier(models.Model):
         verbose_name = 'Proveedor'
         verbose_name_plural = 'Proveedores'
         ordering = ['code']
+
+
+# CUSTOM PERMISSION
+content_type = ContentType.objects.get_for_model(Supplier)
+try:
+    permission = Permission.objects.create(
+        codename='list_supplier',
+        name='Can list Supplier',
+        content_type=content_type,
+        )
+except IntegrityError:
+    pass

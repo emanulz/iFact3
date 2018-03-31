@@ -4,7 +4,7 @@ from rest_framework import permissions
 class HasProperPermission(permissions.DjangoModelPermissions):
 
     perms_map = {
-        'GET': ['can_list'],
+        'GET': ['%(app_label)s.list_%(model_name)s'],
         'OPTIONS': [],
         'HEAD': [],
         'POST': ['%(app_label)s.add_%(model_name)s'],

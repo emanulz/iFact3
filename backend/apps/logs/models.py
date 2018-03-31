@@ -31,7 +31,7 @@ class Log(models.Model):
 content_type = ContentType.objects.get_for_model(Log)
 try:
     permission = Permission.objects.create(
-        codename='can_list',
+        codename='list_log',
         name='Can list Log',
         content_type=content_type,
         )

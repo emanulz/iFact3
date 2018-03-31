@@ -4,7 +4,7 @@ from django.contrib.auth.decorators import login_required
 from django.http import HttpResponse
 from django.core import serializers
 from django.contrib.auth.hashers import check_password
-from django.contrib.auth.models import User
+from django.contrib.auth.models import User, Permission
 from django.shortcuts import get_object_or_404
 import json
 
@@ -70,3 +70,56 @@ def checkUserPermissions(request):
             returnPermissions[key] = has_permission
 
         return HttpResponse(json.dumps(returnPermissions), content_type='application/json')
+
+
+# Recieves an object/dict in POST data named permissions and check all of them
+@login_required
+def assingUserPermission(request):
+
+    body_unicode = request.body.decode('utf-8')
+    body = json.loads(body_unicode)
+
+    user_request_id = request.user.id
+    user_request = get_object_or_404(User, pk=user_request_id)
+    has_permission = user_request.has_perm('change_user')
+
+    if request.method == 'POST' and has_permission:
+
+        user_id = body['userId']
+        user = get_object_or_404(User, pk=user_id)
+
+        permission_name = body['permission']
+        add = body['add']
+
+        # IF IS ADD PERMISSION
+        if add:
+            try:
+                permission = Permission.objects.get(permission_name)
+                user.user_permissions.add(permission)
+
+                response = HttpResponse({'status': 'success', 'message': 'Permiso Asignado Correctamente'},
+                                        content_type='application/json')
+                response.status_code = 200
+                return response
+
+            except Exception as e:
+                response = HttpResponse(json.dumps({'status': 'error', 'message': e}),
+                                        content_type='application/json')
+                response.status_code = 500
+                return response
+        # IF IS REMOVE PERMISSION
+        else:
+            try:
+                permission = Permission.objects.get(permission_name)
+                user.user_permissions.exclude(permission)
+
+                response = HttpResponse({'status': 'success', 'message': 'Permiso Eliminado Correctamente'},
+                                        content_type='application/json')
+                response.status_code = 200
+                return response
+
+            except Exception as e:
+                response = HttpResponse(json.dumps({'status': 'error', 'message': e}),
+                                        content_type='application/json')
+                response.status_code = 500
+                return response

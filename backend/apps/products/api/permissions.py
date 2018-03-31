@@ -4,7 +4,7 @@ from rest_framework import permissions
 class HasProperPermission(permissions.DjangoModelPermissions):
 
     perms_map = {
-        'GET': ['%(app_label)s.can_list'],
+        'GET': ['%(app_label)s.list_product'],
         'OPTIONS': [],
         'HEAD': [],
         'POST': ['%(app_label)s.add_%(model_name)s'],
@@ -17,7 +17,7 @@ class HasProperPermission(permissions.DjangoModelPermissions):
 class HasProperDepartmentPermission(permissions.DjangoModelPermissions):
 
     perms_map = {
-        'GET': ['%(app_label)s.can_list_productDepartment'],
+        'GET': ['%(app_label)s.list_productDepartment'],
         'OPTIONS': [],
         'HEAD': [],
         'POST': ['%(app_label)s.add_%(model_name)s'],
@@ -30,7 +30,7 @@ class HasProperDepartmentPermission(permissions.DjangoModelPermissions):
 class HasProperSubDepartmentPermission(permissions.DjangoModelPermissions):
 
     perms_map = {
-        'GET': ['%(app_label)s.can_list_productsubdepartment'],
+        'GET': ['%(app_label)s.list_productsubdepartment'],
         'OPTIONS': [],
         'HEAD': [],
         'POST': ['%(app_label)s.add_%(model_name)s'],

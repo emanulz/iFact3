@@ -9,7 +9,7 @@ from apps.clients.api.views import ClientViewSet
 from apps.products.api.views import ProductViewSet, ProductDepartmentViewSet, ProductSubDepartmentViewSet
 from apps.suppliers.api.views import SupplierViewSet
 from apps.profiles.api.views import ProfileViewSet
-from apps.profiles.api.views import UserViewSet
+from apps.profiles.api.views import UserViewSet, PermissionsViewSet
 from apps.logs.api.views import LogViewSet
 from dynamic_preferences.users.viewsets import UserPreferencesViewSet
 
@@ -23,6 +23,7 @@ router.register(r'productsubdepartments', ProductSubDepartmentViewSet)
 router.register(r'suppliers', SupplierViewSet)
 router.register(r'userprofiles', ProfileViewSet)
 router.register(r'users', UserViewSet)
+router.register(r'permissions', PermissionsViewSet)
 router.register(r'userprefs', UserPreferencesViewSet, base_name='userprefs')
 
 
