@@ -72,6 +72,26 @@ def checkUserPermissions(request):
         return HttpResponse(json.dumps(returnPermissions), content_type='application/json')
 
 
+@login_required
+def checkSingleUserPermissions(request):
+
+    body_unicode = request.body.decode('utf-8')
+    body = json.loads(body_unicode)
+    user_id = body['userId']
+
+    if request.method == 'POST':
+
+        user = get_object_or_404(User, pk=user_id)
+        permissions = body['permissions']
+        returnPermissions = {}
+
+        for key, value in permissions.items():
+            has_permission = user.has_perm(value)
+            returnPermissions[key] = has_permission
+
+        return HttpResponse(json.dumps(returnPermissions), content_type='application/json')
+
+
 # Recieves an object/dict in POST data named permissions and check all of them
 @login_required
 def assingUserPermission(request):
@@ -87,6 +107,7 @@ def assingUserPermission(request):
 
         user_id = body['userId']
         user = get_object_or_404(User, pk=user_id)
+        print(user)
 
         permission_name = body['permission']
         add = body['add']
@@ -94,7 +115,7 @@ def assingUserPermission(request):
         # IF IS ADD PERMISSION
         if add:
             try:
-                permission = Permission.objects.get(permission_name)
+                permission = Permission.objects.get(codename=permission_name)
                 user.user_permissions.add(permission)
 
                 response = HttpResponse({'status': 'success', 'message': 'Permiso Asignado Correctamente'},
@@ -110,8 +131,9 @@ def assingUserPermission(request):
         # IF IS REMOVE PERMISSION
         else:
             try:
-                permission = Permission.objects.get(permission_name)
-                user.user_permissions.exclude(permission)
+                permission = Permission.objects.get(codename=permission_name)
+                print (permission)
+                user.user_permissions.remove(permission)
 
                 response = HttpResponse({'status': 'success', 'message': 'Permiso Eliminado Correctamente'},
                                         content_type='application/json')

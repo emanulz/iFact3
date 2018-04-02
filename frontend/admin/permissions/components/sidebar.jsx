@@ -3,6 +3,9 @@
  */
 import React from 'react'
 import {connect} from 'react-redux'
+import { withRouter } from 'react-router-dom'
+import { setItem } from '../../../utils/api'
+import { checkSingleUserPermissions } from '../../../utils/checkPermissions'
 
 @connect((store) => {
   return {
@@ -10,7 +13,12 @@ import {connect} from 'react-redux'
     filter: store.permissions.userFilter
   }
 })
-export default class SideBar extends React.Component {
+class SideBar extends React.Component {
+
+  componentWillMount () {
+    this.props.dispatch({type: 'CLEAR_USER', payload: ''})
+    this.props.dispatch({type: 'CLEAR_USERPROFILE', payload: ''})
+  }
 
   setInputFilter(event) {
 
@@ -18,6 +26,61 @@ export default class SideBar extends React.Component {
     const value = target.value
 
     this.props.dispatch({type: 'SET_USER_FILTER', payload: value})
+  }
+
+  fetchUserPermissions(id) {
+    const permissions = {
+      create: 'clients.add_client',
+      update: 'clients.change_client',
+      list: 'clients.list_client',
+      delete: 'clients.delete_client'
+    }
+    const kwargs = {
+      userId: id,
+      model: 'clients',
+      permissions: permissions,
+      success: 'SET_PERMISSIONS',
+      fail: 'CLEAR_PERMISSIONS'
+    }
+    this.props.dispatch({type: 'FETCHING_STARTED', payload: ''})
+    this.props.dispatch(checkSingleUserPermissions(kwargs))
+  }
+
+  onUserClick(user, event) {
+
+    this.props.dispatch({type: 'CLEAR_USER', payload: ''})
+    this.props.dispatch({type: 'CLEAR_USERPROFILE', payload: ''})
+
+    const kwargsProfile = {
+      lookUpField: 'user',
+      url: '/api/userprofiles/',
+      lookUpValue: user.id,
+      dispatchType: 'SET_USERPROFILE',
+      dispatchType2: 'SET_USERPROFILE_OLD',
+      dispatchErrorType: 'USERPROFILE_NOT_FOUND',
+      lookUpName: 'Usuario',
+      modelName: 'Perfil de Usuario',
+      redirectUrl: '/admin/users',
+      history: this.props.history
+    }
+
+    const kwargs = {
+      lookUpField: 'username',
+      url: '/api/users/',
+      lookUpValue: user.username,
+      dispatchType: 'SET_USER',
+      dispatchType2: 'SET_USER_OLD',
+      dispatchErrorType: 'USER_NOT_FOUND',
+      lookUpName: 'Nombre de Usuario',
+      modelName: 'Usuarios',
+      redirectUrl: '/admin/users',
+      history: this.props.history
+    }
+
+    this.props.dispatch({type: 'FETCHING_STARTED', payload: ''})
+    this.props.dispatch(setItem(kwargsProfile))
+    this.props.dispatch(setItem(kwargs))
+    this.fetchUserPermissions(user.id)
   }
 
   // Main Layout
@@ -32,7 +95,7 @@ export default class SideBar extends React.Component {
 
     const users = filteredUsers.map(user => {
       const info = user.first_name && user.last_name ? `${user.first_name} ${user.last_name}` : user.username
-      return <li key={user.id}>{info}</li>
+      return <li onClick={this.onUserClick.bind(this, user)} key={user.id}>{info}</li>
     })
 
     return <div className='permissions-container-sidebar'>
@@ -47,3 +110,6 @@ export default class SideBar extends React.Component {
   }
 
 }
+
+// EXPORT THE CLASS WITH ROUTER
+export default withRouter(SideBar)

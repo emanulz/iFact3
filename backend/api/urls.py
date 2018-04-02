@@ -2,8 +2,12 @@
 
 from django.conf.urls import include, url
 from apps.profiles.views import checkUserPassword
-from apps.profiles.views import checkUserPermission, checkUserPermissions
 
+# Permsions
+from apps.profiles.views import checkUserPermission, checkUserPermissions, checkSingleUserPermissions
+from apps.profiles.views import assingUserPermission
+
+# API
 from rest_framework import routers
 from apps.clients.api.views import ClientViewSet
 from apps.products.api.views import ProductViewSet, ProductDepartmentViewSet, ProductSubDepartmentViewSet
@@ -32,5 +36,7 @@ urlpatterns = [
     url(r'^', include(router.urls)),
     url(r'^checkpassword/', checkUserPassword),
     url(r'^checkpermission/', checkUserPermission),
-    url(r'^checkpermissions/', checkUserPermissions)
+    url(r'^checkpermissions/', checkUserPermissions),
+    url(r'^assinguserpermission/', assingUserPermission),
+    url(r'^checksingleuserpermissions/', checkSingleUserPermissions)
     ]

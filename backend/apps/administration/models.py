@@ -13,7 +13,7 @@ class Administration(models.Model):
 content_type = ContentType.objects.get_for_model(Administration)
 try:
     permission = Permission.objects.create(
-        codename='can_access',
+        codename='access_administration',
         name='Can access Administration',
         content_type=content_type,
         )

@@ -4,6 +4,6 @@ from django.shortcuts import render
 
 
 @login_required
-@permission_required('administration.can_access', login_url='/login')
+@permission_required('administration.access_administration', login_url='/login')
 def adminPage(request):
     return render(request, "admin.html")

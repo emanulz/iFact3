@@ -2,7 +2,12 @@
 const permissionsModel = {
   general: {},
   products: {},
-  clients: {},
+  clients: {
+    list: false,
+    create: false,
+    update: false,
+    delete: false
+  },
   users: {},
   suppliers: {}
 }
@@ -42,11 +47,31 @@ export default function reducer(state = stateConst, action) {
       }
     } // case
 
-    case 'SET_PERMISSIONS':
+    case 'SET_PERMISSION':
     {
+      const model = action.payload.model
+      const permission = action.payload.permission
       return {
         ...state,
-        permissionsActive: action.payload
+        permissionsActive: {
+          ...state.permissionsActive,
+          [model]: {
+            ...state.permissionsActive[model],
+            [permission]: action.payload.permissionValue
+          }
+        }
+      }
+    }
+
+    case 'SET_PERMISSIONS':
+    {
+      const model = action.payload.model
+      return {
+        ...state,
+        permissionsActive: {
+          ...state.permissionsActive,
+          [model]: action.payload.permissions
+        }
       }
     }
 
