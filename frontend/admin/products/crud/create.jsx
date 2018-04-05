@@ -30,7 +30,7 @@ export default class Update extends React.Component {
 
     let content = ''
 
-    switch (this.props.permissions.create) {
+    switch (this.props.permissions.add) {
       case true:
       {
         content = <div>

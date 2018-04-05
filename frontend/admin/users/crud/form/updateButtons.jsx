@@ -13,7 +13,8 @@ import alertify from 'alertifyjs'
     userCreating: store.user.userCreating,
     userProfile: store.users.userProfileActive,
     userProfiles: store.users.userProfiles,
-    userProfileOld: store.users.userProfileActiveOld
+    userProfileOld: store.users.userProfileActiveOld,
+    permissions: store.users.permissions
   }
 })
 
@@ -135,27 +136,48 @@ class UpdateButtons extends React.Component {
     // ********************************************************************
     // BUTTONS
     // ********************************************************************
-    const buttons = <div className='col-xs-12 row form-buttons-container-row'>
-      <div className='col-xs-12 col-sm-4'>
-        <button onClick={this.updateBtn.bind(this, true)}
-          className='form-buttons-container-save form-control btn-success'>
-          Actualizar
-        </button>
+
+    // IF HAVE PERISSION SHOW DELETE BTN
+    const buttons = this.props.permissions.delete
+      ? <div className='col-xs-12 row form-buttons-container-row'>
+        <div className='col-xs-12 col-sm-4'>
+          <button onClick={this.updateBtn.bind(this, true)}
+            className='form-buttons-container-save form-control btn-success'>
+            Actualizar
+          </button>
+        </div>
+
+        <div className='col-xs-12 col-sm-4'>
+          <button onClick={this.updateBtn.bind(this, false)}
+            className='form-buttons-container-saveContinue form-control btn-primary'>
+            Actualizar y Seguir
+          </button>
+        </div>
+
+        <div className='col-xs-12 col-sm-4'>
+          <button onClick={this.deleteBtn.bind(this)} className='form-buttons-container-cancel form-control btn-danger'>
+            Eliminar
+          </button>
+        </div>
       </div>
 
-      <div className='col-xs-12 col-sm-4'>
-        <button onClick={this.updateBtn.bind(this, false)}
-          className='form-buttons-container-saveContinue form-control btn-primary'>
-          Actualizar y Seguir
-        </button>
-      </div>
+      // IF DO NOT HAVE PERMISSION DONT SHOW DELETE BTN
+      : <div className='col-xs-12 row form-buttons-container-row'>
+        <div className='col-xs-12 col-sm-4'>
+          <button onClick={this.updateBtn.bind(this, true)}
+            className='form-buttons-container-save form-control btn-success'>
+            Actualizar
+          </button>
+        </div>
 
-      <div className='col-xs-12 col-sm-4'>
-        <button onClick={this.deleteBtn.bind(this)} className='form-buttons-container-cancel form-control btn-danger'>
-          Eliminar
-        </button>
+        <div className='col-xs-12 col-sm-4'>
+          <button onClick={this.updateBtn.bind(this, false)}
+            className='form-buttons-container-saveContinue form-control btn-primary'>
+            Actualizar y Seguir
+          </button>
+        </div>
+
       </div>
-    </div>
 
     // ********************************************************************
     // RETURN BLOCK

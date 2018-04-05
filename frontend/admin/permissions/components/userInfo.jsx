@@ -22,14 +22,22 @@ export default class UserInfo extends React.Component {
 
     const img = profile && profile.avatar ? profile.avatar : '/media/default/profile.jpg'
 
-    return <div className='permissions-container-userinfo'>
-      <div className='permissions-container-userinfo-image'>
-        <img src={img} />
+    const content = this.props.user.id != '0000000000'
+
+      ? <div className='permissions-container-userinfo'>
+        <div className='permissions-container-userinfo-image'>
+          <img src={img} />
+        </div>
+        <div className='permissions-container-userinfo-data'>
+          <div>Nombre: {name}</div>
+          <div>Usuario: {username}</div>
+        </div>
       </div>
-      <div className='permissions-container-userinfo-data'>
-        <div>Nombre: {name}</div>
-        <div>Usuario: {username}</div>
-      </div>
+
+      : <div />
+
+    return <div>
+      {content}
     </div>
 
   }

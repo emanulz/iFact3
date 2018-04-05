@@ -10,7 +10,8 @@ import alertify from 'alertifyjs'
     productSubDepartment: store.productSubDepartments.productSubDepartmentActive,
     productSubDepartments: store.productSubDepartments.productSubDepartments,
     productSubDepartmentOld: store.productSubDepartments.productSubDepartmentActiveOld,
-    user: store.user.user
+    user: store.user.user,
+    permissions: store.productSubDepartments.permissions
   }
 })
 
@@ -106,27 +107,48 @@ class UpdateButtons extends React.Component {
     // ********************************************************************
     // BUTTONS
     // ********************************************************************
-    const buttons = <div className='col-xs-12 col-sm-6 row form-buttons-container-row'>
-      <div className='col-xs-12'>
-        <button onClick={this.updateBtn.bind(this, true)}
-          className='form-buttons-container-save form-control btn-success inCol'>
-          Actualizar
-        </button>
+
+    // IF HAVE PERISSION SHOW DELETE BTN
+    const buttons = this.props.permissions.delete
+      ? <div className='col-xs-12 row form-buttons-container-row'>
+        <div className='col-xs-12 col-sm-4'>
+          <button onClick={this.updateBtn.bind(this, true)}
+            className='form-buttons-container-save form-control btn-success'>
+            Actualizar
+          </button>
+        </div>
+
+        <div className='col-xs-12 col-sm-4'>
+          <button onClick={this.updateBtn.bind(this, false)}
+            className='form-buttons-container-saveContinue form-control btn-primary'>
+            Actualizar y Seguir
+          </button>
+        </div>
+
+        <div className='col-xs-12 col-sm-4'>
+          <button onClick={this.deleteBtn.bind(this)} className='form-buttons-container-cancel form-control btn-danger'>
+            Eliminar
+          </button>
+        </div>
       </div>
 
-      <div className='col-xs-12'>
-        <button onClick={this.updateBtn.bind(this, false)}
-          className='form-buttons-container-saveContinue form-control btn-primary inCol'>
-          Actualizar y Seguir
-        </button>
-      </div>
+      // IF DO NOT HAVE PERMISSION DONT SHOW DELETE BTN
+      : <div className='col-xs-12 row form-buttons-container-row'>
+        <div className='col-xs-12 col-sm-4'>
+          <button onClick={this.updateBtn.bind(this, true)}
+            className='form-buttons-container-save form-control btn-success'>
+            Actualizar
+          </button>
+        </div>
 
-      <div className='col-xs-12'>
-        <button onClick={this.deleteBtn.bind(this)} className='form-buttons-container-cancel form-control btn-danger inCol'>
-          Eliminar
-        </button>
+        <div className='col-xs-12 col-sm-4'>
+          <button onClick={this.updateBtn.bind(this, false)}
+            className='form-buttons-container-saveContinue form-control btn-primary'>
+            Actualizar y Seguir
+          </button>
+        </div>
+
       </div>
-    </div>
 
     // ********************************************************************
     // RETURN BLOCK

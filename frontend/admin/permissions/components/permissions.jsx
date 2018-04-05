@@ -14,7 +14,7 @@ import Suppliers from './forms/suppliers.jsx'
 
 @connect((store) => {
   return {
-    permissions: store.users.permissions
+    user: store.users.userActive
   }
 })
 export default class Permissions extends React.Component {
@@ -22,8 +22,8 @@ export default class Permissions extends React.Component {
   // Main Layout
   render() {
 
-    return <div className='permissions-container-permissions'>
-      <Tabs vertical defaultTab='one'>
+    const content = this.props.user.id != '0000000000'
+      ? <Tabs vertical defaultTab='one'>
         <TabList vertical>
           <Tab tabFor='one'>General</Tab>
           <Tab tabFor='two'>Productos</Tab>
@@ -58,6 +58,11 @@ export default class Permissions extends React.Component {
         </TabPanel>
 
       </Tabs>
+
+      : <div />
+
+    return <div className='permissions-container-permissions'>
+      {content}
     </div>
 
   }

@@ -5,7 +5,6 @@ import React from 'react'
 import {connect} from 'react-redux'
 import { withRouter } from 'react-router-dom'
 import { setItem } from '../../../utils/api'
-import { checkSingleUserPermissions } from '../../../utils/checkPermissions'
 
 @connect((store) => {
   return {
@@ -28,28 +27,11 @@ class SideBar extends React.Component {
     this.props.dispatch({type: 'SET_USER_FILTER', payload: value})
   }
 
-  fetchUserPermissions(id) {
-    const permissions = {
-      create: 'clients.add_client',
-      update: 'clients.change_client',
-      list: 'clients.list_client',
-      delete: 'clients.delete_client'
-    }
-    const kwargs = {
-      userId: id,
-      model: 'clients',
-      permissions: permissions,
-      success: 'SET_PERMISSIONS',
-      fail: 'CLEAR_PERMISSIONS'
-    }
-    this.props.dispatch({type: 'FETCHING_STARTED', payload: ''})
-    this.props.dispatch(checkSingleUserPermissions(kwargs))
-  }
-
   onUserClick(user, event) {
 
     this.props.dispatch({type: 'CLEAR_USER', payload: ''})
     this.props.dispatch({type: 'CLEAR_USERPROFILE', payload: ''})
+    this.props.dispatch({type: 'CLEAR_PERMISSIONS', payload: ''})
 
     const kwargsProfile = {
       lookUpField: 'user',
@@ -80,7 +62,6 @@ class SideBar extends React.Component {
     this.props.dispatch({type: 'FETCHING_STARTED', payload: ''})
     this.props.dispatch(setItem(kwargsProfile))
     this.props.dispatch(setItem(kwargs))
-    this.fetchUserPermissions(user.id)
   }
 
   // Main Layout
@@ -99,6 +80,7 @@ class SideBar extends React.Component {
     })
 
     return <div className='permissions-container-sidebar'>
+      <h1>Elija un usuario para modificar sus permisos</h1>
       <input type='text' className='form-control input' placeholder='Filtrar...'
         onChange={this.setInputFilter.bind(this)} />
       <ul>

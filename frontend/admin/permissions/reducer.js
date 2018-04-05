@@ -1,15 +1,32 @@
 
 const permissionsModel = {
-  general: {},
-  products: {},
-  clients: {
+  general: {
+    access_administration: false
+  },
+  products: {
     list: false,
-    create: false,
-    update: false,
+    add: false,
+    change: false,
     delete: false
   },
-  users: {},
-  suppliers: {}
+  clients: {
+    list: false,
+    add: false,
+    change: false,
+    delete: false
+  },
+  users: {
+    list: false,
+    add: false,
+    change: false,
+    delete: false
+  },
+  suppliers: {
+    list: false,
+    add: false,
+    change: false,
+    delete: false
+  }
 }
 
 const stateConst = {

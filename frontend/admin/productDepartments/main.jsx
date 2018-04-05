@@ -19,8 +19,8 @@ export default class List extends React.Component {
     // When will mount fecth for model permissions and dispatch to reducer
     // *******************************************************************
     const permissions = {
-      create: 'products.add_productdepartment',
-      update: 'products.change_productdepartment',
+      add: 'products.add_productdepartment',
+      change: 'products.change_productdepartment',
       list: 'products.list_productdepartment',
       delete: 'products.delete_productdepartment'
     }

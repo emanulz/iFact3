@@ -58,7 +58,7 @@ export default class Update extends React.Component {
 
     const code = this.props.location.pathname.split('/').pop()
 
-    switch (this.props.permissions.create) {
+    switch (this.props.permissions.change) {
       case true:
       {
         content = <div className='heigh100'>

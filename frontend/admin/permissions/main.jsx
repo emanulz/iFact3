@@ -20,8 +20,8 @@ export default class List extends React.Component {
     // When will mount fecth for model permissions and dispatch to reducer
     // *******************************************************************
     const permissions = {
-      create: 'auth.add_user',
-      update: 'auth.change_user',
+      add: 'auth.add_user',
+      change: 'auth.change_user',
       list: 'auth.list_user',
       delete: 'auth.delete_user'
     }
@@ -52,7 +52,7 @@ export default class List extends React.Component {
 
     let content = ''
 
-    switch (this.props.permissions.update) {
+    switch (this.props.permissions.change) {
       case true:
       {
         content = <ContainerComponent />

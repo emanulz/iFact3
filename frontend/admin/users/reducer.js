@@ -1,6 +1,6 @@
 const defaultPermissions = {
-  create: 'unfetched',
-  update: 'unfetched',
+  add: 'unfetched',
+  change: 'unfetched',
   list: 'unfetched',
   delete: 'unfetched'
 }

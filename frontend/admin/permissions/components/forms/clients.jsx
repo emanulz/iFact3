@@ -13,6 +13,26 @@ import {assingUserPermission, checkSingleUserPermissions} from '../../../../util
 })
 export default class Clients extends React.Component {
 
+  componentWillMount () {
+
+    const permissions = {
+      add: 'clients.add_client',
+      change: 'clients.change_client',
+      list: 'clients.list_client',
+      delete: 'clients.delete_client'
+    }
+    const kwargs = {
+      userId: this.props.user.id,
+      model: 'clients',
+      permissions: permissions,
+      success: 'SET_PERMISSIONS',
+      fail: 'CLEAR_PERMISSIONS'
+    }
+    this.props.dispatch({type: 'FETCHING_STARTED', payload: ''})
+    this.props.dispatch(checkSingleUserPermissions(kwargs))
+
+  }
+
   handleInputChange (permission, event) {
 
     const target = event.target
@@ -34,10 +54,9 @@ export default class Clients extends React.Component {
     })
 
     updatePromise.then(() => {
-      console.log('THENNN')
       const permissions = {
-        create: 'clients.add_client',
-        update: 'clients.change_client',
+        add: 'clients.add_client',
+        change: 'clients.change_client',
         list: 'clients.list_client',
         delete: 'clients.delete_client'
       }
@@ -63,7 +82,7 @@ export default class Clients extends React.Component {
     return <div className='permissions-container-permissions-tab'>
 
       <div className='permissions-container-permissions-tab-item'>
-        <div className='permissionName'>Listar Cliente</div>
+        <div className='permissionName'>Listar Clientes</div>
         <div className='permissionInput'>
           <input type='checkbox' checked={this.props.permissions.list}
             onChange={this.handleInputChange.bind(this, 'list_client')} />
@@ -73,7 +92,7 @@ export default class Clients extends React.Component {
       <div className='permissions-container-permissions-tab-item'>
         <div className='permissionName'>Crear Cliente</div>
         <div className='permissionInput'>
-          <input type='checkbox' checked={this.props.permissions.create}
+          <input type='checkbox' checked={this.props.permissions.add}
             onChange={this.handleInputChange.bind(this, 'add_client')} />
         </div>
       </div>
@@ -81,7 +100,7 @@ export default class Clients extends React.Component {
       <div className='permissions-container-permissions-tab-item'>
         <div className='permissionName'>Modificar Cliente</div>
         <div className='permissionInput'>
-          <input type='checkbox' checked={this.props.permissions.update}
+          <input type='checkbox' checked={this.props.permissions.change}
             onChange={this.handleInputChange.bind(this, 'change_client')} />
         </div>
       </div>
