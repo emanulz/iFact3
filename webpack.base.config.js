@@ -74,11 +74,11 @@ const stylesConfig = Object.assign({}, config, {
   },
   output: {
     path: path.resolve('./backend/static/bundles/'),
-    filename: './css/[name].css?[hash]'
+    filename: './css/[name].css'
   },
 
   plugins: [
-    new ExtractTextPlugin({filename: './css/[name].css?[hash]', allChunks: true})
+    new ExtractTextPlugin({filename: './css/[name].css', allChunks: true})
   ]
 
 })

@@ -22,6 +22,7 @@ export default class Container extends React.Component {
         <SideBar />
       </div>
       <div className='permissions-container-main'>
+        <h1>USUARIO Y PERMISOS</h1>
         <UserInfo />
         <Permissions />
       </div>

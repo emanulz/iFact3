@@ -3882,10 +3882,19 @@ table {
   .permissions-container-aside {
     width: 30%;
     height: 100%;
-    border: 1px solid #cacaca; }
+    padding: 0 10px; }
   .permissions-container-main {
     width: 70%;
     height: 100%; }
+    .permissions-container-main h1 {
+      font-size: 15px;
+      text-align: center;
+      font-weight: bold;
+      margin-bottom: 15px;
+      min-height: 50px;
+      background-color: #354052;
+      color: white;
+      line-height: 50px; }
 
 .permissions-container-sidebar ul {
   width: 100%; }
@@ -3896,27 +3905,59 @@ table {
     padding-left: 20px;
     width: 100%;
     cursor: pointer;
-    background-color: #354052;
+    background-color: #6f7e95;
     color: white; }
     .permissions-container-sidebar ul li:hover {
-      background-color: #0e1a29; }
+      background-color: #435267; }
 
-.permissions-container-permissions-tab-item {
-  display: flex;
-  flex-flow: row;
-  width: 300px;
-  border: 1px solid #cacaca;
+.permissions-container-sidebar h1 {
+  font-size: 15px;
+  text-align: center;
+  font-weight: bold;
+  margin-bottom: 15px;
   min-height: 50px;
-  line-height: 50px;
-  margin-bottom: 10px; }
-  .permissions-container-permissions-tab-item .permissionName {
-    width: 80%;
-    border-right: 1px solid #cacaca;
-    padding-left: 10px; }
-  .permissions-container-permissions-tab-item .permissionInput {
-    width: 20%; }
-    .permissions-container-permissions-tab-item .permissionInput input {
-      margin-left: 20px; }
+  background-color: #354052;
+  color: white;
+  line-height: 50px; }
+
+.permissions-container-sidebar input {
+  margin-bottom: 15px;
+  border: 2px solid #cacaca !important;
+  height: 50px;
+  font-size: 16px; }
+
+.permissions-container-permissions {
+  padding: 18px 10px; }
+  .permissions-container-permissions-tab-item {
+    display: flex;
+    flex-flow: row;
+    width: 300px;
+    border-bottom: 1px solid #cacaca;
+    min-height: 50px;
+    line-height: 42px;
+    margin-bottom: 10px;
+    margin-left: 15px; }
+    .permissions-container-permissions-tab-item .permissionName {
+      width: 80%;
+      padding-left: 10px; }
+    .permissions-container-permissions-tab-item .permissionInput {
+      width: 20%; }
+      .permissions-container-permissions-tab-item .permissionInput input {
+        margin-left: 20px; }
+  .permissions-container-permissions .rwt__tablist button {
+    color: #545252;
+    border-bottom: 1px solid #cacaca;
+    height: 52px; }
+    .permissions-container-permissions .rwt__tablist button[aria-selected="true"] {
+      background-color: #354052;
+      color: white; }
+      .permissions-container-permissions .rwt__tablist button[aria-selected="true"]:hover {
+        color: white; }
+    .permissions-container-permissions .rwt__tablist button:hover {
+      color: black; }
+  .permissions-container-permissions .rwt__tab:after {
+    content: none !important;
+    border-bottom: none; }
 
 .permissions-container-userinfo {
   display: flex;
@@ -3924,7 +3965,7 @@ table {
   .permissions-container-userinfo-image img {
     width: 100px;
     border-radius: 50%;
-    margin-left: 20px; }
+    margin-left: 30px; }
   .permissions-container-userinfo-data {
     display: flex;
     flex-flow: column;
@@ -3932,6 +3973,14 @@ table {
     justify-content: center;
     margin-left: 20px; }
     .permissions-container-userinfo-data div {
-      margin-bottom: 5px; }
+      margin-bottom: 5px;
+      display: flex;
+      flex-flow: row; }
+      .permissions-container-userinfo-data div h2 {
+        width: 70px;
+        font-weight: bold;
+        font-size: 15px;
+        color: black;
+        font-family: sans-serif !important; }
 
-/*# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsImZpbGUiOiIuL2Nzcy9hZG1pbi5jc3M/YTI1MTc5NDc4YTMwZjg0MTQ3OWIiLCJzb3VyY2VSb290IjoiIn0=*/
+/*# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsImZpbGUiOiIuL2Nzcy9hZG1pbi5jc3MiLCJzb3VyY2VSb290IjoiIn0=*/
