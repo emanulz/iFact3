@@ -13,6 +13,18 @@ export default class TopBar extends React.Component {
 
   }
 
+  homeClick() {
+    // ALERTIFY CONFIRM
+    alertify.confirm('Ir al menú Principal', `¿Desea ir al menú principal?`, function() {
+      window.location.replace('/')
+    }, function() {
+      return true
+    }).set('labels', {
+      ok: 'Ir',
+      cancel: 'Permanecer'
+    })
+  }
+
   logOutClick() {
 
     // ALERTIFY CONFIRM
@@ -37,8 +49,12 @@ export default class TopBar extends React.Component {
       <div onClick={this.menuClick.bind(this)} className='topBar-button topBar-button-collapse not-visible' >
         <span className='fa fa-bars' />
       </div>
+
       <div className='topBar-right'>
-        <div onClick={this.configClick.bind(this)} className='topBar-item topBar-item-config'>
+        <div onClick={this.homeClick.bind(this)} className='topBar-item topBar-item-config'>
+          <span className='fa fa-home' />
+        </div>
+        <div onClick={this.configClick.bind(this)} className='topBar-item topBar-item-config last-item'>
           <span className='fa fa-cogs' />
         </div>
         <div onClick={this.logOutClick.bind(this)} className='topBar-button topBar-button-logout'>

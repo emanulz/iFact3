@@ -22,7 +22,8 @@ const profileModel = {
   user: '',
   avatar: '',
   birth_date: '',
-  id_num: ''
+  id_num: '',
+  pin: ''
 }
 
 const stateConst = {

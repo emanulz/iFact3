@@ -3499,11 +3499,13 @@ table {
     line-height: 70px;
     font-size: 28px;
     height: 100%;
-    width: 70px;
+    width: 50px;
     color: #cfcbcb;
     cursor: pointer; }
     .topBar-item:hover {
       color: white; }
+    .topBar-item.last-item {
+      margin-right: 10px; }
 
 .configBar {
   position: absolute;
