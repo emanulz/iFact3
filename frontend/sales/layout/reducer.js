@@ -16,6 +16,15 @@ export default function reducer(state = stateConst, action) {
       }
     } // case
 
+    case 'HOME_PANEL_MOUNTED':
+    {
+      return {
+        ...state,
+        topBarToggleVisible: false,
+        sideMenuVisible: true
+      }
+    } // case
+
   } // switch
 
   return state // default return
