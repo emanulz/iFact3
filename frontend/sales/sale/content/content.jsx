@@ -9,7 +9,8 @@ import {connect} from 'react-redux'
 
 @connect((store) => {
   return {
-    fullWidth: store.sale.fullWidth
+    fullWidth: store.sale.fullWidth,
+    total: store.cart.cartTotal
   }
 })
 export default class Main extends React.Component {
@@ -32,7 +33,7 @@ export default class Main extends React.Component {
         <Cart />
       </div>
       <div className={totalClass} >
-        $999.565.352,35
+        ₡ {this.props.total.formatMoney()}
         <i className='fa fa-chevron-left' onClick={this.toggleWidth.bind(this)} />
       </div>
     </div>

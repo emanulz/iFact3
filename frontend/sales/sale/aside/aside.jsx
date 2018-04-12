@@ -10,7 +10,8 @@ import {connect} from 'react-redux'
 
 @connect((store) => {
   return {
-    fullWidth: store.sale.fullWidth
+    fullWidth: store.sale.fullWidth,
+    total: store.cart.cartTotal
   }
 })
 export default class Aside extends React.Component {
@@ -25,17 +26,18 @@ export default class Aside extends React.Component {
     const asideContainerClass = this.props.fullWidth ? 'sale-aside-content collapsed' : 'sale-aside-content'
     return <div className={asideClass}>
       <div className={asideContainerClass}>
-        <div className='sale-aside-arrow'>
+        {/* <div className='sale-aside-arrow'>
           <div className='sale-aside-arrow-container' onClick={this.toggleWidth.bind(this)}>
             <i className='fa fa-chevron-right' />
           </div>
-        </div>
+        </div> */}
         <Client />
         <Totals />
       </div>
       {/* <Buttons /> */}
       <div className='sale-aside-total' >
-        $999.565.352,35
+        ₡ {this.props.total.formatMoney()}
+        <i className='fa fa-chevron-right' onClick={this.toggleWidth.bind(this)} />
       </div>
     </div>
   }

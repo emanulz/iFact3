@@ -18,11 +18,11 @@ export function updateTotals(inCart) {
 
     subtotal = subtotal + item.subtotal
 
-    const taxesCalc = (item.product.useTaxes)
+    const taxesCalc = (item.product.use_taxes)
       ? item.subtotal * (item.product.taxes / 100)
       : 0
 
-    const taxesCalc2 = (item.product.useTaxes2)
+    const taxesCalc2 = (item.product.use_taxes2)
       ? item.subtotal * (item.product.taxes2 / 100)
       : 0
 
@@ -32,8 +32,8 @@ export function updateTotals(inCart) {
 
   })
   // TODO Config for round or not
-  total = Math.round(subtotal + taxes)
-
+  // total = Math.round(subtotal + taxes)
+  total = subtotal + taxes
   // returs a dispatch with a payload of the obtained values
   return {
     type: 'UPDATE_CART_TOTALS',

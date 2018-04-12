@@ -45,8 +45,9 @@ export default function reducer(state = stateConst, action) {
         ...state,
         cartHasItems: true,
         cartItems: [
-          action.payload,
-          ...state.cartItems
+          // action.payload,
+          ...state.cartItems,
+          action.payload
         ]
       }
     } // case

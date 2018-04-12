@@ -3260,8 +3260,16 @@ table {
       color: white;
       text-align: center;
       line-height: 60px;
-      font-size: 34px; }
+      font-size: 34px;
+      position: relative; }
+      .sale-aside-total i {
+        position: absolute;
+        right: 10px;
+        top: 16px;
+        cursor: pointer;
+        font-size: 30px; }
     .sale-aside-content {
+      margin-top: 20px;
       overflow-x: auto; }
 
 .product {
@@ -3348,14 +3356,15 @@ table {
       display: flex;
       align-items: center;
       justify-content: flex-end;
-      padding-right: 10px;
+      padding-right: 30px;
       width: 15%; }
-    @media screen and (max-width: 1000px) {
+    @media screen and (max-width: 800px) {
       .cart-header {
         display: none; } }
   .cart-body {
     height: calc(100% - 40px);
-    overflow-x: auto; }
+    overflow-x: auto;
+    padding-right: 5px; }
     .cart-body-item {
       padding: 1px 5px;
       border: 1px solid #cacaca;
@@ -3391,7 +3400,7 @@ table {
         width: 30%; }
       .cart-body-item .removeItemIcon {
         position: absolute;
-        right: -10px;
+        right: -5px;
         top: -5px; }
         .cart-body-item .removeItemIcon i {
           cursor: pointer;
@@ -3399,7 +3408,7 @@ table {
           color: #6f7e95; }
           .cart-body-item .removeItemIcon i:hover {
             font-size: 40px; }
-      @media screen and (min-width: 1000px) {
+      @media screen and (min-width: 800px) {
         .cart-body-item {
           justify-content: space-between; }
           .cart-body-item .removeItemIcon {
@@ -3408,7 +3417,7 @@ table {
             top: -5px; }
             .cart-body-item .removeItemIcon i {
               cursor: pointer;
-              font-size: 15px;
+              font-size: 20px;
               color: #6f7e95; }
               .cart-body-item .removeItemIcon i:hover {
                 font-size: 25px; }
@@ -3454,14 +3463,14 @@ table {
             width: 15%; } }
 
 .client {
-  padding-top: 10px;
   font-size: 15px;
   display: flex;
   flex-flow: row;
   justify-content: flex-start; }
   .client-img img {
     height: 60px;
-    border-radius: 100%; }
+    border-radius: 100%;
+    cursor: pointer; }
   .client-data-row {
     padding: 5px 0;
     display: flex;
@@ -3474,7 +3483,7 @@ table {
     margin-top: -5px; }
 
 .totals {
-  padding-top: 10px; }
+  padding-top: 3px; }
   .totals-table th {
     background-color: #354052;
     color: white; }

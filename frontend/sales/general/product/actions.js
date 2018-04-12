@@ -2,35 +2,9 @@
 // MODULE IMPORTS
 // ------------------------------------------------------------------------------------------
 const uuidv1 = require('uuid/v1')
-const PouchDB = require('pouchdb')
-
-PouchDB.plugin(require('pouchdb-find'))
-
 // ------------------------------------------------------------------------------------------
 // EXPORT FUNCTIONS USED IN COMPONENTS
 // ------------------------------------------------------------------------------------------
-
-// Fetch products from backend
-export function fetchProducts() {
-
-  return function(dispatch) {
-
-    const localDbProducts = new PouchDB('general')
-    localDbProducts.createIndex({ index: {fields: ['docType']} })
-    localDbProducts.createIndex({ index: {fields: ['docType', 'code']} })
-
-    localDbProducts.allDocs({include_docs: true, attachments: true}).then((response) => {
-      console.log(response)
-      const rows = response.rows
-      const data = []
-      rows.forEach(row => data.push(row.doc))
-
-      dispatch({type: 'FETCH_PRODUCTS_FULFILLED', payload: data})
-    }).catch((err) => {
-      dispatch({type: 'FETCH_PRODUCTS_REJECTED', payload: err})
-    })
-  }
-}
 
 // opens the product search panel
 export function searchProduct() {
@@ -108,7 +82,7 @@ export function updateItemLote(itemsInCart, code, lote) {
 // When item is selected in code field
 export function productSelected(code, qty, products, itemsInCart, globalDiscount, client, defaultConfig, userConfig) {
 
-  const perLine = userConfig.cartSingleLinePerItem || defaultConfig.cartSingleLinePerItem
+  const perLine = false
 
   const productSelected = products.findIndex(product => {
     return product.code == code || product.barcode == code
@@ -248,11 +222,11 @@ function caclSubtotal(product, qty, productDiscount, globalDiscount, client) {
 
   const subTotal = price * qty * (1 - (productDiscount / 100)) * (1 - (globalDiscount / 100))
 
-  const iv1 = (product.useTaxes)
+  const iv1 = (product.use_taxes)
     ? subTotal * (product.taxes / 100)
     : 0
 
-  const iv2 = (product.useTaxes2)
+  const iv2 = (product.use_taxes2)
     ? subTotal * (product.taxes2 / 100)
     : 0
 
@@ -263,11 +237,13 @@ function caclSubtotal(product, qty, productDiscount, globalDiscount, client) {
 
   const discountCurrency = discountCurrencyInLine + discountCurrencyGlobal
 
-  return {subtotal: subTotal,
-    totalWithIv: Math.round(totalWithIv),
+  return {
+    subtotal: subTotal,
+    totalWithIv: totalWithIv,
     discountCurrency: discountCurrency,
     subTotalNoDiscount: subTotalNoDiscount,
-    priceToUse: price}
+    priceToUse: price
+  }
 
 }
 

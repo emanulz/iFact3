@@ -4,13 +4,13 @@
 import React from 'react'
 
 import {connect} from 'react-redux'
-// import {recalcCart} from '../../main/product/actions.js'
+import {recalcCart} from '../../general/product/actions.js'
 import alertify from 'alertifyjs'
 
 @connect((store) => {
   return {
     total: store.cart.cartTotal,
-    // client: store.clients.clientSelected,
+    client: store.clients.clientSelected,
     taxes: store.cart.cartTaxes,
     discountTotal: store.cart.discountTotal,
     subTotalNoDiscount: store.cart.cartSubtotalNoDiscount,
@@ -43,7 +43,7 @@ export default class Totals extends React.Component {
       const maxDiscount = this.props.client.maxDiscount ? this.props.client.maxDiscount : 100
       if (discount <= maxDiscount) {
         this.props.dispatch({type: 'SET_GLOBAL_DISCOUNT', payload: discount})
-        // this.props.dispatch(recalcCart(this.props.itemsInCart, this.state.discountVal, this.props.client))
+        this.props.dispatch(recalcCart(this.props.itemsInCart, this.state.discountVal, this.props.client))
       } else {
         alertify.alert('Error', `El descuento para el cliente seleccionado no puede ser mayor al ${maxDiscount}%`)
         document.getElementById('discountField').value = parseFloat(this.props.globalDiscount)
@@ -66,7 +66,7 @@ export default class Totals extends React.Component {
     const maxDiscount = this.props.client.maxDiscount ? this.props.client.maxDiscount : 100
     if (discount <= maxDiscount) {
       this.props.dispatch({type: 'SET_GLOBAL_DISCOUNT', payload: discount})
-      // this.props.dispatch(recalcCart(this.props.itemsInCart, this.state.discountVal, this.props.client))
+      this.props.dispatch(recalcCart(this.props.itemsInCart, this.state.discountVal, this.props.client))
     } else {
       alertify.alert('Error', `El descuento para el cliente seleccionado no puede ser mayor al ${maxDiscount}%`)
       document.getElementById('discountField').value = parseFloat(this.props.globalDiscount)

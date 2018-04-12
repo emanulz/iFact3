@@ -3,18 +3,18 @@
  */
 import React from 'react'
 import {connect} from 'react-redux'
-// import {updateTotals, removeFromCart} from './actions'
-// import {updateItemDiscount, updateItemLote, updateQty, addSubOne, updateQtyCode} from '../product/actions'
-// import alertify from 'alertifyjs'
+import {updateTotals, removeFromCart} from './actions'
+import {updateItemDiscount, updateItemLote, updateQty, addSubOne, updateQtyCode} from '../product/actions'
+import alertify from 'alertifyjs'
 const Mousetrap = require('mousetrap')
 
 @connect((store) => {
   return {
-    // inCart: store.cart.cartItems,
-    // client: store.clients.clientSelected,
-    // globalDiscount: store.cart.globalDiscount,
+    inCart: store.cart.cartItems,
+    client: store.clients.clientSelected,
+    globalDiscount: store.cart.globalDiscount,
     // disabled: store.sales.completed,
-    // cartItemActive: store.cart.cartItemActive,
+    cartItemActive: store.cart.cartItemActive
     // defaultConfig: store.config.defaultSales,
     // userConfig: store.config.userSales
   }
@@ -24,7 +24,11 @@ export default class CartItems extends React.Component {
   // On component update (The cart has been modified) calls the update totals method in actions file.
   componentDidUpdate(prevProps) {
 
-    // this.props.dispatch(updateTotals(this.props.inCart))
+    this.props.dispatch(updateTotals(this.props.inCart))
+
+    // Auto Scroll To end of container
+    const elem = document.getElementById('cart-body')
+    elem.scrollTop = elem.scrollHeight
 
   }
 
@@ -46,8 +50,8 @@ export default class CartItems extends React.Component {
         e.returnValue = false
       }
 
-      // _this.props.dispatch(addSubOne(_this.props.cartItemActive, true, _this.props.inCart, _this.props.globalDiscount,
-      //   _this.props.client))
+      _this.props.dispatch(addSubOne(_this.props.cartItemActive, true, _this.props.inCart, _this.props.globalDiscount,
+        _this.props.client))
     })
 
     Mousetrap.bind('mod+f', function(e) {
@@ -69,8 +73,8 @@ export default class CartItems extends React.Component {
       // internet explorer
         e.returnValue = false
       }
-      // _this.props.dispatch(addSubOne(_this.props.cartItemActive, false, _this.props.inCart, _this.props.globalDiscount,
-      //   _this.props.client))
+      _this.props.dispatch(addSubOne(_this.props.cartItemActive, false, _this.props.inCart, _this.props.globalDiscount,
+        _this.props.client))
     })
 
     Mousetrap.bind('mod+*', function(e) {
@@ -82,14 +86,14 @@ export default class CartItems extends React.Component {
         e.returnValue = false
       }
 
-      // const __this = _this
-      // alertify.prompt(`Nueva cantidad para el producto seleccionado`, 'Ingrese la nueva cantidad para el producto seleccionado', ''
-      //   , function(evt, value) {
-      //     __this.props.dispatch(updateQtyCode(__this.props.cartItemActive, value, __this.props.inCart,
-      //       __this.props.globalDiscount, __this.props.client))
-      //   }
-      //   , function() {})
-      //   .set('labels', {ok: 'Ok', cancel: 'Cancelar'})
+      const __this = _this
+      alertify.prompt(`Nueva cantidad para el producto seleccionado`, 'Ingrese la nueva cantidad para el producto seleccionado', ''
+        , function(evt, value) {
+          __this.props.dispatch(updateQtyCode(__this.props.cartItemActive, value, __this.props.inCart,
+            __this.props.globalDiscount, __this.props.client))
+        }
+        , function() {})
+        .set('labels', {ok: 'Ok', cancel: 'Cancelar'})
     })
   }
 
@@ -97,11 +101,11 @@ export default class CartItems extends React.Component {
 
     if (ev.key == 'Enter') {
       ev.preventDefault()
-      // const discount = (ev.target.value)
-      //   ? ev.target.value
-      //   : 0
-      // this.props.dispatch(updateItemDiscount(this.props.inCart, code, discount, this.props.globalDiscount,
-      //   this.props.client))
+      const discount = (ev.target.value)
+        ? ev.target.value
+        : 0
+      this.props.dispatch(updateItemDiscount(this.props.inCart, code, discount, this.props.globalDiscount,
+        this.props.client))
 
     }
 
@@ -109,20 +113,20 @@ export default class CartItems extends React.Component {
 
   discountInputOnBlur(code, ev) {
 
-    // const discount = (ev.target.value)
-    //   ? ev.target.value
-    //   : 0
-    // this.props.dispatch(updateItemDiscount(this.props.inCart, code, discount, this.props.globalDiscount,
-    //   this.props.client))
+    const discount = (ev.target.value)
+      ? ev.target.value
+      : 0
+    this.props.dispatch(updateItemDiscount(this.props.inCart, code, discount, this.props.globalDiscount,
+      this.props.client))
 
   }
 
   qtyInputChange(code, ev) {
 
-    // const qty = parseFloat((ev.target.value))
-    //   ? ev.target.value
-    //   : 0
-    // this.props.dispatch(updateQty(code, qty, this.props.inCart, this.props.globalDiscount, this.props.client))
+    const qty = parseFloat((ev.target.value))
+      ? ev.target.value
+      : 0
+    this.props.dispatch(updateQty(code, qty, this.props.inCart, this.props.globalDiscount, this.props.client))
 
   }
 
@@ -139,10 +143,10 @@ export default class CartItems extends React.Component {
 
     if (ev.key == 'Enter') {
       ev.preventDefault()
-      // const lote = (ev.target.value)
-      //   ? ev.target.value
-      //   : 0
-      // this.props.dispatch(updateItemLote(this.props.inCart, code, lote))
+      const lote = (ev.target.value)
+        ? ev.target.value
+        : 0
+      this.props.dispatch(updateItemLote(this.props.inCart, code, lote))
 
     }
 
@@ -150,10 +154,10 @@ export default class CartItems extends React.Component {
 
   loteInputOnBlur(code, ev) {
 
-    // const lote = (ev.target.value)
-    //   ? ev.target.value
-    //   : 0
-    // this.props.dispatch(updateItemLote(this.props.inCart, code, lote))
+    const lote = (ev.target.value)
+      ? ev.target.value
+      : 0
+    this.props.dispatch(updateItemLote(this.props.inCart, code, lote))
 
   }
 
@@ -165,7 +169,7 @@ export default class CartItems extends React.Component {
 
   removeItem(code, ev) {
 
-    // this.props.dispatch(removeFromCart(this.props.inCart, code))
+    this.props.dispatch(removeFromCart(this.props.inCart, code))
 
   }
 
@@ -177,8 +181,7 @@ export default class CartItems extends React.Component {
 
   render() {
 
-    // const cartItems = this.props.inCart
-    const cartItems = []
+    const cartItems = this.props.inCart
     const items2 = cartItems.map((item, index) => {
 
       const activeClass = (item.product.code == this.props.cartItemActive || item.product.barcode == this.props.cartItemActive)
@@ -187,7 +190,7 @@ export default class CartItems extends React.Component {
 
       const removeIconClass = this.props.disabled ? 'removeItemIcon disabled' : 'removeItemIcon'
 
-      const taxes1 = (item.product.useTaxes)
+      const taxes1 = (item.product.use_taxes)
         ? item.product.taxes
         : 0
 
@@ -263,7 +266,7 @@ export default class CartItems extends React.Component {
     //   {items}
     // </tbody>
 
-    return <div className='cart-body'>
+    return <div id='cart-body' className='cart-body'>
       {items2}
     </div>
 
