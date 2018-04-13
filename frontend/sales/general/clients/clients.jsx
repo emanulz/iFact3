@@ -4,7 +4,8 @@
 import React from 'react'
 
 import {connect} from 'react-redux'
-// import {clientSelected, searchClient, userSelected} from './actions'
+import {clientSelected, searchClient, userSelected} from './actions'
+import {getItemDispatch} from '../../../utils/api'
 // import {getClientDebt} from '../../../../admin/utils/receivable'
 // import {recalcCart} from '../../main/product/actions'
 
@@ -49,19 +50,34 @@ export default class Clients extends React.Component {
     }
   }
 
+  componentWillMount() {
+
+    this.props.dispatch({type: 'FETCHING_STARTED', payload: ''})
+    this.props.dispatch({type: 'CLEAR_CLIENTS', payload: ''})
+
+    const clientKwargs = {
+      url: '/api/clients',
+      successType: 'FETCH_CLIENTS_FULFILLED',
+      errorType: 'FETCH_CLIENTS_REJECTED'
+    }
+
+    this.props.dispatch(getItemDispatch(clientKwargs))
+
+  }
+
   inputKeyPress(ev) {
     // if Key pressed id Enter
     if (ev.key == 'Enter') {
 
-      // const code = ev.target.value // Split val [0] is code [1] is qty
-      // this.props.dispatch(clientSelected(code, this.props.clients)) // dispatchs action according to result
+      const code = ev.target.value // Split val [0] is code [1] is qty
+      this.props.dispatch(clientSelected(code, this.props.clients)) // dispatchs action according to result
     }
 
   }
 
   userSelect(ev) {
-    // const _id = ev.target.value
-    // this.props.dispatch(userSelected(_id, this.props.users)) // dispatchs action according to result
+    const _id = ev.target.value
+    this.props.dispatch(userSelected(_id, this.props.users)) // dispatchs action according to result
   }
 
   userUnSelect(ev) {
@@ -70,7 +86,7 @@ export default class Clients extends React.Component {
 
   searchClientClick() {
 
-    // this.props.dispatch(searchClient())
+    this.props.dispatch(searchClient())
 
   }
 

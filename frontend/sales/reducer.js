@@ -8,6 +8,11 @@ import clients from './general/clients/reducer.js'
 import products from './general/product/reducer.js'
 import sale from './sale/reducer.js'
 import messages from './messages/reducer.js'
+import searchClients from './general/search/clients/reducer.js'
+import searchProducts from './general/search/products/reducer.js'
+import pay from './general/pay/reducer.js'
+import invoice from './general/invoice/reducer.js'
+import sales from './general/sales/reducer.js'
 
 export default combineReducers({
   fetching,
@@ -17,5 +22,10 @@ export default combineReducers({
   clients,
   products,
   sale,
-  messages
+  messages,
+  searchClients,
+  searchProducts,
+  pay,
+  invoice,
+  sales
 })

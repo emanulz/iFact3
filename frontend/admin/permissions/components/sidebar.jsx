@@ -80,7 +80,7 @@ class SideBar extends React.Component {
     })
 
     return <div className='permissions-container-sidebar'>
-      <h1>SELECCIONE USUARIO</h1>
+      <h1>SELECCIÓN DE USUARIO</h1>
       <input type='text' className='form-control input' placeholder='Filtrar...'
         onChange={this.setInputFilter.bind(this)} />
       <ul>

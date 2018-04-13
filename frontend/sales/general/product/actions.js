@@ -6,11 +6,6 @@ const uuidv1 = require('uuid/v1')
 // EXPORT FUNCTIONS USED IN COMPONENTS
 // ------------------------------------------------------------------------------------------
 
-// opens the product search panel
-export function searchProduct() {
-  return {type: 'PRODUCT_SHOW_PANEL', payload: -1}
-}
-
 // Function to update the globa; discount of complete storage of items, and reflect it on store, then updating DOME
 export function recalcCart(itemsInCart, globalDiscount, client) {
 

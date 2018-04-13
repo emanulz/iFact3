@@ -45,7 +45,7 @@ export default class Product extends React.Component {
 
   searchProductClick() {
 
-    // this.props.dispatch(searchProduct())
+    this.props.dispatch({type: 'PRODUCT_SHOW_PANEL', payload: -1})
 
   }
 
