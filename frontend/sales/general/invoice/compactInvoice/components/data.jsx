@@ -20,7 +20,7 @@ export default class Data extends React.Component {
         <th>Direc:</th>
         <td>{sale.client.adress}</td>
       </tr>
-      : ''
+      : <tr />
 
     return <div className='compact-invoice-data'>
 

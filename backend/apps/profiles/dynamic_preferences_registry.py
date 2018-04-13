@@ -19,14 +19,6 @@ class SiteTitle(StringPreference):
     name = 'title'
     default = 'My site'
 
-# now we declare a per-user preference
-# @user_preferences_registry.register
-# class CommentNotificationsEnabled(BooleanPreference):
-#     """Do you want to be notified on comment publication ?"""
-#     section = discussion
-#     name = 'comment_notifications_enabled'
-#     default = True
-
 
 @user_preferences_registry.register
 class AdminLocked(BooleanPreference):

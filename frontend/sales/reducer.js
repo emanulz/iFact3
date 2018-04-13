@@ -13,6 +13,7 @@ import searchProducts from './general/search/products/reducer.js'
 import pay from './general/pay/reducer.js'
 import invoice from './general/invoice/reducer.js'
 import sales from './general/sales/reducer.js'
+import config from './config/reducer.js'
 
 export default combineReducers({
   fetching,
@@ -27,5 +28,6 @@ export default combineReducers({
   searchProducts,
   pay,
   invoice,
-  sales
+  sales,
+  config
 })

@@ -12,42 +12,50 @@ export default class Table extends React.Component {
     const cartItems = this.props.inCart
     const globalDiscount = (this.props.globalDiscount)
       ? <td className='right-in-table'>{this.props.globalDiscount}</td>
-      : ''
-    const items = cartItems.map((item) => {
+      : <td style={{'display': 'none'}} >-</td>
+    const items = cartItems.length
+      ? cartItems.map((item) => {
+        const taxesText = (item.product.use_taxes)
+          ? `G`
+          : `E`
 
-      const taxesText = (item.product.useTaxes)
-        ? `G`
-        : `E`
-
-      return <tr key={item.uuid}>
-        <td>
-          {item.product.code}
-        </td>
-        <td>
-          {item.product.description}
-        </td>
-        <td className='right-in-table'>
-          {item.qty}
-        </td>
-        <td className='right-in-table'>
-          ₡ {parseFloat(item.priceToUse).formatMoney(2, ',', '.')}
-        </td>
-        <td className='right-in-table'>
-          {item.discount}</td>
-        {globalDiscount}
-        <td className='right-in-table'>
-          {taxesText}
-        </td>
-        {/* <td className='right-in-table'>
-          {item.lote}
-        </td> */}
-        <td className='right-in-table'>
-          ₡ {item.subTotalNoDiscount.formatMoney(2, ',', '.')}
-        </td>
+        return <tr key={item.uuid}>
+          <td>
+            {item.product.code}
+          </td>
+          <td>
+            {item.product.description}
+          </td>
+          <td className='right-in-table'>
+            {item.qty}
+          </td>
+          <td className='right-in-table'>
+            ₡ {parseFloat(item.priceToUse).formatMoney(2, ',', '.')}
+          </td>
+          <td className='right-in-table'>
+            {item.discount}
+          </td>
+          {globalDiscount}
+          <td className='right-in-table'>
+            {taxesText}
+          </td>
+          <td className='right-in-table'>
+            ₡ {item.subTotalNoDiscount.formatMoney(2, ',', '.')}
+          </td>
+        </tr>
+      })
+      : <tr>
+        <td>--</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
       </tr>
-    })
 
-    const globalDiscountRow = this.props.globalDiscount ? <th className='right-in-table'>Des2 %</th> : ''
+    const globalDiscountRow = this.props.globalDiscount ? <th className='right-in-table'>Des2 %</th>
+      : <th style={{'display': 'none'}} >-</th>
 
     return <table className='full-invoice-table table'>
       <thead>
@@ -59,14 +67,10 @@ export default class Table extends React.Component {
           <th className='right-in-table'>Des%</th>
           {globalDiscountRow}
           <th className='right-in-table'>IV</th>
-          {/* <th className='right-in-table'>Lote</th> */}
           <th className='right-in-table'>Precio</th>
         </tr>
       </thead>
-      <tbody className=''>
-        {items}
-      </tbody>
-
+      <tbody>{items}</tbody>
     </table>
 
   }

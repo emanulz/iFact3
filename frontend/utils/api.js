@@ -361,6 +361,40 @@ export function deleteItem(kwargs) {
 }
 
 // ------------------------------------------------------------------------------------------
+// LOAD CONFIG FUNCTION
+// ------------------------------------------------------------------------------------------
+export function loadGlobalConfig(section, name, success, fail) {
+  return function(dispatch) {
+    if (name) {
+
+      axios.get(`/api/globalconf/${section}__${name}`).then(function(response) {
+        // TODO Single config fetch
+      }).catch(function(error) {
+        dispatch({type: fail, payload: error})
+      })
+
+    } else {
+      axios.get(`/api/globalprefs`).then(function(response) {
+        // The property to modify in reducer
+        const config = response.data
+          ? response.data.filter(item => {
+            return item.section == section
+          })
+          : {}
+        const data = {}
+        config.forEach(item => {
+          data[item.name] = item.value
+        })
+
+        dispatch({type: success, payload: {data: data, section: section}})
+      }).catch(function(error) {
+        dispatch({type: fail, payload: error})
+      })
+    }
+  }
+}
+
+// ------------------------------------------------------------------------------------------
 // SAVE LOG FUNCTION (CREATE LOG)
 // ------------------------------------------------------------------------------------------
 function saveLog (code, model, oldObject, object, description, user) {

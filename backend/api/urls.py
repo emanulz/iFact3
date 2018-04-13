@@ -17,6 +17,9 @@ from apps.profiles.api.views import UserViewSet, PermissionsViewSet
 from apps.logs.api.views import LogViewSet
 from dynamic_preferences.users.viewsets import UserPreferencesViewSet
 
+# API COPIED FROM  dynamic_preferences into apps.preferences.api package and modified permissions class
+from apps.preferences.api.viewsets import GlobalPreferencesViewSet
+
 
 router = routers.DefaultRouter()
 router.register(r'clients', ClientViewSet)
@@ -29,6 +32,7 @@ router.register(r'userprofiles', ProfileViewSet)
 router.register(r'users', UserViewSet)
 router.register(r'permissions', PermissionsViewSet)
 router.register(r'userprefs', UserPreferencesViewSet, base_name='userprefs')
+router.register(r'globalprefs', GlobalPreferencesViewSet, base_name='globalprefs')
 
 
 urlpatterns = [

@@ -1,6 +1,6 @@
 import React from 'react'
 import {connect} from 'react-redux'
-
+import {loadGlobalConfig} from '../../../../utils/api.js'
 import FullInvoice from '../fullInvoice/fullInvoice.jsx'
 import CompactInvoice from '../compactInvoice/compactInvoice.jsx'
 
@@ -8,6 +8,10 @@ import CompactInvoice from '../compactInvoice/compactInvoice.jsx'
   return {panelVisible: store.invoice.isVisible, isFull: store.invoice.isFull}
 })
 export default class InvoicePanel extends React.Component {
+
+  componentWillMount () {
+    this.props.dispatch(loadGlobalConfig('company', false, 'FETCH_CONFIG_FULFILLED', 'FETCH_CONFIG_REJECTED'))
+  }
 
   hidePanel() {
 
