@@ -1,5 +1,6 @@
 import React from 'react'
 // import {saveItem, loadSale} from '../actions'
+import { saveItem } from '../../../../utils/api'
 import {connect} from 'react-redux'
 const Mousetrap = require('mousetrap')
 
@@ -21,44 +22,37 @@ export default class PaySideBar extends React.Component {
 
   saveBtn() {
     // const sales = this.props.sales
-    const sales = []
-
-    const sortedSales = sales.length > 1 ? sales.sort((a, b) => {
-      if (a.id < b.id) {
-        return 1
-      }
-      if (a.id > b.id) {
-        return -1
-      }
-      return 0
-    }) : sales
-
-    const nextId = sortedSales.length > 0 ? sortedSales[0].id + 1 : 1
-
+    const user = this.props.user
     const sale = {
-      id: nextId,
-      docType: 'SALE',
-      cart: this.props.cart,
-      client: this.props.client,
-      user: this.props.user,
-      pay: this.props.pay,
-      created: new Date()
+      cart: JSON.stringify(this.props.cart),
+      client: JSON.stringify(this.props.client),
+      user: JSON.stringify(this.props.user),
+      pay: JSON.stringify(this.props.pay)
     }
 
     if (this.props.pay.payMethod == 'CREDIT') {
       sale.pay.debt = this.props.cart.cartTotal
       sale.pay.payed = false
     }
-    // const kwargs = {
-    //   db: 'sales',
-    //   movements: this.props.movements,
-    //   item: sale,
-    //   sucessMessage: 'Venta creada Correctamente.',
-    //   errorMessage: 'Hubo un error al crear la venta, intente de nuevo.'
-    // }
 
-    // this.props.dispatch(saveItem(kwargs))
-    this.props.dispatch({type: 'SHOW_INVOICE_PANEL', payload: ''})
+    const kwargs = {
+      url: '/api/sales/',
+      item: sale,
+      logCode: 'SALE_CREATE',
+      logDescription: 'Creación de nueva Venta',
+      logModel: 'SALE',
+      user: user,
+      itemOld: '',
+      sucessMessage: 'Venta creada Correctamente.',
+      errorMessage: 'Hubo un error al crear la Venta, intente de nuevo.',
+      dispatchType: 'CLEAR_SALE',
+      isSale: true
+    }
+
+    this.props.dispatch({type: 'FETCHING_STARTED', payload: ''})
+    this.props.dispatch(saveItem(kwargs))
+    this.props.dispatch({type: 'HIDE_PAY_PANEL', payload: ''})
+
     Mousetrap.reset()
 
   }
@@ -121,7 +115,7 @@ export default class PaySideBar extends React.Component {
         <br />
 
         <div onClick={this.saveBtn.bind(this)} className={payButtonClass}>
-          Pagar
+          Registrar
           <i className='fa fa-credit-card' aria-hidden='true' />
         </div>
 

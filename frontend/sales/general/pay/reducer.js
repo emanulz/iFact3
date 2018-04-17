@@ -1,5 +1,5 @@
 const stateConst = {
-  isVisible: true,
+  isVisible: false,
   payMethod: 'CASH',
   cashAmount: 0,
   cardDigits: '',

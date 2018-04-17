@@ -83,9 +83,22 @@ export default function reducer(state = stateConst, action) {
 
     case 'SET_SALE':
     {
+      const cart = JSON.parse(action.payload.cart)
+      const client = JSON.parse(action.payload.client)
+      const user = JSON.parse(action.payload.user)
+      const pay = JSON.parse(action.payload.pay)
+
+      const sale = {
+        cart: cart,
+        client: client,
+        user: user,
+        pay: pay,
+        created: new Date(action.payload.created),
+        id: action.payload.bill_number
+      }
       return {
         ...state,
-        saleActive: action.payload
+        saleActive: sale
       }
     } // case
 

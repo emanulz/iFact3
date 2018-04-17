@@ -136,7 +136,7 @@ export function saveItem(kwargs) {
   const logModel = kwargs.logModel
   const logDescription = kwargs.logDescription
   const user = kwargs.user
-
+  const isSale = kwargs.isSale
   return function(dispatch) {
 
     axios({
@@ -154,6 +154,10 @@ export function saveItem(kwargs) {
         dispatch({type: kwargs.dispatchType, payload: ''})
         saveLog(logCode, logModel, itemOld, item, logDescription, user)
         dispatch({type: 'FETCHING_DONE', payload: ''})
+        if (isSale) {
+          dispatch({type: 'SET_SALE', payload: response.data})
+          dispatch({type: 'SHOW_INVOICE_PANEL', payload: ''})
+        }
       }).catch((err) => {
         console.log(err)
         if (err.response) {
@@ -237,6 +241,7 @@ export function patchItem(kwargs) {
         }
         dispatch({type: kwargs.dispatchType, payload: ''})
         saveLog(logCode, logModel, itemOld, item, logDescription, user)
+        dispatch({type: 'SET_SALE_ID', payload: ''})
         dispatch({type: 'FETCHING_DONE', payload: ''})
       }).catch((err) => {
         console.log(err)

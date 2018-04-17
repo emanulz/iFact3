@@ -51,7 +51,9 @@ INSTALLED_APPS = [
     'apps.profiles.apps.ProfilesConfig',
     'apps.clients.apps.ClientsConfig',
     'apps.products.apps.ProductsConfig',
-    'apps.suppliers.apps.SuppliersConfig'
+    'apps.suppliers.apps.SuppliersConfig',
+    'apps.sales.apps.SalesConfig',
+    'apps.credits.apps.CreditsConfig'
     ]
 
 MIDDLEWARE = [

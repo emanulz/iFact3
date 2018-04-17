@@ -14,6 +14,7 @@ from apps.products.api.views import ProductViewSet, ProductDepartmentViewSet, Pr
 from apps.suppliers.api.views import SupplierViewSet
 from apps.profiles.api.views import ProfileViewSet
 from apps.profiles.api.views import UserViewSet, PermissionsViewSet
+from apps.sales.api.views import SaleViewSet
 from apps.logs.api.views import LogViewSet
 from dynamic_preferences.users.viewsets import UserPreferencesViewSet
 
@@ -25,6 +26,7 @@ router = routers.DefaultRouter()
 router.register(r'clients', ClientViewSet)
 router.register(r'logs', LogViewSet)
 router.register(r'products', ProductViewSet)
+router.register(r'sales', SaleViewSet)
 router.register(r'productdepartments', ProductDepartmentViewSet)
 router.register(r'productsubdepartments', ProductSubDepartmentViewSet)
 router.register(r'suppliers', SupplierViewSet)
