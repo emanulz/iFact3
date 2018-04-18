@@ -6,8 +6,8 @@ import React from 'react'
 import {connect} from 'react-redux'
 import {clientSelected, searchClient, userSelected} from './actions'
 import {getItemDispatch} from '../../../utils/api'
-// import {getClientDebt} from '../../../../admin/utils/receivable'
-// import {recalcCart} from '../../main/product/actions'
+import {getClientDebt} from '../../../utils/getClientDebt'
+import {recalcCart} from '../../general/product/actions'
 
 @connect((store) => {
   return {
@@ -30,9 +30,19 @@ export default class Clients extends React.Component {
       // set the discount: default value or 0
 
       if (!nextProps.clientSelected.saleLoaded) {
+
+        const kwargs = {
+          client_id: nextProps.clientSelected.id,
+          success: 'SET_CLIENT_DEBT',
+          fail: 'SET_CLIENT_DEBT_FAILED'
+        }
+
         const discount = nextProps.client.defaultDiscount ? nextProps.client.defaultDiscount : 0
-        // this.props.dispatch(recalcCart(nextProps.cart, discount, nextProps.client))
+
+        this.props.dispatch(recalcCart(nextProps.cart, discount, nextProps.client))
         this.props.dispatch({type: 'SET_GLOBAL_DISCOUNT', payload: discount})
+
+        this.props.dispatch(getClientDebt(kwargs))
 
         // SETS VALUE OF DEFAULT DISCOUNT TO FIELD OR 0
         if (nextProps.client.defaultDiscount) {
@@ -43,10 +53,6 @@ export default class Clients extends React.Component {
           document.getElementById('discountField').disabled = false
         }
       }
-
-      // const debt = getClientDebt(nextProps.client._id, nextProps.movements)
-      // this.props.dispatch({type: 'SET_CLIENT_DEBT', payload: debt})
-
     }
   }
 

@@ -7,6 +7,8 @@ from apps.profiles.views import checkUserPassword
 from apps.profiles.views import checkUserPermission, checkUserPermissions, checkSingleUserPermissions
 from apps.profiles.views import assingUserPermission
 
+from apps.credits.views import getClientDebt
+
 # API
 from rest_framework import routers
 from apps.clients.api.views import ClientViewSet
@@ -16,6 +18,7 @@ from apps.profiles.api.views import ProfileViewSet
 from apps.profiles.api.views import UserViewSet, PermissionsViewSet
 from apps.sales.api.views import SaleViewSet
 from apps.logs.api.views import LogViewSet
+from apps.credits.api.views import Credit_MovementViewSet
 from dynamic_preferences.users.viewsets import UserPreferencesViewSet
 
 # API COPIED FROM  dynamic_preferences into apps.preferences.api package and modified permissions class
@@ -35,6 +38,7 @@ router.register(r'users', UserViewSet)
 router.register(r'permissions', PermissionsViewSet)
 router.register(r'userprefs', UserPreferencesViewSet, base_name='userprefs')
 router.register(r'globalprefs', GlobalPreferencesViewSet, base_name='globalprefs')
+router.register(r'creditmovements', Credit_MovementViewSet)
 
 
 urlpatterns = [
@@ -44,5 +48,6 @@ urlpatterns = [
     url(r'^checkpermission/', checkUserPermission),
     url(r'^checkpermissions/', checkUserPermissions),
     url(r'^assinguserpermission/', assingUserPermission),
-    url(r'^checksingleuserpermissions/', checkSingleUserPermissions)
+    url(r'^checksingleuserpermissions/', checkSingleUserPermissions),
+    url(r'^getclientdebt/', getClientDebt),
     ]

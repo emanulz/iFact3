@@ -402,7 +402,7 @@ export function loadGlobalConfig(section, name, success, fail) {
 // ------------------------------------------------------------------------------------------
 // SAVE LOG FUNCTION (CREATE LOG)
 // ------------------------------------------------------------------------------------------
-function saveLog (code, model, oldObject, object, description, user) {
+export function saveLog (code, model, oldObject, object, description, user) {
 
   const prevObject = JSON.stringify(oldObject)
   const newObject = JSON.stringify(object)

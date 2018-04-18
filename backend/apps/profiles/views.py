@@ -132,7 +132,7 @@ def assingUserPermission(request):
         else:
             try:
                 permission = Permission.objects.get(codename=permission_name)
-                print (permission)
+                print(permission)
                 user.user_permissions.remove(permission)
 
                 response = HttpResponse({'status': 'success', 'message': 'Permiso Eliminado Correctamente'},

@@ -1,4 +1,3 @@
-
 const clientSelectedModel = {
   code: '0000',
   clientType: 'GENERAL',
@@ -121,7 +120,7 @@ export default function reducer(state = stateConst, action) {
     {
       return {
         ...state,
-        clientSelectedDebt: action.payload
+        clientSelectedDebt: parseFloat(action.payload.debt)
       }
     }
 

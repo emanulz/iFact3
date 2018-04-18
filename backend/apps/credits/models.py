@@ -12,7 +12,7 @@ from django.db import IntegrityError
 class Credit_Movement(models.Model):
 
     credit = 'CRED'
-    debit = 'DEB'
+    debit = 'DEBI'
 
     MOVEMENT_CHOICES = ((credit, 'Crédito'),
                         (debit, 'Débito')
@@ -22,7 +22,7 @@ class Credit_Movement(models.Model):
     movement_number = models.PositiveIntegerField(default=1, verbose_name='Número de movimiento', editable=False)
     client_id = models.CharField(max_length=255, verbose_name='ID Objeto Cliente', default='')
     bill_id = models.CharField(max_length=255, verbose_name='ID Objetov Factura', default='')
-    movement_type = models.CharField(max_length=3, choices=MOVEMENT_CHOICES, default=credit,
+    movement_type = models.CharField(max_length=4, choices=MOVEMENT_CHOICES, default=credit,
                                      verbose_name='Tipo de Movimiento')
     amount = models.DecimalField(max_digits=11, decimal_places=2, verbose_name='Monto',
                                  blank=True, default=0)

@@ -1,10 +1,14 @@
 const saleActiveModel = {
   id: 0,
-  docType: 'SALE',
+  bill_number: '',
   cart: {},
   client: '',
+  user: '',
+  client_id: '',
   pay: {},
-  created: new Date()
+  payed: false,
+  pay_type: 'CASH'
+
 }
 
 const stateConst = {
@@ -89,16 +93,21 @@ export default function reducer(state = stateConst, action) {
       const pay = JSON.parse(action.payload.pay)
 
       const sale = {
+        id: action.payload.id,
+        bill_number: action.payload.bill_number,
         cart: cart,
         client: client,
         user: user,
         pay: pay,
+        payed: action.payload.payed,
+        pay_type: action.payload.pay_type,
         created: new Date(action.payload.created),
-        id: action.payload.bill_number
+        updated: new Date(action.payload.updated)
       }
       return {
         ...state,
-        saleActive: sale
+        saleActive: sale,
+        completed: true
       }
     } // case
 

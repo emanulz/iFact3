@@ -29,8 +29,8 @@ class Sale(models.Model):
     client = models.TextField(verbose_name='Objeto Cliente', default='')
     client_id = models.CharField(max_length=255, verbose_name='Id de Cliente', default='1')
     pay = models.TextField(verbose_name='Objeto Pago', default='')
-    pay_type = models.CharField(max_length=3, choices=PAY_CHOICES, default=cash, verbose_name='Tipo de Pago')
-    payed = models.BooleanField(default=False, verbose_name='Pagada')
+    pay_type = models.CharField(max_length=4, choices=PAY_CHOICES, default=cash, verbose_name='Tipo de Pago')
+    payed = models.BooleanField(default=True, verbose_name='Pagada')
     user = models.TextField(verbose_name='Objeto Usuario', default='')
     created = models.DateTimeField(auto_now=False, auto_now_add=True, blank=True, null=True,
                                    verbose_name='Fecha de creación')
